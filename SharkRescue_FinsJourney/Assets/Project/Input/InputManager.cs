@@ -15,6 +15,8 @@ public class InputManager : MonoBehaviour
 
     public static InputManager instance { get; private set; }
 
+    public SwipeDetection swipeDetector;
+
     private Controls playerControls;
     private Camera mainCamera;
 
@@ -31,8 +33,14 @@ public class InputManager : MonoBehaviour
             return;
         }
 
+        swipeDetector = GetComponent<SwipeDetection>();
         playerControls = new Controls();
         mainCamera = Camera.main;
+    }
+
+    private void OnValidate()
+    {
+        swipeDetector = GetComponent<SwipeDetection>();
     }
 
     private void OnEnable()
