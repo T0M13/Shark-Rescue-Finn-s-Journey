@@ -381,6 +381,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e93b5e8ccb49f14bb53ee6bb56ea4a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  swipeDetector: {fileID: 662918438}
 --- !u!114 &662918437
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1052,6 +1053,8 @@ MonoBehaviour:
   middleLaneTransform: {fileID: 1556230551}
   rightLaneTransform: {fileID: 1641370316}
   currentLane: {fileID: 0}
+  elapsedTime: 0
+  waitTime: 1
 --- !u!135 &2034280026
 SphereCollider:
   m_ObjectHideFlags: 0

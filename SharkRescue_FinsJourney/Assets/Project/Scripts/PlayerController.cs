@@ -10,10 +10,13 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Transform rightLaneTransform;
     [Header("Settings")]
     [SerializeField] private Transform currentLane;
+    [SerializeField] private float elapsedTime = 0;
+    [SerializeField] private float waitTime = 3f;
+    [SerializeField] private Coroutine switchCoroutine;
 
     private void Awake()
     {
-        currentLane = middleLaneTransform;       
+        currentLane = middleLaneTransform;
     }
 
     private void OnEnable()
@@ -58,33 +61,56 @@ public class PlayerController : MonoBehaviour
         switch (swipeType)
         {
             case SwipeType.Left:
-                if(currentLane == middleLaneTransform)
+                if (currentLane == middleLaneTransform)
                 {
-                    ChangeLane(leftLaneTransform);
+                    if (switchCoroutine != null)
+                        break;
+                    switchCoroutine = StartCoroutine(ChangeLane(leftLaneTransform));
                 }
                 if (currentLane == rightLaneTransform)
                 {
-                    ChangeLane(middleLaneTransform);
+                    if (switchCoroutine != null)
+                        break;
+                    switchCoroutine = StartCoroutine(ChangeLane(middleLaneTransform));
                 }
                 break;
             case SwipeType.Right:
                 if (currentLane == middleLaneTransform)
                 {
-                    ChangeLane(rightLaneTransform);
+                    if (switchCoroutine != null)
+                        break;
+                    switchCoroutine = StartCoroutine(ChangeLane(rightLaneTransform));
                 }
                 if (currentLane == leftLaneTransform)
                 {
-                    ChangeLane(middleLaneTransform);
+                    if (switchCoroutine != null)
+                        break;
+                    switchCoroutine = StartCoroutine(ChangeLane(middleLaneTransform));
                 }
                 break;
         }
     }
 
-    private void ChangeLane(Transform lane)
+    private IEnumerator ChangeLane(Transform lane)
     {
-        if (lane == null) return;
+        while (elapsedTime < 1)
+        {
+            elapsedTime += Time.deltaTime / waitTime;
+
+            if (elapsedTime > 1) elapsedTime = 1;
+
+            transform.position = Vector3.Lerp(transform.position, lane.position, elapsedTime);
+            yield return null;
+
+        }
+
         transform.position = lane.position;
         currentLane = lane;
+        elapsedTime = 0;
+        switchCoroutine = null;
+
+        yield return null;
+
     }
 
 
