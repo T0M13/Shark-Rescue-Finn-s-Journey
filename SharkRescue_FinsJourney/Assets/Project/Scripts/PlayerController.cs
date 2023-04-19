@@ -8,15 +8,29 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Transform leftLaneTransform;
     [SerializeField] private Transform middleLaneTransform;
     [SerializeField] private Transform rightLaneTransform;
-    [Header("Settings")]
+    [Header("Lane Switch Settings")]
     [SerializeField] private Transform currentLane;
-    [SerializeField] private float elapsedTime = 0;
-    [SerializeField] private float waitTime = 3f;
-    [SerializeField] private Coroutine switchCoroutine;
+    [SerializeField] private float laneElapsedTime = 0;
+    [SerializeField] private float laneWaitTime = 0.1f;
+    [SerializeField] private float laneSwitchSpeed = 0.5f;
+    [SerializeField] private Coroutine laneSwitchCoroutine;
+    [Header("Player Settings")]
+    [SerializeField] private Vector3 startPosition;
+    [SerializeField] private float force = 2.5f;
+    [Header("Swim Settings")]
+    [SerializeField] private Coroutine swimCoroutine;
+    [SerializeField] private AnimationCurve swimCurve;
+    [SerializeField] private float swimWaitTime = 1f;
+    [SerializeField] private float swimReturnWaitTime = 1f;
+    [SerializeField] private float swimReturnElapsedTime = 0;
+    [SerializeField] private float swimElapsedTime = 0;
+
+
 
     private void Awake()
     {
         currentLane = middleLaneTransform;
+        startPosition = transform.position;
     }
 
     private void OnEnable()
@@ -38,12 +52,16 @@ public class PlayerController : MonoBehaviour
 
     private void SwipeUp(SwipeType swipeType)
     {
-        MoveLane(swipeType);
+        if (swimCoroutine != null)
+            return;
+        swimCoroutine = StartCoroutine(SwimInDirection(Vector3.up));
     }
 
     private void SwipeDown(SwipeType swipeType)
     {
-        MoveLane(swipeType);
+        if (swimCoroutine != null)
+            return;
+        swimCoroutine = StartCoroutine(SwimInDirection(Vector3.down));
     }
 
     private void SwipeLeft(SwipeType swipeType)
@@ -56,6 +74,7 @@ public class PlayerController : MonoBehaviour
         MoveLane(swipeType);
     }
 
+
     private void MoveLane(SwipeType swipeType)
     {
         switch (swipeType)
@@ -63,51 +82,85 @@ public class PlayerController : MonoBehaviour
             case SwipeType.Left:
                 if (currentLane == middleLaneTransform)
                 {
-                    if (switchCoroutine != null)
+                    if (laneSwitchCoroutine != null)
                         break;
-                    switchCoroutine = StartCoroutine(ChangeLane(leftLaneTransform));
+                    laneSwitchCoroutine = StartCoroutine(ChangeLane(leftLaneTransform));
                 }
                 if (currentLane == rightLaneTransform)
                 {
-                    if (switchCoroutine != null)
+                    if (laneSwitchCoroutine != null)
                         break;
-                    switchCoroutine = StartCoroutine(ChangeLane(middleLaneTransform));
+                    laneSwitchCoroutine = StartCoroutine(ChangeLane(middleLaneTransform));
                 }
                 break;
             case SwipeType.Right:
                 if (currentLane == middleLaneTransform)
                 {
-                    if (switchCoroutine != null)
+                    if (laneSwitchCoroutine != null)
                         break;
-                    switchCoroutine = StartCoroutine(ChangeLane(rightLaneTransform));
+                    laneSwitchCoroutine = StartCoroutine(ChangeLane(rightLaneTransform));
                 }
                 if (currentLane == leftLaneTransform)
                 {
-                    if (switchCoroutine != null)
+                    if (laneSwitchCoroutine != null)
                         break;
-                    switchCoroutine = StartCoroutine(ChangeLane(middleLaneTransform));
+                    laneSwitchCoroutine = StartCoroutine(ChangeLane(middleLaneTransform));
                 }
                 break;
         }
     }
 
+    private IEnumerator SwimInDirection(Vector3 direction)
+    {
+        Vector3 newPosition = new Vector3(transform.position.x, startPosition.y, transform.position.z);
+
+        swimElapsedTime = 0;
+        while (swimElapsedTime < swimWaitTime)
+        {
+            swimElapsedTime += Time.deltaTime;
+            transform.position = Vector3.Lerp(transform.localPosition, newPosition + direction * force, swimCurve.Evaluate(swimElapsedTime));
+            yield return null;
+        }
+
+        StartCoroutine(SwimBackCenter());
+    }
+
+    private IEnumerator SwimBackCenter()
+    {
+        Vector3 newPosition = new Vector3(transform.position.x, startPosition.y, transform.position.z);
+
+        swimReturnElapsedTime = 0;
+        while (swimReturnElapsedTime < swimReturnWaitTime)
+        {
+            swimReturnElapsedTime += Time.deltaTime;
+            transform.position = Vector3.Lerp(transform.localPosition, newPosition, swimCurve.Evaluate(swimReturnElapsedTime));
+            yield return null;
+        }
+
+        transform.position = newPosition;
+        swimCoroutine = null;
+    }
+
     private IEnumerator ChangeLane(Transform lane)
     {
-        while (elapsedTime < 1)
+        float t = 0;
+        Vector3 newPosition = new Vector3(lane.position.x, transform.position.y, transform.position.z);
+        while (laneElapsedTime < 1)
         {
-            elapsedTime += Time.deltaTime / waitTime;
+            laneElapsedTime += (Time.deltaTime * laneSwitchSpeed) / laneWaitTime;
+            t += Time.deltaTime;
 
-            if (elapsedTime > 1) elapsedTime = 1;
+            if (laneElapsedTime > 1) laneElapsedTime = 1;
 
-            transform.position = Vector3.Lerp(transform.position, lane.position, elapsedTime);
+            transform.position = Vector3.Lerp(transform.position, newPosition, swimCurve.Evaluate(t));
             yield return null;
 
         }
 
-        transform.position = lane.position;
+        transform.position = newPosition;
         currentLane = lane;
-        elapsedTime = 0;
-        switchCoroutine = null;
+        laneElapsedTime = 0;
+        laneSwitchCoroutine = null;
 
         yield return null;
 
