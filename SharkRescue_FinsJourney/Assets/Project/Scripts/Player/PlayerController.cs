@@ -41,7 +41,7 @@ public class PlayerController : MonoBehaviour
     }
 
 
-    private void SwipeUp(SwipeType swipeType)
+    private void SwipeUp()
     {
         if (currentUndulate == Undulate.Center)
             currentUndulate = Undulate.Up;
@@ -49,7 +49,7 @@ public class PlayerController : MonoBehaviour
             currentUndulate = Undulate.Center;
     }
 
-    private void SwipeDown(SwipeType swipeType)
+    private void SwipeDown()
     {
         if (currentUndulate == Undulate.Center)
             currentUndulate = Undulate.Down;
@@ -57,7 +57,7 @@ public class PlayerController : MonoBehaviour
             currentUndulate = Undulate.Center;
     }
 
-    private void SwipeLeft(SwipeType swipeType)
+    private void SwipeLeft()
     {
         if (currentLane == Lane.Middle)
             currentLane = Lane.Left;
@@ -65,13 +65,14 @@ public class PlayerController : MonoBehaviour
             currentLane = Lane.Middle;
     }
 
-    private void SwipeRight(SwipeType swipeType)
+    private void SwipeRight()
     {
         if (currentLane == Lane.Middle)
             currentLane = Lane.Right;
         if (currentLane == Lane.Left)
             currentLane = Lane.Middle;
     }
+
 
     private void Update()
     {
