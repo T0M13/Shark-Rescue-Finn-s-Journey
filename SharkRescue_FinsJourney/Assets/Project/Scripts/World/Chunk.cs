@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Chunk : MonoBehaviour
 {
-    [SerializeField] private float MovingSpeed = 10;
+    public float MovingSpeed = 5;
     
     void Update()
     {
