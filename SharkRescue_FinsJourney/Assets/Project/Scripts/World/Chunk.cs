@@ -12,9 +12,15 @@ public class Chunk : MonoBehaviour
     }
 
 
-
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerExit(Collider other)
     {
-        
+        Debug.Log("OnTriggerExit " + other.gameObject.name);
+
+        if(other != null && other.gameObject.CompareTag("ChunkCatcher"))
+        {
+            gameObject.SetActive(false);
+            ChunkManager.instance.AddNewChunk();
+            ChunkManager.instance.disabledChunks.Add(gameObject);
+        }
     }
 }
