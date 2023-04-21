@@ -6,8 +6,7 @@ public class PlayerController : MonoBehaviour
 {
     [Header("Player Settings")]
     [SerializeField] private Vector3 startPosition;
-    [SerializeField] private float sideForce = 2.5f;
-    [SerializeField] private float uprightForce = 3f;
+    [SerializeField] private float laneSwitchForce = 2.5f;
     [SerializeField] private Lane currentLane = Lane.Middle;
     [SerializeField] private Undulate currentUndulate = Undulate.Center;
     [Header("Lane Settings")]
@@ -16,6 +15,12 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private int lanes = 3;
     [Header("Lane Settings")]
     [SerializeField] private bool showGizmos = true;
+    [Header("Variables")]
+    private Vector3 pos;
+    private Quaternion rotation;
+    private Vector3 right;
+    private Vector3 up;
+
 
     private void Awake()
     {
@@ -76,10 +81,14 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        Vector3 pos = transform.position;
-        pos.x = Mathf.Lerp(pos.x, startPosition.x + laneXDistance * (float)currentLane, Time.deltaTime * sideForce);
-        pos.y = Mathf.Lerp(pos.y, startPosition.y + laneYDistance * (float)currentUndulate, Time.deltaTime * uprightForce);
-        transform.position = pos;
+        pos = transform.position;
+        rotation = transform.rotation;
+        right = rotation * Vector3.right;
+        up = rotation * Vector3.up;
+
+        pos = startPosition + (laneXDistance * (float)currentLane) * right + (laneYDistance * (float)currentUndulate) * up;
+
+        transform.position = Vector3.Lerp(transform.position, pos, Time.deltaTime * laneSwitchForce);
     }
 
     private void OnDrawGizmos()
@@ -87,13 +96,22 @@ public class PlayerController : MonoBehaviour
         if (!showGizmos) return;
         Gizmos.color = Color.green;
 
+        if (!Application.isPlaying)
+        {
+            rotation = transform.rotation;
+            right = rotation * Vector3.right;
+            up = rotation * Vector3.up;
+        }
+
         for (int i = 0; i < lanes; i++)
         {
             for (int j = 0; j < lanes; j++)
             {
-                Gizmos.DrawSphere(new Vector3(startPosition.x + (-laneXDistance + laneXDistance * j), startPosition.y + (-laneYDistance + laneYDistance * i), transform.position.z), 0.2f);
+                Vector3 pos = startPosition + (-laneXDistance + laneXDistance * j) * right + (-laneYDistance + laneYDistance * i) * up;
+                Gizmos.DrawSphere(pos, 0.2f);
             }
         }
+
     }
 
 }
