@@ -344,6 +344,7 @@ MonoBehaviour:
   minimumDistance: 0.2
   maximumTime: 1
   directionThreshold: 0.9
+  diagonalThreshold: 0.5
   trail: {fileID: 1242621859}
 --- !u!1 &728528035
 GameObject:
@@ -725,8 +726,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startPosition: {x: 0, y: 2.5, z: -6}
-  sideForce: 2.5
-  uprightForce: 2.5
+  laneSwitchForce: 2.5
   currentLane: 0
   currentUndulate: 0
   laneXDistance: 4
