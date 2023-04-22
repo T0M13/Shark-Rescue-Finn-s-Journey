@@ -24,7 +24,7 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
-        startPosition = transform.position;
+        GetStartPosition();
         currentLane = Lane.Middle;
         currentUndulate = Undulate.Center;
     }
@@ -76,6 +76,14 @@ public class PlayerController : MonoBehaviour
             currentLane = Lane.Right;
         if (currentLane == Lane.Left)
             currentLane = Lane.Middle;
+    }
+
+    private void GetStartPosition()
+    {
+        if (GameManager.instance != null)
+            startPosition = GameManager.instance.StartPosition;
+        else
+            startPosition = transform.position;
     }
 
 

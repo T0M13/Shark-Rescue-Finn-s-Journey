@@ -15,7 +15,6 @@ public class AudioSlider : MonoBehaviour
 
     public AudioTyp audioType;
 
-
     private void Awake()
     {
         GetSlider();
@@ -33,9 +32,9 @@ public class AudioSlider : MonoBehaviour
 
     private void Start()
     {
-
-        AudioManager.instance.LoadAudioData();
-        AudioManager.instance.CheckAudioData(); 
+        if (GameManager.instance != null)
+            GameManager.instance.OnLoad?.Invoke();
+        else Debug.Log("Game Manager Missing!");
 
         switch (audioType)
         {
@@ -98,10 +97,9 @@ public class AudioSlider : MonoBehaviour
                 break;
         }
 
-        SaveData.PlayerProfile.volumeEdited = true;
-
-        AudioManager.instance.SaveAudioData();
-
+        if (GameManager.instance != null)
+            GameManager.instance.OnSave?.Invoke();
+        else Debug.Log("Game Manager Missing!");
     }
 
 }

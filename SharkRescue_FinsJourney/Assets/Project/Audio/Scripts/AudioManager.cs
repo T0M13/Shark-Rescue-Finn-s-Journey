@@ -36,11 +36,6 @@ public class AudioManager : MonoBehaviour
     [Header("Playable Sounds")]
     public Sound[] sounds;
 
-    [Header("Save Load")]
-    public SaveComponent saveBehaviour;
-    public LoadComponent loadBehaviour;
-
-
     private void Awake()
     {
         if (instance != null)
@@ -76,20 +71,11 @@ public class AudioManager : MonoBehaviour
             ChangeToPrevSong();
             prevSong = false;
         }
-        
-
     }
 
     private void Start()
     {
-
-        LoadAudioData();
-
-        CheckAudioData();
-
         PlayRandomSong();
-
-
     }
 
     private void Update()
@@ -360,47 +346,6 @@ public class AudioManager : MonoBehaviour
     private void SetVolumeOfMixer(int volume, string name)
     {
         audioMixer.SetFloat(name, volume);
-    }
-
-    public void CheckAudioData()
-    {
-        if (SaveData.PlayerProfile.volumeEdited)
-        {
-            SetVolumeOfMixer(SaveData.PlayerProfile.masterVolume, masterVolName);
-            SetVolumeOfMixer(SaveData.PlayerProfile.musicVolume, musicVolName);
-            SetVolumeOfMixer(SaveData.PlayerProfile.effectsVolume, effectsVolName);
-
-        }
-        else
-        {
-            SaveData.PlayerProfile.masterVolume = -40;
-            SaveData.PlayerProfile.musicVolume = -40;
-            SaveData.PlayerProfile.effectsVolume = -40;
-
-            SaveAudioData();
-            LoadAudioData();
-
-            SetVolumeOfMixer(SaveData.PlayerProfile.masterVolume, masterVolName);
-            SetVolumeOfMixer(SaveData.PlayerProfile.musicVolume, musicVolName);
-            SetVolumeOfMixer(SaveData.PlayerProfile.effectsVolume, effectsVolName);
-        }
-    }
-
-
-    /// <summary>
-    /// Saves file 
-    /// </summary>
-    public void SaveAudioData()
-    {
-        saveBehaviour.Save();
-    }
-
-    /// <summary>
-    /// Gets the SaveData file 
-    /// </summary>
-    public void LoadAudioData()
-    {
-        loadBehaviour.Load();
     }
 
 }

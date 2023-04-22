@@ -8,7 +8,10 @@ public class NormalCoin : MonoBehaviour, IInteractable
 
     public void Interact()
     {
-        Debug.Log("Add Coins: " + value);
+        Debug.Log("Adding Coins: " + value);
+
+        if (GameManager.instance != null)
+            GameManager.instance.OnAddCoin?.Invoke();
     }
 
     //Deactivate --> Object Pool

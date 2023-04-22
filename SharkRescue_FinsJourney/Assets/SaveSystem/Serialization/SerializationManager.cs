@@ -36,6 +36,7 @@ namespace tomi.SaveSystem
             if (!File.Exists(path))
             {
                 Debug.Log("Path or File does not exist");
+                Debug.Log("Returning: False, and setting up profile");
                 return null;
             }
 
