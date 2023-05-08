@@ -21,7 +21,7 @@ public class Obstacle : MonoBehaviour
         {
             gameObject.SetActive(false);
             ObstacleManager.Instance.AddNewObstacle();
-            ObstacleManager.Instance.disabledObstacles.Add(gameObject);
+            ObstacleManager.Instance.allDisabledObstacles.Add(gameObject);
         }
     }
 }

@@ -105,6 +105,6 @@ public class CreateChunks : MonoBehaviour
         {
             chunkwidth++;
         }
-        Debug.Log("chunkwidth" + chunkwidth);
+        //Debug.Log("chunkwidth" + chunkwidth);
     }
 }

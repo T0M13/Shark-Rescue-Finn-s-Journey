@@ -4077,20 +4077,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7bdf7ec2a690dd4fad06328d78aee86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bigObstaclesPrefabs:
-  - {fileID: 1499747622211405067, guid: 443abce1ddbdfe54b83cd692a140a832, type: 3}
-  - {fileID: 5554653630235779479, guid: cf97632bc553622449b946a09988af55, type: 3}
-  - {fileID: 7719492139529849989, guid: 7ca1b61a1c6172f429b0eb6bfa603554, type: 3}
-  smallObstaclePrefabs: []
-  bigObstacleQuantity: 3
-  smallObstadcleQuantity: 3
-  bigObstacle: []
-  smallObstacle: []
-  disabledObstacles: []
+  ObstaclePrefabs:
+  - obstacleType: 1
+    obstaclePrefabs: []
+    disabledObstacleList: []
+    activeObstacleList: []
+    spawnRate: 0
+    obstacleQuantity: 10
+    additionalObstacleProbability: {fileID: 11400000, guid: 7685981f59505fe46b630db511050c11,
+      type: 2}
+  - obstacleType: 4
+    obstaclePrefabs:
+    - {fileID: 1499747622211405067, guid: 443abce1ddbdfe54b83cd692a140a832, type: 3}
+    - {fileID: 5554653630235779479, guid: cf97632bc553622449b946a09988af55, type: 3}
+    - {fileID: 7719492139529849989, guid: 7ca1b61a1c6172f429b0eb6bfa603554, type: 3}
+    disabledObstacleList: []
+    activeObstacleList: []
+    spawnRate: 100
+    obstacleQuantity: 3
+    additionalObstacleProbability: {fileID: 11400000, guid: 7685981f59505fe46b630db511050c11,
+      type: 2}
+  allDisabledObstacles: []
+  allActiveObstacles: []
+  spawnRate: 
   obstacleMovingSpeed: 10
   maxObstacleShownAtTime: 3
   obstacleRespawnDistance: 5
-  gameDifficulty: 0
+  gameDifficulty: 8
   obstacleSpawnPositions:
   - {x: 10, y: 5, z: -3}
   - {x: 10, y: 5, z: 0}
