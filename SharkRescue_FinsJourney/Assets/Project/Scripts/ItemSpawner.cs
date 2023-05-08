@@ -5,9 +5,9 @@ using UnityEngine;
 
 public class ItemSpawner : MonoBehaviour
 {
-    [SerializeField] protected GameObject prefab;
+    [SerializeField] protected GameObject[] prefabVariants;
     [SerializeField] protected int amount;
-    [SerializeField] protected List<GameObject> pooledObjects = new List<GameObject>();
+    [SerializeField] protected List<PooledGameObjectsList> pooledList = new List<PooledGameObjectsList>();
 
     //spawnInterval should always be above 1
     [SerializeField] protected float spawnInterval = 1f;
@@ -30,11 +30,15 @@ public class ItemSpawner : MonoBehaviour
 
     protected virtual void Start()
     {
-        for (int i = 0; i < amount; i++)
+        for (int i = 0; i < prefabVariants.Length; i++)
         {
-            GameObject clone = Instantiate(prefab, transform);
-            clone.SetActive(false);
-            pooledObjects.Add(clone);
+            pooledList.Add(new PooledGameObjectsList());
+            for (int j = 0; j < amount; j++)
+            {
+                GameObject clone = Instantiate(prefabVariants[i], transform);
+                clone.SetActive(false);
+                pooledList[i].pooledObjectsVariant.Add(clone);
+            }
         }
     }
 
@@ -95,52 +99,19 @@ public class ItemSpawner : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    public GameObject AddGameObject()
-    {
-        GameObject clone = Instantiate(prefab, transform);
-        clone.SetActive(false);
-        pooledObjects.Add(clone);
-        amount++;
-        return clone;
-    }
-
     public GameObject GetAPooledObject()
     {
-        for (int i = 0; i < pooledObjects.Count; i++)
+        for (int i = 0; i < pooledList.Count; i++)
         {
-            if (!pooledObjects[i].activeInHierarchy)
+            for (int j = 0; j < pooledList[i].pooledObjectsVariant.Count; j++)
             {
-                return pooledObjects[i];
+                if (!pooledList[i].pooledObjectsVariant[j].activeInHierarchy)
+                {
+                    return pooledList[i].pooledObjectsVariant[j];
+                }
             }
         }
-
-        if (AllObjectsDisabled)
-        {
-            return AddGameObject();
-        }
-
         return null;
-    }
-
-    public bool AllObjectsDisabled
-    {
-        get
-        {
-            return ObjectsCheckDisabled();
-        }
-    }
-
-    private bool ObjectsCheckDisabled()
-    {
-        bool check = pooledObjects.All(b => b.gameObject.activeSelf == false);
-        if (check)
-        {
-            return (true);
-        }
-        else
-        {
-            return (false);
-        }
     }
 
     private void OnDrawGizmos()
@@ -158,4 +129,9 @@ public class ItemSpawner : MonoBehaviour
             }
         }
     }
+}
+
+[System.Serializable]
+public class PooledGameObjectsList{
+    public List<GameObject> pooledObjectsVariant = new List<GameObject>();
 }

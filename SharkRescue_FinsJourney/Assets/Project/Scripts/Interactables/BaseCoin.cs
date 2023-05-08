@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class BaseCoin : MonoBehaviour, IInteractable
 {
-    private ItemSpawner parentSpawner;
     [Header("References")]
     [SerializeField] private Transform meshTransform;
     [Header("Coin Value")]
@@ -20,11 +19,6 @@ public class BaseCoin : MonoBehaviour, IInteractable
     public int Value { get => value; set => this.value = value; }
     public int RotationSpeed { get => rotationSpeed; set => rotationSpeed = value; }
 
-    public void SetParent(ItemSpawner spawner)
-    {
-        parentSpawner = spawner;
-    }
-
     protected void Start()
     {
         rotationSpeed = Random.Range(rotationSpeedMin, rotationSpeedMax);
@@ -36,7 +30,7 @@ public class BaseCoin : MonoBehaviour, IInteractable
 
         if (GameManager.instance != null)
             GameManager.instance.OnAddCoin?.Invoke();
-        Deactivate();
+        GameManager.instance.OnDeactivateGObject?.Invoke(gameObject);
     }
 
     private void Update()
@@ -45,16 +39,11 @@ public class BaseCoin : MonoBehaviour, IInteractable
         meshTransform.Rotate(Vector3.up * RotationSpeed * Time.deltaTime);
     }
 
-    public void Deactivate()
-    {
-        parentSpawner.DeactivateObject(gameObject);
-    }
-
     private void OnTriggerEnter(Collider other)
     {
         if (other.GetComponent<Deactivater>())
         {
-            Deactivate();
+            GameManager.instance.OnDeactivateGObject?.Invoke(gameObject);
         }
     }
 }

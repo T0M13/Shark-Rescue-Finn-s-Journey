@@ -8,6 +8,8 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance { get; private set; }
 
+    [Header("References")]
+    [SerializeField] private ItemSpawner itemSpawner;
     [Header("Game Positions")]
     [SerializeField] private Vector3 startPosition;
     [Header("Player Stats")]
@@ -21,6 +23,7 @@ public class GameManager : MonoBehaviour
     public Vector3 StartPosition { get => startPosition; set => startPosition = value; }
 
     public Action OnAddCoin;
+    public Action<GameObject> OnDeactivateGObject;
     public Action OnSave;
     public Action OnLoad;
     public Action OnGameOver;
@@ -30,7 +33,8 @@ public class GameManager : MonoBehaviour
         OnAddCoin += AddCoin;
         OnSave += Save;
         OnLoad += Load;
-        OnGameOver += GameOver; 
+        OnGameOver += GameOver;
+        OnDeactivateGObject += DeactivateGameObject;
     }
 
     private void OnDisable()
@@ -39,6 +43,8 @@ public class GameManager : MonoBehaviour
         OnSave -= Save;
         OnLoad -= Load;
         OnGameOver -= GameOver;
+        OnDeactivateGObject -= DeactivateGameObject;
+
     }
 
     private void Awake()
@@ -69,6 +75,14 @@ public class GameManager : MonoBehaviour
         SaveData.PlayerProfile.coins += coins;
         Save();
         //GameOver
+    }
+
+    private void DeactivateGameObject(GameObject gObject)
+    {
+        if (itemSpawner == null)
+            itemSpawner = FindObjectOfType<ItemSpawner>();
+        if (itemSpawner == null) return;
+        itemSpawner.DeactivateObject(gObject);
     }
 
     private void Save()
