@@ -5,9 +5,10 @@ using UnityEngine;
 
 public class ItemSpawner : MonoBehaviour
 {
-    [SerializeField] protected GameObject[] prefabVariants;
+    [SerializeField] protected ItemScriptable[] prefabVariants;
     [SerializeField] protected int amount;
-    [SerializeField] protected List<PooledGameObjectsList> pooledList = new List<PooledGameObjectsList>();
+    [SerializeField] protected List<GameObject> pooledList = new List<GameObject>();
+    [SerializeField] protected List<float> pooledListChances = new List<float>();
 
     //spawnInterval should always be above 1
     [SerializeField] protected float spawnInterval = 1f;
@@ -32,16 +33,15 @@ public class ItemSpawner : MonoBehaviour
     {
         for (int i = 0; i < prefabVariants.Length; i++)
         {
-            pooledList.Add(new PooledGameObjectsList());
             for (int j = 0; j < amount; j++)
             {
-                GameObject clone = Instantiate(prefabVariants[i], transform);
+                GameObject clone = Instantiate(prefabVariants[i].prefab, transform);
                 clone.SetActive(false);
-                pooledList[i].pooledObjectsVariant.Add(clone);
+                pooledList.Add(clone);
+                pooledListChances.Add(prefabVariants[i].chanceToSpawn);
             }
         }
     }
-
     private void Update()
     {
         if (timeSinceLastSpawn >= numOfRowObjects * spawnInterval)
@@ -85,7 +85,7 @@ public class ItemSpawner : MonoBehaviour
         }
         lastYLaneIndex = laneYIndex;
 
-         numOfRowObjects = Random.Range(numObjectsMin, numObjectsMax);
+        numOfRowObjects = Random.Range(numObjectsMin, numObjectsMax);
 
         for (int i = 0; i < numOfRowObjects; i++)
         {
@@ -101,17 +101,18 @@ public class ItemSpawner : MonoBehaviour
 
     public GameObject GetAPooledObject()
     {
-        for (int i = 0; i < pooledList.Count; i++)
+        int randomIndex = Random.Range(0, pooledList.Count);
+        if (!pooledList[randomIndex].activeInHierarchy)
         {
-            for (int j = 0; j < pooledList[i].pooledObjectsVariant.Count; j++)
-            {
-                if (!pooledList[i].pooledObjectsVariant[j].activeInHierarchy)
-                {
-                    return pooledList[i].pooledObjectsVariant[j];
-                }
-            }
+            if (pooledListChances[randomIndex] > Random.value)
+                return pooledList[randomIndex];
+            else
+                return GetAPooledObject();
         }
-        return null;
+        else
+        {
+            return GetAPooledObject();
+        }
     }
 
     private void OnDrawGizmos()
@@ -131,7 +132,3 @@ public class ItemSpawner : MonoBehaviour
     }
 }
 
-[System.Serializable]
-public class PooledGameObjectsList{
-    public List<GameObject> pooledObjectsVariant = new List<GameObject>();
-}

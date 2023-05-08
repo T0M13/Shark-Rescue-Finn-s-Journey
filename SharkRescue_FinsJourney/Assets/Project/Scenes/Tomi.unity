@@ -571,16 +571,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefabVariants:
-  - gObject: {fileID: 3643289242992397168, guid: 59f9184222a4f5b41a8d62e70395b4ec,
-      type: 3}
-    chanceToSpawn: 1
-  - gObject: {fileID: 3643289242992397168, guid: 54ef914aa18eb6e4e93231e7cc6e84f5,
-      type: 3}
-    chanceToSpawn: 0.3
+  - {fileID: 11400000, guid: 7fb9781196be03345837b0f34a182fef, type: 2}
+  - {fileID: 11400000, guid: bf820dc0fe2264640a8fa9256d6f8028, type: 2}
   amount: 50
   pooledList: []
-  inactiveObjects: []
-  spawnInterval: 2
+  pooledListChances: []
+  spawnInterval: 1
   numOfRowObjects: 3
   laneXDistance: 4
   laneYDistance: 3
