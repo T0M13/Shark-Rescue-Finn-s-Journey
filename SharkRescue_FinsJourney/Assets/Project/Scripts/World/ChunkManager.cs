@@ -4,23 +4,26 @@ using UnityEngine;
 
 public class ChunkManager : MonoBehaviour
 {
+    [Header("Chunk List")]
     public List<GameObject> chunks = new List<GameObject>();
     public List<GameObject> disabledChunks = new List<GameObject>();
     [SerializeField] private GameObject chunkColliderCatcher;
+    
+    [Header("Chunk Settings")]
     [SerializeField] private Vector3 chunkColliderCatcherSize = new Vector3(13, 15, 13);
-    [Range(1, 20)]
-    [SerializeField] private int maxChunksShownAtTime = 3;
-    [SerializeField] private int ChunksMovingSpeed = 5;
-    [SerializeField] private CreateChunks createChunks;
+    [SerializeField, Range(1, 20), Tooltip("It must alway be 2 less than the 'Chunk.Count'")] 
+    private int maxChunksShownAtTime = 3;
+    [SerializeField] private int chunksMovingSpeed = 5;
     private int chunklength = 0;
+    private int chunkwidth = 0;
 
-    public static ChunkManager instance { get; private set; }
+    public static ChunkManager Instance { get; private set; }
 
     private void Awake()
     {
-        if(instance == null)
+        if(Instance == null)
         {
-            instance = this;
+            Instance = this;
         }
         else
         {
@@ -33,18 +36,27 @@ public class ChunkManager : MonoBehaviour
         if (chunks.Count == 0)
             return;
 
-        chunklength = createChunks.chunklength;
-        
-        chunkColliderCatcher.GetComponent<BoxCollider>().size = new Vector3(chunkColliderCatcherSize.x, chunkColliderCatcherSize.y, chunkColliderCatcherSize.z * createChunks.chunkwidth);
-        chunkColliderCatcher.gameObject.transform.position = new Vector3(13 * (chunklength -1), 0,0);
+        chunklength = CreateChunks.Instance.chunklength;
+        chunkwidth = CreateChunks.Instance.chunkwidth;
 
+        CheckValues();
+        AdjustChunkColliderCatcher();
+        AdjustAllChunks();
+    }
 
+    private void AdjustChunkColliderCatcher()
+    {
+        chunkColliderCatcher.GetComponent<BoxCollider>().size = new Vector3(chunkColliderCatcherSize.x, chunkColliderCatcherSize.y, chunkColliderCatcherSize.z * chunkwidth);
+        chunkColliderCatcher.transform.position = new Vector3(13 * (chunklength - 1), 0, 0);
+    }
 
+    private void AdjustAllChunks()
+    {
         for (int i = 0; i < chunks.Count; i++)
         {
-            chunks[i].GetComponent<Chunk>().MovingSpeed = ChunksMovingSpeed;
-            
-            if (i >= maxChunksShownAtTime-1)
+            chunks[i].GetComponent<Chunk>().movingSpeed = chunksMovingSpeed;
+
+            if (i > maxChunksShownAtTime - 1)
             {
                 chunks[i].SetActive(false);
                 disabledChunks.Add(chunks[i]);
@@ -54,15 +66,36 @@ public class ChunkManager : MonoBehaviour
 
         for (int j = 0; j < maxChunksShownAtTime; j++)
         {
-           chunks[j].transform.position = new Vector3(-13 * chunklength * j, 0, 0);
+            chunks[j].transform.position = new Vector3(-13 * chunklength * j, 0, 0);
         }
     }
 
     public void AddNewChunk()
     {
-        int temp = Random.Range(0, disabledChunks.Count);
-        disabledChunks[temp].gameObject.transform.position = new Vector3(-13 * chunklength * (maxChunksShownAtTime - 2), 0, 0);
-        disabledChunks[temp].gameObject.SetActive(true);
-        disabledChunks.RemoveAt(temp);
+        int randomTemp = Random.Range(0, disabledChunks.Count);
+        int distancMultipl;
+
+        if(maxChunksShownAtTime - 2 <= 0)
+        {
+            distancMultipl = 1;
+        }
+        else
+        {
+            distancMultipl = maxChunksShownAtTime - 2;
+        }
+
+
+        disabledChunks[randomTemp].transform.position = new Vector3(-13 * chunklength * distancMultipl, 0, 0);
+        disabledChunks[randomTemp].SetActive(true);
+        disabledChunks.RemoveAt(randomTemp);
+    }
+
+    private void CheckValues()
+    {
+        if(maxChunksShownAtTime > chunks.Count -2)
+        {
+            maxChunksShownAtTime = chunks.Count -3;
+            Debug.LogWarning("'maxChunksShownAtTime' must always be at least 2 less than the 'Chunk.Count'\nIncrease the chunkQuantity for more 'maxChunksShownAtTime'");
+        }
     }
 }

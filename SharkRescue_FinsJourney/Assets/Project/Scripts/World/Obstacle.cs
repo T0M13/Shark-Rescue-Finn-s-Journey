@@ -2,10 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Chunk : MonoBehaviour
+public class Obstacle : MonoBehaviour
 {
+    [SerializeField] public ObstacleTypes.ObstacleType obstacleType;
     public float movingSpeed = 5;
-    
+
     void Update()
     {
         gameObject.transform.position += new Vector3(movingSpeed * Time.deltaTime, 0, 0);
@@ -16,11 +17,11 @@ public class Chunk : MonoBehaviour
     {
         Debug.Log("OnTriggerExit " + other.gameObject.name);
 
-        if(other != null && other.gameObject.CompareTag("ChunkCatcher"))
+        if (other != null && other.gameObject.CompareTag("ChunkCatcher"))
         {
             gameObject.SetActive(false);
-            ChunkManager.Instance.AddNewChunk();
-            ChunkManager.Instance.disabledChunks.Add(gameObject);
+            ObstacleManager.Instance.AddNewObstacle();
+            ObstacleManager.Instance.disabledObstacles.Add(gameObject);
         }
     }
 }
