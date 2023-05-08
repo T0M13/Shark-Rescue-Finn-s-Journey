@@ -5,9 +5,10 @@ using UnityEngine;
 
 public class ItemSpawner : MonoBehaviour
 {
-    [SerializeField] protected GameObject prefab;
+    [SerializeField] protected ItemScriptable[] prefabVariants;
     [SerializeField] protected int amount;
-    [SerializeField] protected List<GameObject> pooledObjects = new List<GameObject>();
+    [SerializeField] protected List<GameObject> pooledList = new List<GameObject>();
+    [SerializeField] protected List<float> pooledListChances = new List<float>();
 
     //spawnInterval should always be above 1
     [SerializeField] protected float spawnInterval = 1f;
@@ -30,14 +31,17 @@ public class ItemSpawner : MonoBehaviour
 
     protected virtual void Start()
     {
-        for (int i = 0; i < amount; i++)
+        for (int i = 0; i < prefabVariants.Length; i++)
         {
-            GameObject clone = Instantiate(prefab, transform);
-            clone.SetActive(false);
-            pooledObjects.Add(clone);
+            for (int j = 0; j < amount; j++)
+            {
+                GameObject clone = Instantiate(prefabVariants[i].prefab, transform);
+                clone.SetActive(false);
+                pooledList.Add(clone);
+                pooledListChances.Add(prefabVariants[i].chanceToSpawn);
+            }
         }
     }
-
     private void Update()
     {
         if (timeSinceLastSpawn >= numOfRowObjects * spawnInterval)
@@ -81,7 +85,7 @@ public class ItemSpawner : MonoBehaviour
         }
         lastYLaneIndex = laneYIndex;
 
-         numOfRowObjects = Random.Range(numObjectsMin, numObjectsMax);
+        numOfRowObjects = Random.Range(numObjectsMin, numObjectsMax);
 
         for (int i = 0; i < numOfRowObjects; i++)
         {
@@ -95,51 +99,19 @@ public class ItemSpawner : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    public GameObject AddGameObject()
-    {
-        GameObject clone = Instantiate(prefab, transform);
-        clone.SetActive(false);
-        pooledObjects.Add(clone);
-        amount++;
-        return clone;
-    }
-
     public GameObject GetAPooledObject()
     {
-        for (int i = 0; i < pooledObjects.Count; i++)
+        int randomIndex = Random.Range(0, pooledList.Count);
+        if (!pooledList[randomIndex].activeInHierarchy)
         {
-            if (!pooledObjects[i].activeInHierarchy)
-            {
-                return pooledObjects[i];
-            }
-        }
-
-        if (AllObjectsDisabled)
-        {
-            return AddGameObject();
-        }
-
-        return null;
-    }
-
-    public bool AllObjectsDisabled
-    {
-        get
-        {
-            return ObjectsCheckDisabled();
-        }
-    }
-
-    private bool ObjectsCheckDisabled()
-    {
-        bool check = pooledObjects.All(b => b.gameObject.activeSelf == false);
-        if (check)
-        {
-            return (true);
+            if (pooledListChances[randomIndex] > Random.value)
+                return pooledList[randomIndex];
+            else
+                return GetAPooledObject();
         }
         else
         {
-            return (false);
+            return GetAPooledObject();
         }
     }
 
@@ -159,3 +131,4 @@ public class ItemSpawner : MonoBehaviour
         }
     }
 }
+

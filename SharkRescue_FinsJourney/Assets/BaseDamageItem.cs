@@ -2,12 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BaseCoin : MonoBehaviour, IInteractable
+public class BaseDamageItem : MonoBehaviour, IInteractable
 {
     [Header("References")]
     [SerializeField] private Transform meshTransform;
     [Header("Coin Value")]
-    [SerializeField] private int value = 1;
+    [SerializeField] private int damageValue = 1;
     [Header("Move Speed")]
     [SerializeField] private int moveSpeed = 1;
     [Header("Rotation Speed")]
@@ -16,7 +16,7 @@ public class BaseCoin : MonoBehaviour, IInteractable
     [SerializeField] private int rotationSpeed;
 
     public int MoveSpeed { get => moveSpeed; set => moveSpeed = value; }
-    public int Value { get => value; set => this.value = value; }
+    public int Value { get => damageValue; set => this.damageValue = value; }
     public int RotationSpeed { get => rotationSpeed; set => rotationSpeed = value; }
 
     protected void Start()
@@ -26,10 +26,10 @@ public class BaseCoin : MonoBehaviour, IInteractable
 
     public void Interact()
     {
-        Debug.Log("Adding Coins: " + Value);
+        Debug.Log("Damaging Player: " + Value);
 
         if (GameManager.instance != null)
-            GameManager.instance.OnAddCoin?.Invoke();
+            GameManager.instance.OnGetDamage?.Invoke(damageValue);
         GameManager.instance.OnDeactivateGObject?.Invoke(gameObject);
     }
 

@@ -8,9 +8,12 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance { get; private set; }
 
+    [Header("References")]
+    [SerializeField] private ItemSpawner itemSpawner;
     [Header("Game Positions")]
     [SerializeField] private Vector3 startPosition;
     [Header("Player Stats")]
+    [SerializeField] private int health = 1;
     [SerializeField] private int coins;
     [Header("Save/Load")]
     [SerializeField] private SaveComponent saveBehaviour;
@@ -21,6 +24,8 @@ public class GameManager : MonoBehaviour
     public Vector3 StartPosition { get => startPosition; set => startPosition = value; }
 
     public Action OnAddCoin;
+    public Action<int> OnGetDamage;
+    public Action<GameObject> OnDeactivateGObject;
     public Action OnSave;
     public Action OnLoad;
     public Action OnGameOver;
@@ -30,7 +35,9 @@ public class GameManager : MonoBehaviour
         OnAddCoin += AddCoin;
         OnSave += Save;
         OnLoad += Load;
-        OnGameOver += GameOver; 
+        OnGameOver += GameOver;
+        OnDeactivateGObject += DeactivateGameObject;
+        OnGetDamage += GetDamage;
     }
 
     private void OnDisable()
@@ -39,6 +46,8 @@ public class GameManager : MonoBehaviour
         OnSave -= Save;
         OnLoad -= Load;
         OnGameOver -= GameOver;
+        OnDeactivateGObject -= DeactivateGameObject;
+        OnGetDamage -= GetDamage;
     }
 
     private void Awake()
@@ -68,7 +77,24 @@ public class GameManager : MonoBehaviour
     {
         SaveData.PlayerProfile.coins += coins;
         Save();
-        //GameOver
+        Debug.Log("Game Over");
+    }
+
+    private void DeactivateGameObject(GameObject gObject)
+    {
+        if (itemSpawner == null)
+            itemSpawner = FindObjectOfType<ItemSpawner>();
+        if (itemSpawner == null) return;
+        itemSpawner.DeactivateObject(gObject);
+    }
+
+    public void GetDamage(int damageValue)
+    {
+        health -= damageValue;
+        if (health <= 0)
+        {
+            GameOver();
+        }
     }
 
     private void Save()

@@ -7,6 +7,4 @@ public class Deactivater : MonoBehaviour
         Gizmos.color = Color.red;
         Gizmos.DrawWireCube(transform.position, transform.localScale);
     }
-
-    //For Reference
 }
