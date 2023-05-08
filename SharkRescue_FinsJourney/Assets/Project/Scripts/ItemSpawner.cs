@@ -8,19 +8,22 @@ public class ItemSpawner : MonoBehaviour
     [SerializeField] protected GameObject prefab;
     [SerializeField] protected int amount;
     [SerializeField] protected List<GameObject> pooledObjects = new List<GameObject>();
-    [SerializeField] protected float minSpawnInterval = 1f;
-    [SerializeField] protected float maxSpawnInterval = 3f;
+
+    //spawnInterval should always be above 1
+    [SerializeField] protected float spawnInterval = 1f;
+    [SerializeField] protected int numOfRowObjects = 3;
     [SerializeField] protected float laneXDistance = 4f;
     [SerializeField] protected float laneYDistance = 3f;
-    [Range(0, 3)]
+    [Range(3, 3)]
     [SerializeField] protected int lanes = 3;
     protected Vector3 right = Vector3.right;
     protected Vector3 up = Vector3.up;
-    protected float timeSinceLastSpawn = 0f;
-    [SerializeField] protected bool rowSpawning = true;
+    private float timeSinceLastSpawn = 0f;
     [SerializeField] protected float rowDistance = 2f;
-    [SerializeField] protected int minRowObjectAmount = 3;
-    [SerializeField] protected int maxRowObjectAmount = 5;
+    [SerializeField] protected int numObjectsMin = 3;
+    [SerializeField] protected int numObjectsMax = 5;
+    private int lastXLaneIndex;
+    private int lastYLaneIndex;
 
     [Header("Gizmos")]
     [SerializeField] private bool showGizmos = true;
@@ -37,15 +40,14 @@ public class ItemSpawner : MonoBehaviour
 
     private void Update()
     {
-        timeSinceLastSpawn += Time.deltaTime;
-
-        if (timeSinceLastSpawn >= Random.Range(minSpawnInterval, maxSpawnInterval))
+        if (timeSinceLastSpawn >= numOfRowObjects * spawnInterval)
         {
-            if (!rowSpawning)
-                SpawnObject(GetSpawnPosition());
-            else
-                SpawnRowOfObjects(rowDistance, Random.Range(minRowObjectAmount, maxRowObjectAmount));
+            SpawnRowOfObjects();
             timeSinceLastSpawn = 0f;
+        }
+        else
+        {
+            timeSinceLastSpawn += Time.deltaTime;
         }
     }
 
@@ -60,43 +62,31 @@ public class ItemSpawner : MonoBehaviour
         }
     }
 
-    private Vector3 GetSpawnPosition()
-    {
-        int maxAttempts = 5;
-        int currentAttempt = 0;
-        bool positionFound = false;
-        Vector3 pos = Vector3.zero;
-
-        while (!positionFound && currentAttempt < maxAttempts)
-        {
-            currentAttempt++;
-            pos = transform.position + (-laneXDistance + laneXDistance * Random.Range(0, lanes)) * right + (-laneYDistance + laneYDistance * Random.Range(0, lanes)) * up;
-
-            Collider[] colliders = Physics.OverlapSphere(pos, 0.5f);
-            if (colliders.Length == 0)
-            {
-                positionFound = true;
-            }
-        }
-
-        if (!positionFound)
-        {
-            Debug.LogWarning("Unable to find a suitable spawn position after " + maxAttempts + " attempts.");
-        }
-
-        return pos;
-    }
-
-    public void SpawnRowOfObjects(float distanceBetweenObjects, int numObjects)
+    public void SpawnRowOfObjects()
     {
         int laneXIndex = Random.Range(0, lanes);
+
+        while (laneXIndex == lastXLaneIndex)
+        {
+            laneXIndex = Random.Range(0, lanes);
+        }
+        lastXLaneIndex = laneXIndex;
+
+
         int laneYIndex = Random.Range(0, lanes);
 
-        for (int i = 0; i < numObjects; i++)
+        while (laneYIndex == lastYLaneIndex)
         {
-            Vector3 pos = transform.position + (-laneXDistance + laneXDistance * laneXIndex) * right + (-laneYDistance + laneYDistance * laneYIndex) * up + Vector3.forward * (i * distanceBetweenObjects);
-            SpawnObject(pos);
+            laneYIndex = Random.Range(0, lanes);
+        }
+        lastYLaneIndex = laneYIndex;
 
+         numOfRowObjects = Random.Range(numObjectsMin, numObjectsMax);
+
+        for (int i = 0; i < numOfRowObjects; i++)
+        {
+            Vector3 pos = transform.position + (-laneXDistance + laneXDistance * laneXIndex) * right + (-laneYDistance + laneYDistance * laneYIndex) * up + Vector3.forward * (i * rowDistance);
+            SpawnObject(pos);
         }
     }
 

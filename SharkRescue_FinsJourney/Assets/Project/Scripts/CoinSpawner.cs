@@ -8,7 +8,7 @@ public class CoinSpawner : ItemSpawner
         {
             GameObject clone = Instantiate(prefab, transform);
             clone.SetActive(false);
-            clone.GetComponent<NormalCoin>().SetParent(this);
+            clone.GetComponent<BaseCoin>().SetParent(this);
             pooledObjects.Add(clone);
         }
     }
