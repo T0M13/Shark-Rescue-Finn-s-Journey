@@ -14,7 +14,7 @@ public class Chunk : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        Debug.Log("OnTriggerExit " + other.gameObject.name);
+        //Debug.Log("OnTriggerExit " + other.gameObject.name);
 
         if(other != null && other.gameObject.CompareTag("ChunkCatcher"))
         {

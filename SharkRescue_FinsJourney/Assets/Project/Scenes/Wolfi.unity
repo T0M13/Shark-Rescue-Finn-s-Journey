@@ -2038,7 +2038,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &115732565
 Transform:
   m_ObjectHideFlags: 0
@@ -4079,7 +4079,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ObstaclePrefabs:
   - obstacleType: 1
-    obstaclePrefabs: []
+    obstaclePrefabs:
+    - {fileID: 3032516642305584448, guid: b2229e986a89cc0488c10f93dc19d295, type: 3}
+    - {fileID: 7220992890645725046, guid: 9c310dfeb205519439088b3d7994f750, type: 3}
+    - {fileID: 7165890429747576950, guid: db1d1c40a0e4d98459759d69d0556d79, type: 3}
     disabledObstacleList: []
     activeObstacleList: []
     spawnRate: 0
@@ -4097,13 +4100,13 @@ MonoBehaviour:
     obstacleQuantity: 3
     additionalObstacleProbability: {fileID: 11400000, guid: 7685981f59505fe46b630db511050c11,
       type: 2}
-  allDisabledObstacles: []
-  allActiveObstacles: []
+  allActiveObstaclesCounter: 0
   spawnRate: 
-  obstacleMovingSpeed: 10
-  maxObstacleShownAtTime: 3
+  obstacleMovementSpeed: 10
+  maxObstacleShownAtTime: 4
   obstacleRespawnDistance: 5
-  gameDifficulty: 8
+  distanceAdjustment: 0
+  gameDifficulty: 1
   obstacleSpawnPositions:
   - {x: 10, y: 5, z: -3}
   - {x: 10, y: 5, z: 0}
@@ -6762,7 +6765,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   obstacleType: 0
-  movingSpeed: 5
+  movementSpeed: 5
 --- !u!1 &476011357
 GameObject:
   m_ObjectHideFlags: 0
@@ -15467,7 +15470,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   obstacleType: 0
-  movingSpeed: 5
+  movementSpeed: 5
 --- !u!1 &1039341616
 GameObject:
   m_ObjectHideFlags: 0
@@ -19583,7 +19586,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   obstacleType: 0
-  movingSpeed: 5
+  movementSpeed: 5
 --- !u!1 &1367660033
 GameObject:
   m_ObjectHideFlags: 0
@@ -31244,7 +31247,7 @@ MonoBehaviour:
   - {fileID: 1879179258873878074, guid: 4392487f930f0894891e5ae70765e7cb, type: 3}
   - {fileID: 3024226807172674610, guid: fbc2bf6c3372aeb4681611fb1e42109e, type: 3}
   chunklength: 5
-  chunkwidth: 3
+  chunkwidth: 5
   chunkQuantity: 8
 --- !u!4 &2049640039
 Transform:

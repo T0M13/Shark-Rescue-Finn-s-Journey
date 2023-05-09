@@ -6,20 +6,21 @@ using static ObstacleTypes;
 public class ObstacleManager : MonoBehaviour
 {
     [Header("Obstacles Creation")]
-    [SerializeField] private List<ObstacleListPrefabs> ObstaclePrefabs = new();
+    [SerializeField] public List<ObstacleListPrefabs> ObstaclePrefabs = new();
 
     [Header("Obstacles List")]
-    public List<GameObject> allDisabledObstacles = new();
-    public List<GameObject> allActiveObstacles = new();
+    //public List<GameObject> allDisabledObstacles = new();
+    //public List<GameObject> allActiveObstacles = new();
+    public int allActiveObstaclesCounter = new();
     [SerializeField] private List<int> spawnRate = new();
 
     [Header("Obstacles Settings")]
-    [SerializeField] private int obstacleMovingSpeed = 10;
+    [SerializeField] private int obstacleMovementSpeed = 10;
     [SerializeField] private int maxObstacleShownAtTime = 3;
     [SerializeField] private int obstacleRespawnDistance = 5;
     //[Range(1, 100), Tooltip("The probability of a small obstacle spawning instead of a big one.")]
     //[SerializeField] private int smallObstacleAppearRate = 80;
-    private int distancMultipl = 0;
+    public int distanceAdjustment = 0; //After the first obstacle has been deactivated, the new obstacle spawns accordingly at location (one spot earlier)
 
     [Header("Obstacles Settings")]
     [Range(1, 8), Tooltip("How many obstacles should be spawned in the same grid (1-8 out of 9).")]
@@ -85,40 +86,18 @@ public class ObstacleManager : MonoBehaviour
         }
     }
 
-    private void AdjustAllActiveObstacle()
+    public void AdjustAllActiveObstacle() //Adjust all Active Obstacles MovementSpeed
     {
-        //for (int i = 0; i < bigObstacle.Count; i++)
-        //{
-        //    bigObstacle[i].GetComponent<Obstacle>().movingSpeed = obstacleMovingSpeed;
-        //}
-
-        //for (int i = 0; i < ObstaclePrefabs.Count; i++) //How many prefabs lists exist?
-        //{
-        //    for (int j = 0; j < ObstaclePrefabs[i].obstaclePrefabs.Count; j++) //How many prefabs exist in this list?
-        //    {
-        //        GameObject go = Instantiate(ObstaclePrefabs[i].obstaclePrefabs[j], transform.position, transform.rotation);
-        //        go.SetActive(false);
-        //        disabledObstacles.Add(go);
-
-        //    }
-        //}
-
-
-
-        ////if (i > maxObstacleShownAtTime - 1)
-        ////{
-        ////    bigObstacle[i].SetActive(false);
-        ////    disabledObstacles.Add(bigObstacle[i]);
-        ////    Debug.Log(bigObstacle[i] + " is SetActive false");
-        ////}
-
-        //for (int j = 0; j < maxObstacleShownAtTime; j++)
-        //{
-        //    bigObstacle[j].transform.position = new Vector3(-13 * obstacleRespawnDistance * (j + 1), 0, 0);
-        //}
+        for (int i = 0; i < ObstaclePrefabs.Count; i++) //How many prefabs lists exist?
+        {
+            for (int j = 0; j < ObstaclePrefabs[i].activeObstacleList.Count; j++) //How many prefabs exist in this list?
+            {
+                ObstaclePrefabs[i].activeObstacleList[j].GetComponent<Obstacle>().movementSpeed = obstacleMovementSpeed;
+            }
+        }
     }
     
-    private void SpawnObstacles()
+    public void SpawnObstacles()
     {
         int maxRange = 0;
         int counter = 0; //What is currently the value
@@ -141,20 +120,18 @@ public class ObstacleManager : MonoBehaviour
             //Debug.Log("List i " + i);
                 int randgo = Random.Range(0, ObstaclePrefabs[i].disabledObstacleList.Count);
                 ObstaclePrefabs[i].activeObstacleList.Add(ObstaclePrefabs[i].disabledObstacleList[randgo]);
-                allActiveObstacles.Add(ObstaclePrefabs[i].disabledObstacleList[randgo]);
+                //allActiveObstacles.Add(ObstaclePrefabs[i].disabledObstacleList[randgo]);
+                allActiveObstaclesCounter++;
 
-                AdjustSpawnDistance();
+                //AdjustSpawnDistance();
+                if (allActiveObstaclesCounter <= maxObstacleShownAtTime)
+                {
+                    ObstaclePrefabs[i].disabledObstacleList[randgo].transform.position = new Vector3(-13 * obstacleRespawnDistance * (allActiveObstaclesCounter - distanceAdjustment), 0, 0);
+                    //Debug.Log("allActiveObstacles.Count " + allActiveObstacles.Count);
+                    Debug.Log("allActiveObstaclesCounter " + allActiveObstaclesCounter);
+                }
+                
                 ObstaclePrefabs[i].disabledObstacleList[randgo].SetActive(true);
-                if(allActiveObstacles.Count <= maxObstacleShownAtTime)
-                {
-                    ObstaclePrefabs[i].disabledObstacleList[randgo].transform.position = new Vector3(-13 * obstacleRespawnDistance * allActiveObstacles.Count, 0, 0);
-                    Debug.Log("allActiveObstacles.Count " + allActiveObstacles.Count);
-                }
-                else //Unnötig?
-                {
-                    ObstaclePrefabs[i].disabledObstacleList[randgo].transform.position = new Vector3(-13 * obstacleRespawnDistance * distancMultipl, 0, 0);
-                    Debug.Log("distancMultipl " + distancMultipl);
-                }
                 ObstaclePrefabs[i].disabledObstacleList.RemoveAt(randgo);
 
                 return;
@@ -163,19 +140,7 @@ public class ObstacleManager : MonoBehaviour
         }
 
     }
-
-    private void AdjustSpawnDistance() //Unnötig?
-    {
-        //Checks if distancMultipl would be 0 (Cannot)
-        if (maxObstacleShownAtTime - 2 <= 0)
-        {
-            distancMultipl = 1;
-        }
-        else
-        {
-            distancMultipl = maxObstacleShownAtTime - 1;
-        }
-    }
+    
 
     public void AddNewObstacle()
     {
@@ -214,7 +179,7 @@ public class ObstacleManager : MonoBehaviour
 
     private void AddBigObstacle(int rand)
     {
-        allDisabledObstacles[rand].transform.position = new Vector3(-13 * obstacleRespawnDistance * distancMultipl, 0, 0);
+        //allDisabledObstacles[rand].transform.position = new Vector3(-13 * obstacleRespawnDistance * distanceAdjustment, 0, 0);
     }
     private void AddSmallObstacle(int rand)
     {
