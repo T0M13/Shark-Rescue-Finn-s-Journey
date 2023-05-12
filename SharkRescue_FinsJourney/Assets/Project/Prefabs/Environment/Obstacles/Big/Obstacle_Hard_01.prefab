@@ -363,7 +363,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   obstacleType: 4
-  movingSpeed: 10
+  movementSpeed: 5
+  canSpawnObstacle: 0
 --- !u!65 &1499747622211405065
 BoxCollider:
   m_ObjectHideFlags: 0

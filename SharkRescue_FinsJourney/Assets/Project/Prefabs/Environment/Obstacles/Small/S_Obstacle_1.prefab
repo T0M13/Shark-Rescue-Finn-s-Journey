@@ -111,4 +111,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   obstacleType: 1
-  movementSpeed: 5
+  movementSpeed: 10
+  canSpawnObstacle: 0

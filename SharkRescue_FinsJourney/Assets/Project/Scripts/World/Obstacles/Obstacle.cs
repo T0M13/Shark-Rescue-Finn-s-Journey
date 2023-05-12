@@ -6,6 +6,7 @@ public class Obstacle : MonoBehaviour
 {
     [SerializeField] public ObstacleTypes.ObstacleType obstacleType;
     public float movementSpeed = 5;
+    public bool canSpawnObstacle = false; //Will be set true in the ObstacleManager if necessary (so only one obstacle per lane can spawn a new obstacle lane)
 
     void Update()
     {
@@ -27,7 +28,10 @@ public class Obstacle : MonoBehaviour
                 ObstacleManager.Instance.allActiveObstaclesCounter = 1;
             }
 
-            ObstacleManager.Instance.SpawnObstacles();
+            if (canSpawnObstacle)
+            {
+                ObstacleManager.Instance.SpawnObstacles();
+            }
 
             for (int i = 0; i < ObstacleManager.Instance.ObstaclePrefabs.Count; i++)
             {
