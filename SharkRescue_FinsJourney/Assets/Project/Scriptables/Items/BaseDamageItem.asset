@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: BaseDamageItem
   m_EditorClassIdentifier: 
   prefab: {fileID: 3643289242992397168, guid: 54ef914aa18eb6e4e93231e7cc6e84f5, type: 3}
-  chanceToSpawn: 0.2
+  chanceToSpawn: 0.02
