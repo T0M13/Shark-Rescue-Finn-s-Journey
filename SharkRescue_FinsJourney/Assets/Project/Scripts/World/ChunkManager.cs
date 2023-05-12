@@ -75,13 +75,13 @@ public class ChunkManager : MonoBehaviour
         int randomTemp = Random.Range(0, disabledChunks.Count);
         int distancMultipl;
 
-        if(maxChunksShownAtTime - 2 <= 0)
+        if(maxChunksShownAtTime - 1 <= 0)
         {
             distancMultipl = 1;
         }
         else
         {
-            distancMultipl = maxChunksShownAtTime - 2;
+            distancMultipl = maxChunksShownAtTime - 1;
         }
 
 
