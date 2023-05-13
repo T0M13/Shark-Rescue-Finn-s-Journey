@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
 
     [Header("References")]
     [SerializeField] private ItemSpawner itemSpawner;
+    [SerializeField] private PlayerReferences playerReferences;
     [Header("Game Positions")]
     [SerializeField] private Vector3 startPosition;
     [Header("Player Stats")]
@@ -30,6 +31,8 @@ public class GameManager : MonoBehaviour
     public Action OnLoad;
     public Action OnGameOver;
 
+    public Action OnMagnetPowerUp;
+
     private void OnEnable()
     {
         OnAddCoin += AddCoin;
@@ -38,6 +41,8 @@ public class GameManager : MonoBehaviour
         OnGameOver += GameOver;
         OnDeactivateGObject += DeactivateGameObject;
         OnGetDamage += GetDamage;
+
+        OnMagnetPowerUp += MagnetPowerUp;
     }
 
     private void OnDisable()
@@ -48,6 +53,9 @@ public class GameManager : MonoBehaviour
         OnGameOver -= GameOver;
         OnDeactivateGObject -= DeactivateGameObject;
         OnGetDamage -= GetDamage;
+
+        OnMagnetPowerUp -= MagnetPowerUp;
+
     }
 
     private void Awake()
@@ -65,6 +73,13 @@ public class GameManager : MonoBehaviour
 
         Load();
         Save();
+
+
+        if (itemSpawner == null)
+            itemSpawner = FindObjectOfType<ItemSpawner>();
+
+        if (playerReferences == null)
+            playerReferences = FindObjectOfType<PlayerReferences>();
     }
 
     private void AddCoin()
@@ -95,6 +110,15 @@ public class GameManager : MonoBehaviour
         {
             GameOver();
         }
+    }
+
+    private void MagnetPowerUp()
+    {
+        if (playerReferences == null)
+            playerReferences = FindObjectOfType<PlayerReferences>();
+        if (playerReferences == null) return;
+
+        playerReferences.PlayerInteractor.OnMagnetPowerUp?.Invoke();
     }
 
     private void Save()

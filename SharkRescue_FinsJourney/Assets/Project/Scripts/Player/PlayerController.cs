@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,8 +8,10 @@ public class PlayerController : MonoBehaviour
     [Header("Player Settings")]
     [SerializeField] private Vector3 startPosition;
     [SerializeField] private float laneSwitchForce = 2.5f;
+    [SerializeField] private float defaultLaneSwitchForce = 2.5f;
     [SerializeField] private float laneSwitchRotation = 10f;
     [SerializeField] private float rotationSpeed = 5f;
+    [SerializeField] private float defaultRotationSpeed = 5f;
     [SerializeField] private Lane currentLane = Lane.Middle;
     [SerializeField] private Undulate currentUndulate = Undulate.Center;
     [Header("Lane Settings")]
@@ -22,7 +25,7 @@ public class PlayerController : MonoBehaviour
     private Quaternion rotation;
     private Vector3 right;
     private Vector3 up;
-
+    [SerializeField] private float powerUpTime = 10f;
 
 
     private void Awake()

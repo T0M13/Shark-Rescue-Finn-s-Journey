@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2428571700924738152}
+  - component: {fileID: 8137896454878996491}
   - component: {fileID: 2428571700924738156}
   - component: {fileID: 2428571700924738155}
   - component: {fileID: 2428571700924738154}
@@ -36,6 +37,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8137896454878996491
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2428571700924738157}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3f0d62a385858e498f9479f513e91b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerController: {fileID: 2428571700924738156}
+  playerInteractor: {fileID: 2428571700924738155}
 --- !u!114 &2428571700924738156
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -50,14 +65,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startPosition: {x: 0, y: 2.5, z: -6}
   laneSwitchForce: 2.5
+  defaultLaneSwitchForce: 2.5
   laneSwitchRotation: 30
   rotationSpeed: 5
+  defaultRotationSpeed: 5
   currentLane: 0
   currentUndulate: 0
   laneXDistance: 4
   laneYDistance: 3
   lanes: 3
   showGizmos: 1
+  powerUpTime: 10
 --- !u!114 &2428571700924738155
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -70,6 +88,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7083b40f010089e4a83f75313880ce6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  magnetOn: 0
+  magnetRadius: 4.2
+  magnetPowerUpTime: 10
+  magnetCollectTime: 1.4
 --- !u!54 &2428571700924738154
 Rigidbody:
   m_ObjectHideFlags: 0

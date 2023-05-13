@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4f074d821ae41cf41aeafecc3bcfabdb, type: 3}
-  m_Name: BaseDamageItem
+  m_Name: MagnetPowerUp
   m_EditorClassIdentifier: 
-  prefab: {fileID: 3643289242992397168, guid: 54ef914aa18eb6e4e93231e7cc6e84f5, type: 3}
-  chanceToSpawn: 0.1
+  prefab: {fileID: 3643289242992397168, guid: 08157656ca752f44784fb071eadec595, type: 3}
+  chanceToSpawn: 0.05
