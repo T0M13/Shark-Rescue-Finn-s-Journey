@@ -15,6 +15,8 @@ public class CreateChunks : MonoBehaviour
     [Range(1, 20), Tooltip("How many Chunks should be generated.")]
     public int chunkQuantity = 8;
 
+    [SerializeField] private double tileWidthLength = 13.667138d;
+
     public static CreateChunks Instance;
 
     void Awake()
@@ -61,14 +63,14 @@ public class CreateChunks : MonoBehaviour
                         int temp = Random.Range(0, mainChunksPref.Count);
                         //Debug.Log("Math.Ceiling(chunkwidth * 0.5) " + firstchunkwidth);
                         GameObject go = Instantiate(mainChunksPref[temp], transform.position, transform.rotation);
-                        go.transform.position = new Vector3(-13 * i, 0, -13 * j);
+                        go.transform.position = new Vector3((float)-tileWidthLength * i, 0, (float)-tileWidthLength * j);
                         go.transform.parent = chunk.transform;
                     }
                     else
                     {
                         int temp = Random.Range(0, environmentChunksPref.Count);
                         GameObject go = Instantiate(environmentChunksPref[temp], transform.position, transform.rotation);
-                        go.transform.position = new Vector3(-13 * i, 0, -13 * j);
+                        go.transform.position = new Vector3((float)-tileWidthLength * i, 0, (float)-tileWidthLength * j);
                         go.transform.parent = chunk.transform;
                     }
                 }
@@ -79,7 +81,7 @@ public class CreateChunks : MonoBehaviour
                     int temp = Random.Range(0, environmentChunksPref.Count);
                     //Debug.Log("Math.Floor(chunkwidth - chunkwidth * 0.5) " + Math.Floor(chunkwidth * 0.5));
                     GameObject go = Instantiate(environmentChunksPref[temp]);
-                    go.transform.position = new Vector3(-13 * i, 0, 13 * k);
+                    go.transform.position = new Vector3((float)-tileWidthLength * i, 0, (float)tileWidthLength * k);
                     go.transform.parent = chunk.transform;
                 }
             }
@@ -91,7 +93,7 @@ public class CreateChunks : MonoBehaviour
             chunk.GetComponent<BoxCollider>().isTrigger = true;
             //chunk.GetComponent<BoxCollider>().center = new Vector3(-13 * (chunklength-1),0,0);
             chunk.GetComponent<BoxCollider>().center = new Vector3(0, 0, 0);
-            chunk.GetComponent<BoxCollider>().size = new Vector3(13, 1, 13);
+            chunk.GetComponent<BoxCollider>().size = new Vector3((float)tileWidthLength, 1, (float)tileWidthLength);
             chunk.transform.parent = chunksparent.transform;
 
             counter++;
