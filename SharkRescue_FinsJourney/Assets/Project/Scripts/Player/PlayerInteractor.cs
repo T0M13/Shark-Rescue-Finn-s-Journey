@@ -1,15 +1,17 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PlayerInteractor : MonoBehaviour
 {
+
     [Header("Magnet")]
     [SerializeField] private bool magnetOn = false;
     [SerializeField] private float magnetRadius = 4.2f;
     [SerializeField] private float magnetPowerUpTime = 10f;
     [SerializeField] private float magnetCollectTime = 1.4f;
-
+    [SerializeField] private GameObject magnetEffect;
     public Action OnMagnetPowerUp;
 
     private void OnEnable()
@@ -32,26 +34,49 @@ public class PlayerInteractor : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        MagnetLogic();
+    }
+
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, magnetRadius);
+    }
+
+
+    #region Magnet Power Up
+
+    /// <summary>
+    /// Starts the Coroutine Magnet Power Up
+    /// </summary>
     private void MagnetPowerUp()
     {
         StartCoroutine(MagnetPowerUpIE());
     }
 
+    /// <summary>
+    /// Activates Power Up for Magnet and after *magnetPowerUpTime* it deactivates it
+    /// </summary>
+    /// <returns></returns>
     private IEnumerator MagnetPowerUpIE()
     {
         magnetOn = true;
+        magnetEffect.SetActive(true);
         yield return new WaitForSeconds(magnetPowerUpTime);
         magnetOn = false;
+        magnetEffect.SetActive(false);
     }
 
-    private void Update()
-    {
-        if (!magnetOn) return;
-        MagnetLogic();
-    }
-
+    /// <summary>
+    /// The logic so the Magnet Power Up works..
+    /// </summary>
     private void MagnetLogic()
     {
+        if (!magnetOn) return;
+
         Collider[] colliders = Physics.OverlapSphere(transform.position, magnetRadius);
         foreach (Collider collider in colliders)
         {
@@ -61,10 +86,6 @@ public class PlayerInteractor : MonoBehaviour
             }
         }
     }
+    #endregion
 
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(transform.position, magnetRadius);
-    }
 }

@@ -11,21 +11,26 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float defaultLaneSwitchForce = 2.5f;
     [SerializeField] private float laneSwitchRotation = 10f;
     [SerializeField] private float rotationSpeed = 5f;
-    [SerializeField] private float defaultRotationSpeed = 5f;
+    //[SerializeField] private float defaultRotationSpeed = 5f;
     [SerializeField] private Lane currentLane = Lane.Middle;
     [SerializeField] private Undulate currentUndulate = Undulate.Center;
     [Header("Lane Settings")]
     [SerializeField] private float laneXDistance = 4f;
     [SerializeField] private float laneYDistance = 3f;
     [SerializeField] private int lanes = 3;
-    [Header("Lane Settings")]
+    [Header("Gizmos")]
     [SerializeField] private bool showGizmos = true;
     [Header("Variables")]
     private Vector3 pos;
     private Quaternion rotation;
     private Vector3 right;
     private Vector3 up;
-    [SerializeField] private float powerUpTime = 10f;
+
+    [Header("Speed Power Up")]
+    [SerializeField] private float speedMultiplier = 1.5f;
+    [SerializeField] private float speedPowerUpTime = 10f;
+    [SerializeField] private GameObject speedPowerUpEffect;
+    public Action OnSpeedPowerUp;
 
 
     private void Awake()
@@ -41,6 +46,8 @@ public class PlayerController : MonoBehaviour
         InputManager.instance.swipeDetector.OnSwipeDown += SwipeDown;
         InputManager.instance.swipeDetector.OnSwipeLeft += SwipeLeft;
         InputManager.instance.swipeDetector.OnSwipeRight += SwipeRight;
+
+        OnSpeedPowerUp += SpeedPowerUp;
     }
 
     private void OnDisable()
@@ -49,6 +56,8 @@ public class PlayerController : MonoBehaviour
         InputManager.instance.swipeDetector.OnSwipeDown -= SwipeDown;
         InputManager.instance.swipeDetector.OnSwipeLeft -= SwipeLeft;
         InputManager.instance.swipeDetector.OnSwipeRight -= SwipeRight;
+
+        OnSpeedPowerUp -= SpeedPowerUp;
     }
 
 
@@ -158,9 +167,9 @@ public class PlayerController : MonoBehaviour
         Quaternion initialRotation = transform.rotation;
         Quaternion targetRotation = new Quaternion();
         if (horizontal)
-             targetRotation = Quaternion.Euler(transform.rotation.eulerAngles.x, targetAngle, transform.rotation.eulerAngles.z);
+            targetRotation = Quaternion.Euler(transform.rotation.eulerAngles.x, targetAngle, transform.rotation.eulerAngles.z);
         else
-             targetRotation = Quaternion.Euler(targetAngle, transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z);
+            targetRotation = Quaternion.Euler(targetAngle, transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z);
 
         float t = 0f;
         while (t < 1f)
@@ -196,6 +205,33 @@ public class PlayerController : MonoBehaviour
         }
 
     }
+
+
+    #region Speed Power Up
+
+    /// <summary>
+    /// Starts the Coroutine Speed Power Up
+    /// </summary>
+    private void SpeedPowerUp()
+    {
+        StartCoroutine(SpeedPowerUpIE());
+    }
+
+    /// <summary>
+    /// Activates Power Up for Speed and after *speedPowerUpTime* it deactivates it
+    /// </summary>
+    /// <returns></returns>
+    private IEnumerator SpeedPowerUpIE()
+    {
+        laneSwitchForce = laneSwitchForce * speedMultiplier;
+        speedPowerUpEffect.SetActive(true);
+        yield return new WaitForSeconds(speedPowerUpTime);
+        speedPowerUpEffect.SetActive(false);
+        laneSwitchForce = defaultLaneSwitchForce;
+    }
+
+
+    #endregion
 
 }
 

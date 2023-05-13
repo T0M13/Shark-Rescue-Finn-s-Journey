@@ -13,6 +13,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private PlayerReferences playerReferences;
     [Header("Game Positions")]
     [SerializeField] private Vector3 startPosition;
+    [Header("Item Settings")]
+    [SerializeField] private int itemsSpeed = 1;
     [Header("Player Stats")]
     [SerializeField] private int health = 1;
     [SerializeField] private int coins;
@@ -25,6 +27,7 @@ public class GameManager : MonoBehaviour
     public Vector3 StartPosition { get => startPosition; set => startPosition = value; }
 
     public Action OnAddCoin;
+    public Action<BaseItem> OnSpawnObject;
     public Action<int> OnGetDamage;
     public Action<GameObject> OnDeactivateGObject;
     public Action OnSave;
@@ -32,6 +35,7 @@ public class GameManager : MonoBehaviour
     public Action OnGameOver;
 
     public Action OnMagnetPowerUp;
+    public Action OnSpeedPowerUp;
 
     private void OnEnable()
     {
@@ -42,7 +46,9 @@ public class GameManager : MonoBehaviour
         OnDeactivateGObject += DeactivateGameObject;
         OnGetDamage += GetDamage;
 
+        OnSpawnObject += SetObjectSpeed;
         OnMagnetPowerUp += MagnetPowerUp;
+        OnSpeedPowerUp += SpeedPowerUp;
     }
 
     private void OnDisable()
@@ -54,7 +60,10 @@ public class GameManager : MonoBehaviour
         OnDeactivateGObject -= DeactivateGameObject;
         OnGetDamage -= GetDamage;
 
+        OnSpawnObject -= SetObjectSpeed;
         OnMagnetPowerUp -= MagnetPowerUp;
+        OnSpeedPowerUp -= SpeedPowerUp;
+
 
     }
 
@@ -112,6 +121,11 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    private void SetObjectSpeed(BaseItem item)
+    {
+        item.MoveSpeed = itemsSpeed;
+    }
+
     private void MagnetPowerUp()
     {
         if (playerReferences == null)
@@ -119,6 +133,15 @@ public class GameManager : MonoBehaviour
         if (playerReferences == null) return;
 
         playerReferences.PlayerInteractor.OnMagnetPowerUp?.Invoke();
+    }
+
+    private void SpeedPowerUp()
+    {
+        if (playerReferences == null)
+            playerReferences = FindObjectOfType<PlayerReferences>();
+        if (playerReferences == null) return;
+
+        playerReferences.PlayerController.OnSpeedPowerUp?.Invoke();
     }
 
     private void Save()

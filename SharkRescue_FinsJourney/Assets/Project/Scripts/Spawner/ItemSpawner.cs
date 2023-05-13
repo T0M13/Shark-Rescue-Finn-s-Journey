@@ -63,6 +63,9 @@ public class ItemSpawner : MonoBehaviour
             Vector3 pos = position;
             obj.transform.position = pos;
             obj.SetActive(true);
+            BaseItem item = obj.GetComponent<BaseItem>();
+            if (GameManager.instance != null)
+                GameManager.instance.OnSpawnObject?.Invoke(item);
         }
     }
 
