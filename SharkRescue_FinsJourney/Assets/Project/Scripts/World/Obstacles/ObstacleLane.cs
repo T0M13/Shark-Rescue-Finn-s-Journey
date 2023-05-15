@@ -23,7 +23,7 @@ public class ObstacleLane : MonoBehaviour
         {
             ObstacleManager.Instance.allActiveObstaclesCounter--;
             
-            for (int i = 0; i < obstacles.Count; i++) // gameObject.transform.childCount
+            for (int i = 0; i < obstacles.Count; i++) //Move obstacles from this lane to obstacleContainer
             {
                 gameObject.transform.GetChild(0).gameObject.SetActive(false);
                 gameObject.transform.GetChild(0).gameObject.transform.parent = ObstacleManager.Instance.obstacleContainer.transform;
@@ -32,7 +32,7 @@ public class ObstacleLane : MonoBehaviour
             gameObject.SetActive(false);
             
 
-            if (ObstacleManager.Instance.distanceAdjustment == 0) //After the first obstacle has been deactivated, the new obstacle spawns accordingly at location 
+            if (ObstacleManager.Instance.distanceAdjustment == 0) //After the first obstacle has been deactivated, the new obstacle spawns accordingly at the new location 
             {
                 ObstacleManager.Instance.distanceAdjustment = 1;
             }
@@ -51,7 +51,7 @@ public class ObstacleLane : MonoBehaviour
             }
             obstacles.Clear();
             ObstacleManager.Instance.disabledObstacleLanes.Add(gameObject);
-
+            ObstacleManager.Instance.spawnAdjustment = gameObject.transform.position.x - 65;
 
             ObstacleManager.Instance.SpawnObstacles();
         }

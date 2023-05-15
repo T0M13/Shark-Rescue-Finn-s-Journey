@@ -16,6 +16,7 @@ public class ChunkManager : MonoBehaviour
     [SerializeField] private int chunksMovingSpeed = 5;
     private int chunklength = 0;
     private int chunkwidth = 0;
+    public float spawnAdjustment = 0f; //OnTriggerExit is not precisly enoguh (0.51;0.22;1.04) -> Difference needs to be added
 
     public static ChunkManager Instance { get; private set; }
 
@@ -44,7 +45,7 @@ public class ChunkManager : MonoBehaviour
         AdjustAllChunks();
     }
 
-    private void AdjustChunkColliderCatcher()
+    private void AdjustChunkColliderCatcher() //At the beginning, the Chunk/Obstacle ColliderCatcher will be adjusted
     {
         chunkColliderCatcher.GetComponent<BoxCollider>().size = new Vector3(chunkColliderCatcherSize.x, chunkColliderCatcherSize.y, chunkColliderCatcherSize.z * chunkwidth);
         chunkColliderCatcher.transform.position = new Vector3(13 * (chunklength - 1), 0, 0);
@@ -85,7 +86,7 @@ public class ChunkManager : MonoBehaviour
         }
 
 
-        disabledChunks[randomTemp].transform.position = new Vector3(-13 * chunklength * distancMultipl, 0, 0);
+        disabledChunks[randomTemp].transform.position = new Vector3(-13 * chunklength * distancMultipl + spawnAdjustment, 0, 0);
         disabledChunks[randomTemp].SetActive(true);
         disabledChunks.RemoveAt(randomTemp);
     }

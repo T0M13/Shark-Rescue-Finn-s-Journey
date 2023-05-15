@@ -38,19 +38,19 @@ public class CreateChunks : MonoBehaviour
     private void CreateChunk()
     {
         int counter = 0;
-        //Settigs für eine Chunk-Parent
+        //Chunk-Parent where all chunks are stored
         GameObject chunksparent = new GameObject();
         chunksparent.name = "ChunksParent";
         chunksparent.transform.position = new Vector3(0, 0, 0);
 
         do
         {
-            //Settings für ein Chunk
+            //Settings for a Chunk
             GameObject chunk = new GameObject();
             chunk.name = "chunk_0" + counter;
             chunk.transform.position = new Vector3(0, 0, 0);
 
-            //Erstellung eines Chunks
+            //Creating a Chunk
             for (int i = 0; i < chunklength; i++)
             {
                 var firstchunkwidth = Math.Ceiling(chunkwidth * 0.5);
@@ -101,6 +101,9 @@ public class CreateChunks : MonoBehaviour
 
     }
 
+    /// <summary>
+    /// Chunkwidth should always be odd (even -> odd (+1))
+    /// </summary>
     private void CheckValues()
     {
         if (chunkwidth % 2 == 0)

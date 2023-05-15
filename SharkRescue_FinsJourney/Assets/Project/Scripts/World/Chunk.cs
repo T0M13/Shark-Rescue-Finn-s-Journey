@@ -9,6 +9,11 @@ public class Chunk : MonoBehaviour
     void Update()
     {
         gameObject.transform.position += new Vector3(movingSpeed * Time.deltaTime, 0, 0);
+
+        //if(gameObject.transform.position.x >= 65)
+        //{
+        //    Debug.Log(gameObject.name + " Update: " + gameObject.transform.position);
+        //}
     }
 
 
@@ -18,6 +23,8 @@ public class Chunk : MonoBehaviour
 
         if(other != null && other.gameObject.CompareTag("ChunkCatcher"))
         {
+            Debug.Log(gameObject.name + ": " + gameObject.transform.position);
+            ChunkManager.Instance.spawnAdjustment = gameObject.transform.position.x - 65;
             gameObject.SetActive(false);
             ChunkManager.Instance.AddNewChunk();
             ChunkManager.Instance.disabledChunks.Add(gameObject);
