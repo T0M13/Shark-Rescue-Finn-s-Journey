@@ -110,6 +110,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f685b8710306004282d798f10d04944, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  obstacleType: 1
-  movementSpeed: 10
-  canSpawnObstacle: 0
+  obstacleSizeType: 1

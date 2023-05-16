@@ -6,7 +6,7 @@ using static ObstacleTypes;
 [System.Serializable]
 public class ObstacleListPrefabs
 {
-    public ObstacleType obstacleType = new();
+    public ObstacleSizeType obstacleType = new();
     [Tooltip("Unique Prefabs.")]
     public List<GameObject> obstaclePrefabs = new();
     [Tooltip("Here the respective prefabs are copied x times.")]
@@ -17,4 +17,5 @@ public class ObstacleListPrefabs
     public int spawnRate = 25;
     public int obstacleQuantity = 3;
     public ObstacleProbability additionalObstacleProbability;
+    public ObstacleSpawnPosition obstacleSpawnPositions;
 }

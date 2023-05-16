@@ -5,7 +5,7 @@ using UnityEngine;
 [System.Serializable]
 public class ObstacleTypes : MonoBehaviour
 {
-    public enum ObstacleType
+    public enum ObstacleSizeType
     {
         NONE,
         Small,
@@ -13,7 +13,6 @@ public class ObstacleTypes : MonoBehaviour
         Medium2,
         Big,
     }
-
 }
 
 

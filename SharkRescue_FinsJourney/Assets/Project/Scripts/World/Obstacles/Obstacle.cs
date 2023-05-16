@@ -4,5 +4,5 @@ using UnityEngine;
 
 public class Obstacle : MonoBehaviour
 {
-    [SerializeField] public ObstacleTypes.ObstacleType obstacleType;
+    public ObstacleTypes.ObstacleSizeType obstacleSizeType;
 }

@@ -6,7 +6,6 @@ using UnityEngine;
 [System.Serializable]
 public class ObstacleProbability : ScriptableObject
 {
-    public string Name = "Obstacle";
-
+    public ObstacleTypes.ObstacleSizeType ObstacleSizeTypes;
     public Vector2[] SpawnQuantityRange;
 }

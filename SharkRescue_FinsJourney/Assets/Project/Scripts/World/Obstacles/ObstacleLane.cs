@@ -42,7 +42,7 @@ public class ObstacleLane : MonoBehaviour
             {
                 for (int j = obstacles.Count - 1; j >= 0; j--)
                 {
-                    if (ObstacleManager.Instance.ObstaclePrefabs[i].obstacleType == obstacles[j].obstacleType)
+                    if (ObstacleManager.Instance.ObstaclePrefabs[i].obstacleType == obstacles[j].obstacleSizeType)
                     {
                         ObstacleManager.Instance.ObstaclePrefabs[i].disabledObstacleList.Add(obstacles[j].gameObject);
                         ObstacleManager.Instance.ObstaclePrefabs[i].activeObstacleList.Remove(obstacles[j].gameObject);
