@@ -71,6 +71,14 @@ public class ChunkManager : MonoBehaviour
         }
     }
 
+    public void AdjustMovementSpeed()
+    {
+        for (int i = 0; i < chunks.Count; i++)
+        {
+            chunks[i].GetComponent<Chunk>().movingSpeed = chunksMovingSpeed;
+        }
+    }
+
     public void AddNewChunk()
     {
         int randomTemp = Random.Range(0, disabledChunks.Count);
