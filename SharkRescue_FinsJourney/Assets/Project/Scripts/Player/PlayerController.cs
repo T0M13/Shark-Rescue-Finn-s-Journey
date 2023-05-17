@@ -136,6 +136,12 @@ public class PlayerController : MonoBehaviour
         pos = startPosition + (laneXDistance * (float)currentLane) * right + (laneYDistance * (float)currentUndulate) * up;
 
         transform.position = Vector3.Lerp(transform.position, pos, Time.deltaTime * laneSwitchForce);
+
+        // Rotation Issue when Diagonal Swipe + Normal Swipe Fix Test
+        //if (transform.rotation.x != 0 || transform.rotation.y != 0)
+        //{
+        //     transform.rotation = Quaternion.Euler(0,0,0);
+        //}
     }
 
 
@@ -224,10 +230,12 @@ public class PlayerController : MonoBehaviour
     private IEnumerator SpeedPowerUpIE()
     {
         laneSwitchForce = laneSwitchForce * speedMultiplier;
-        speedPowerUpEffect.SetActive(true);
+        if (speedPowerUpEffect != null)
+            speedPowerUpEffect.SetActive(true);
         yield return new WaitForSeconds(speedPowerUpTime);
-        speedPowerUpEffect.SetActive(false);
         laneSwitchForce = defaultLaneSwitchForce;
+        if (speedPowerUpEffect != null)
+            speedPowerUpEffect.SetActive(false);
     }
 
 

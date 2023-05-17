@@ -64,10 +64,12 @@ public class PlayerInteractor : MonoBehaviour
     private IEnumerator MagnetPowerUpIE()
     {
         magnetOn = true;
-        magnetEffect.SetActive(true);
+        if (magnetEffect != null)
+            magnetEffect.SetActive(true);
         yield return new WaitForSeconds(magnetPowerUpTime);
         magnetOn = false;
-        magnetEffect.SetActive(false);
+        if (magnetEffect != null)
+            magnetEffect.SetActive(false);
     }
 
     /// <summary>
