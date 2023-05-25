@@ -152,18 +152,15 @@ public class ObstacleManager : MonoBehaviour
                         
                         tempObstacleSpawnPositions.Shuffle();
 
+                        disabledObstacleLanes[0].transform.position = new Vector3(0, 0, 13 * obstacleRespawnDistance * (allActiveObstaclesCounter - distanceAdjustment) + spawnAdjustment);
+                        
                         for (int j = 0; j < maxSmallObstacleCounter; j++)
                         {
                             randGo = Random.Range(0, ObstaclePrefabs[i].disabledObstacleList.Count); //Pick one random deactivated Small Obstacle
                             randPos = Random.Range(0, tempObstacleSpawnPositions.Count); //Pick one random Position from List
 
-                            if (j == 0)
-                            {
-                                disabledObstacleLanes[0].transform.position = new Vector3(-13 * obstacleRespawnDistance * (allActiveObstaclesCounter - distanceAdjustment), 0, 0);
-                            }
-
                             ObstaclePrefabs[i].disabledObstacleList[randGo].transform.parent = disabledObstacleLanes[0].transform;
-                            ObstaclePrefabs[i].disabledObstacleList[randGo].transform.position = new Vector3(-13 * obstacleRespawnDistance * (allActiveObstaclesCounter - distanceAdjustment) + spawnAdjustment, tempObstacleSpawnPositions[randPos].y, tempObstacleSpawnPositions[randPos].z);
+                            ObstaclePrefabs[i].disabledObstacleList[randGo].transform.position = new Vector3(tempObstacleSpawnPositions[randPos].x, tempObstacleSpawnPositions[randPos].y, 13 * obstacleRespawnDistance * (allActiveObstaclesCounter - distanceAdjustment) + spawnAdjustment);
                             ObstaclePrefabs[i].disabledObstacleList[randGo].SetActive(true);
 
                             disabledObstacleLanes[0].GetComponent<ObstacleLane>().obstacles.Add(ObstaclePrefabs[i].disabledObstacleList[randGo].GetComponent<Obstacle>());
@@ -182,18 +179,15 @@ public class ObstacleManager : MonoBehaviour
                     case ObstacleSizeType.Medium1: //1 whole lane (1x3 slots)
                         tempObstacleSpawnPositions.Shuffle();
 
+                        disabledObstacleLanes[0].transform.position = new Vector3(0, 0, 13 * obstacleRespawnDistance * (allActiveObstaclesCounter - distanceAdjustment) + spawnAdjustment);
+                        
                         for (int j = 0; j < maxSmallObstacleCounter; j++)
                         {
                             randGo = Random.Range(0, ObstaclePrefabs[i].disabledObstacleList.Count); //Pick one random deactivated Small Obstacle
                             randPos = Random.Range(0, tempObstacleSpawnPositions.Count); //Pick one random Position from List
-                            
-                            if (j == 0)
-                            {
-                                disabledObstacleLanes[0].transform.position = new Vector3(-13 * obstacleRespawnDistance * (allActiveObstaclesCounter - distanceAdjustment), 0, 0);
-                            }
 
                             ObstaclePrefabs[i].disabledObstacleList[randGo].transform.parent = disabledObstacleLanes[0].transform;
-                            ObstaclePrefabs[i].disabledObstacleList[randGo].transform.position = new Vector3(-13 * obstacleRespawnDistance * (allActiveObstaclesCounter - distanceAdjustment) + spawnAdjustment, tempObstacleSpawnPositions[randPos].y, tempObstacleSpawnPositions[randPos].z);
+                            ObstaclePrefabs[i].disabledObstacleList[randGo].transform.position = new Vector3(tempObstacleSpawnPositions[randPos].x, tempObstacleSpawnPositions[randPos].y, 13 * obstacleRespawnDistance * (allActiveObstaclesCounter - distanceAdjustment) + spawnAdjustment);
                             ObstaclePrefabs[i].disabledObstacleList[randGo].SetActive(true);
 
                             disabledObstacleLanes[0].GetComponent<ObstacleLane>().obstacles.Add(ObstaclePrefabs[i].disabledObstacleList[randGo].GetComponent<Obstacle>());
@@ -213,18 +207,15 @@ public class ObstacleManager : MonoBehaviour
 
                         tempObstacleSpawnPositions.Shuffle();
 
+                        disabledObstacleLanes[0].transform.position = new Vector3(0, 0, 13 * obstacleRespawnDistance * (allActiveObstaclesCounter - distanceAdjustment) + spawnAdjustment);
+                        
                         for (int j = 0; j < maxSmallObstacleCounter; j++)
                         {
                             randGo = Random.Range(0, ObstaclePrefabs[i].disabledObstacleList.Count); //Pick one random deactivated Small Obstacle
                             randPos = Random.Range(0, tempObstacleSpawnPositions.Count); //Pick one random Position from List
 
-                            if (j == 0)
-                            {
-                                disabledObstacleLanes[0].transform.position = new Vector3(-13 * obstacleRespawnDistance * (allActiveObstaclesCounter - distanceAdjustment), 0, 0);
-                            }
-
                             ObstaclePrefabs[i].disabledObstacleList[randGo].transform.parent = disabledObstacleLanes[0].transform;
-                            ObstaclePrefabs[i].disabledObstacleList[randGo].transform.position = new Vector3(-13 * obstacleRespawnDistance * (allActiveObstaclesCounter - distanceAdjustment) + spawnAdjustment, tempObstacleSpawnPositions[randPos].y, tempObstacleSpawnPositions[randPos].z);
+                            ObstaclePrefabs[i].disabledObstacleList[randGo].transform.position = new Vector3(tempObstacleSpawnPositions[randPos].x, tempObstacleSpawnPositions[randPos].y, 13 * obstacleRespawnDistance * (allActiveObstaclesCounter - distanceAdjustment) + spawnAdjustment);
                             ObstaclePrefabs[i].disabledObstacleList[randGo].SetActive(true);
 
                             //-13 * obstacleRespawnDistance * (allActiveObstaclesCounter - distanceAdjustment) + spawnAdjustment -3
@@ -249,7 +240,7 @@ public class ObstacleManager : MonoBehaviour
 
                         ObstaclePrefabs[i].activeObstacleList.Add(ObstaclePrefabs[i].disabledObstacleList[randGo]);
                         
-                        disabledObstacleLanes[0].transform.position = new Vector3(-13 * obstacleRespawnDistance * (allActiveObstaclesCounter - distanceAdjustment) + spawnAdjustment, 0, 0); //disabledObstacleLanes[0] = The first freely available lane is used 
+                        disabledObstacleLanes[0].transform.position = new Vector3(0, 0, 13 * obstacleRespawnDistance * (allActiveObstaclesCounter - distanceAdjustment) + spawnAdjustment); //disabledObstacleLanes[0] = The first freely available lane is used 
                         ObstaclePrefabs[i].disabledObstacleList[randGo].transform.parent = disabledObstacleLanes[0].transform;
                         ObstaclePrefabs[i].disabledObstacleList[randGo].transform.localPosition = new Vector3(0,0,0);
                         

@@ -15,7 +15,7 @@ public class CreateChunks : MonoBehaviour
     [Range(1, 20), Tooltip("How many Chunks should be generated.")]
     public int chunkQuantity = 8;
 
-    [SerializeField] private double tileWidthLength = 13.667138d;
+    [SerializeField] private float tileWidthLength = 13f;
 
     public static CreateChunks Instance;
 
@@ -32,6 +32,9 @@ public class CreateChunks : MonoBehaviour
 
 
         CheckValues();
+
+        //StartCoroutine("CreateChunkTime");
+
         CreateChunk();
     }
 
@@ -45,15 +48,17 @@ public class CreateChunks : MonoBehaviour
 
         do
         {
+            //Debug.Log("Creating Chunk...");
             //Settings for a Chunk
             GameObject chunk = new GameObject();
             chunk.name = "chunk_0" + counter;
             chunk.transform.position = new Vector3(0, 0, 0);
 
+            var firstchunkwidth = Math.Ceiling(chunkwidth * 0.5);
+            //Debug.Log("Math.Ceiling(chunkwidth * 0.5) " + firstchunkwidth);
             //Creating a Chunk
-            for (int i = 0; i < chunklength; i++)
+            for (int i = 0; i < chunklength; i++) //Current Row
             {
-                var firstchunkwidth = Math.Ceiling(chunkwidth * 0.5);
 
                 //Mid (inclusive) to Left
                 for (int j = 0; j < firstchunkwidth; j++)
@@ -61,16 +66,15 @@ public class CreateChunks : MonoBehaviour
                     if (i == 0)
                     {
                         int temp = Random.Range(0, mainChunksPref.Count);
-                        //Debug.Log("Math.Ceiling(chunkwidth * 0.5) " + firstchunkwidth);
                         GameObject go = Instantiate(mainChunksPref[temp], transform.position, transform.rotation);
-                        go.transform.position = new Vector3((float)-tileWidthLength * i, 0, (float)-tileWidthLength * j);
+                        go.transform.position = new Vector3(-tileWidthLength * j, 0, tileWidthLength * i);
                         go.transform.parent = chunk.transform;
                     }
                     else
                     {
                         int temp = Random.Range(0, environmentChunksPref.Count);
                         GameObject go = Instantiate(environmentChunksPref[temp], transform.position, transform.rotation);
-                        go.transform.position = new Vector3((float)-tileWidthLength * i, 0, (float)-tileWidthLength * j);
+                        go.transform.position = new Vector3(-tileWidthLength * j, 0, tileWidthLength * i);
                         go.transform.parent = chunk.transform;
                     }
                 }
@@ -81,7 +85,7 @@ public class CreateChunks : MonoBehaviour
                     int temp = Random.Range(0, environmentChunksPref.Count);
                     //Debug.Log("Math.Floor(chunkwidth - chunkwidth * 0.5) " + Math.Floor(chunkwidth * 0.5));
                     GameObject go = Instantiate(environmentChunksPref[temp]);
-                    go.transform.position = new Vector3((float)-tileWidthLength * i, 0, (float)tileWidthLength * k);
+                    go.transform.position = new Vector3(tileWidthLength * k, 0, tileWidthLength * i);
                     go.transform.parent = chunk.transform;
                 }
             }
@@ -91,9 +95,82 @@ public class CreateChunks : MonoBehaviour
             //Box Collider Settings
             chunk.AddComponent<BoxCollider>();
             chunk.GetComponent<BoxCollider>().isTrigger = true;
-            //chunk.GetComponent<BoxCollider>().center = new Vector3(-13 * (chunklength-1),0,0);
             chunk.GetComponent<BoxCollider>().center = new Vector3(0, 0, 0);
-            chunk.GetComponent<BoxCollider>().size = new Vector3((float)tileWidthLength, 1, (float)tileWidthLength);
+            chunk.GetComponent<BoxCollider>().size = new Vector3(tileWidthLength, 1, tileWidthLength);
+            chunk.transform.parent = chunksparent.transform;
+
+            counter++;
+        } while (counter < chunkQuantity);
+
+    }
+
+    private IEnumerator CreateChunkTime()
+    {
+        //yield return new WaitForSeconds(2f);
+
+        int counter = 0;
+        //Chunk-Parent where all chunks are stored
+        GameObject chunksparent = new GameObject();
+        chunksparent.name = "ChunksParent";
+        chunksparent.transform.position = new Vector3(0, 0, 0);
+
+        do
+        {
+            Debug.Log("Creating Chunk...");
+            //Settings for a Chunk
+            GameObject chunk = new GameObject();
+            chunk.name = "chunk_0" + counter;
+            chunk.transform.position = new Vector3(0, 0, 0);
+
+            var firstchunkwidth = Math.Ceiling(chunkwidth * 0.5);
+            Debug.Log("Math.Ceiling(chunkwidth * 0.5) " + firstchunkwidth);
+            //Creating a Chunk
+            for (int i = 0; i < chunklength; i++) //Current Row
+            {
+
+                //Mid (inclusive) to Left
+                for (int j = 0; j < firstchunkwidth; j++)
+                {
+                    if (i == 0)
+                    {
+                        int temp = Random.Range(0, mainChunksPref.Count);
+                        GameObject go = Instantiate(mainChunksPref[temp], transform.position, transform.rotation);
+                        go.transform.position = new Vector3(-tileWidthLength * j, 0, tileWidthLength * i);
+                        go.transform.parent = chunk.transform;
+                    }
+                    else
+                    {
+                        int temp = Random.Range(0, environmentChunksPref.Count);
+                        GameObject go = Instantiate(environmentChunksPref[temp], transform.position, transform.rotation);
+                        go.transform.position = new Vector3(-tileWidthLength * j, 0, tileWidthLength * i);
+                        go.transform.parent = chunk.transform;
+                    }
+
+
+                    yield return new WaitForSeconds(0.75f);
+                }
+
+                //Mid (exclusive) to Right
+                for (int k = 1; k < chunkwidth + 1 - firstchunkwidth; k++)
+                {
+                    int temp = Random.Range(0, environmentChunksPref.Count);
+                    //Debug.Log("Math.Floor(chunkwidth - chunkwidth * 0.5) " + Math.Floor(chunkwidth * 0.5));
+                    GameObject go = Instantiate(environmentChunksPref[temp]);
+                    go.transform.position = new Vector3(tileWidthLength * k, 0, tileWidthLength * i);
+                    go.transform.parent = chunk.transform;
+
+
+                    yield return new WaitForSeconds(0.75f);
+                }
+            }
+            chunk.AddComponent<Chunk>();
+            ChunkManager.Instance.chunks.Add(chunk);
+
+            //Box Collider Settings
+            chunk.AddComponent<BoxCollider>();
+            chunk.GetComponent<BoxCollider>().isTrigger = true;
+            chunk.GetComponent<BoxCollider>().center = new Vector3(0, 0, 0);
+            chunk.GetComponent<BoxCollider>().size = new Vector3(tileWidthLength, 1, tileWidthLength);
             chunk.transform.parent = chunksparent.transform;
 
             counter++;

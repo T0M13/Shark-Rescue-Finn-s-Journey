@@ -9,7 +9,7 @@ public class ObstacleLane : MonoBehaviour
 
     void Update()
     {
-        gameObject.transform.position += new Vector3(movementSpeed * Time.deltaTime, 0, 0);
+        gameObject.transform.position += new Vector3(0, 0, -movementSpeed * Time.deltaTime);
     }
 
 
@@ -34,7 +34,7 @@ public class ObstacleLane : MonoBehaviour
 
             if (ObstacleManager.Instance.distanceAdjustment == 0) //After the first obstacle has been deactivated, the new obstacle spawns accordingly at the new location 
             {
-                ObstacleManager.Instance.distanceAdjustment = 1;
+                //ObstacleManager.Instance.distanceAdjustment = 1;
             }
 
 

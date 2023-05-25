@@ -47,8 +47,8 @@ public class ChunkManager : MonoBehaviour
 
     private void AdjustChunkColliderCatcher() //At the beginning, the Chunk/Obstacle ColliderCatcher will be adjusted
     {
-        chunkColliderCatcher.GetComponent<BoxCollider>().size = new Vector3(chunkColliderCatcherSize.x, chunkColliderCatcherSize.y, chunkColliderCatcherSize.z * chunkwidth);
-        chunkColliderCatcher.transform.position = new Vector3(13 * (chunklength - 1), 0, 0);
+        chunkColliderCatcher.GetComponent<BoxCollider>().size = new Vector3(chunkColliderCatcherSize.x * chunkwidth, chunkColliderCatcherSize.y, chunkColliderCatcherSize.z);
+        chunkColliderCatcher.transform.position = new Vector3(0, 0, -13 * (chunklength - 1));
     }
 
     private void AdjustAllChunks()
@@ -67,7 +67,7 @@ public class ChunkManager : MonoBehaviour
 
         for (int j = 0; j < maxChunksShownAtTime; j++)
         {
-            chunks[j].transform.position = new Vector3(-13 * chunklength * j, 0, 0);
+            chunks[j].transform.position = new Vector3(0, 0, 13 * chunklength * j);
         }
     }
 
@@ -90,11 +90,12 @@ public class ChunkManager : MonoBehaviour
         }
         else
         {
-            distancMultipl = maxChunksShownAtTime - 1;
+            //distancMultipl = maxChunksShownAtTime - 1;
+            distancMultipl = maxChunksShownAtTime;
         }
 
 
-        disabledChunks[randomTemp].transform.position = new Vector3(-13 * chunklength * distancMultipl + spawnAdjustment, 0, 0);
+        disabledChunks[randomTemp].transform.position = new Vector3(0, 0, 13 * chunklength * distancMultipl + spawnAdjustment);
         disabledChunks[randomTemp].SetActive(true);
         disabledChunks.RemoveAt(randomTemp);
     }

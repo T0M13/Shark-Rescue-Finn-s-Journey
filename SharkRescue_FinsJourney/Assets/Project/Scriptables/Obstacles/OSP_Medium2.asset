@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ObstacleSizeTypes: 3
   SpawnPositions:
-  - {x: 0, y: 0, z: -2}
-  - {x: 0, y: 0, z: 2}
+  - {x: -2, y: 0, z: 0}
+  - {x: 2, y: 0, z: 0}
   BlackListSpawnPositions:
-  - {x: 0, y: 0, z: -2}
-  - {x: 0, y: 0, z: 2}
+  - {x: -2, y: 0, z: 0}
+  - {x: 2, y: 0, z: 0}

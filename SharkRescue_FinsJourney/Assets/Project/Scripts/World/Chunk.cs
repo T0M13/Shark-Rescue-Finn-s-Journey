@@ -8,7 +8,8 @@ public class Chunk : MonoBehaviour
     
     void Update()
     {
-        gameObject.transform.position += new Vector3(movingSpeed * Time.deltaTime, 0, 0);
+        //gameObject.transform.position += new Vector3(movingSpeed * Time.deltaTime, 0, 0);
+        gameObject.transform.position += new Vector3(0, 0, -movingSpeed * Time.deltaTime);
 
         //if(gameObject.transform.position.x >= 65)
         //{
