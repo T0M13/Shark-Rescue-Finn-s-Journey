@@ -5431,18 +5431,8 @@ MonoBehaviour:
   maxObstacleLanesShownAtTime: 5
   obstacleRespawnDistance: 5
   distanceAdjustment: 0
-  gameDifficulty: 3
-  obstacleSpawnPositions:
-  - {x: 10, y: 2, z: -4}
-  - {x: 10, y: 2, z: 0}
-  - {x: 10, y: 2, z: 4}
-  - {x: 10, y: 5, z: -4}
-  - {x: 10, y: 5, z: 0}
-  - {x: 10, y: 5, z: 4}
-  - {x: 10, y: 8, z: -4}
-  - {x: 10, y: 8, z: 0}
-  - {x: 10, y: 8, z: 4}
   spawnAdjustment: 0
+  gameDifficulty: 3
 --- !u!1 &278106197
 GameObject:
   m_ObjectHideFlags: 0

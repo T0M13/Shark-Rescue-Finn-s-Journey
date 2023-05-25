@@ -17,20 +17,19 @@ public class ObstacleManager : MonoBehaviour
     [SerializeField] private List<GameObject> allObstacleLanes;
     public int allActiveObstaclesCounter = new(); //How many obstacles are currently active (Necessary for spawn distance ObstacleLanes)
     [SerializeField] private List<int> spawnRate = new();
+    //[SerializeField] private List<int> spawnHights = new();
+    //[SerializeField] private List<Vector3> remainingSpawnSpots = new();
 
     [Header("Obstacles Settings")]
     [SerializeField] private int obstacleMovementSpeed = 10;
     [SerializeField] private int maxObstacleLanesShownAtTime = 3;
     [SerializeField] private int obstacleRespawnDistance = 5; //Obstacle Respawn Distance Multiplicator 13 * 5 -> 65 Distance between Obstacles
     public int distanceAdjustment = 0; //After the first obstacle has been deactivated, the new obstacle spawns accordingly at location (one spot earlier)
+    public float spawnAdjustment = 0f; //OnTriggerExit is not precisly enoguh (0.51;0.22;1.04) -> Difference needs to be added
 
     [Header("Obstacles GameManager Settings")]
     [Range(1, 10), Tooltip("How many obstacles should be spawned in the same grid (1-8 out of 9).")]
     [SerializeField] private int gameDifficulty = 1;
-
-    [Header("Small Obstacles Spawn Positions")]
-    public List<Vector3> obstacleSpawnPositions = new();
-    public float spawnAdjustment = 0f; //OnTriggerExit is not precisly enoguh (0.51;0.22;1.04) -> Difference needs to be added
 
     public static ObstacleManager Instance { get; private set; }
 
@@ -140,6 +139,8 @@ public class ObstacleManager : MonoBehaviour
 
                 ObstacleTypes.ObstacleSizeType tempObstacleType = ObstaclePrefabs[i].obstacleType; //Which random obstacle type has been chosen
                 List<Vector3> tempObstacleSpawnPositions = new(ObstaclePrefabs[i].obstacleSpawnPositions.SpawnPositions); //Temo list of possible spawn locations
+                //List<Vector3> remainingSpawnSpots = new();
+                //List<Vector3> convertingRemainingSpawnSpots = new();
                 int randMinValue = (int)ObstaclePrefabs[i].additionalObstacleProbability.SpawnQuantityRange[gameDifficulty - 1].x; //Random min value
                 int randMaxValue = (int)ObstaclePrefabs[i].additionalObstacleProbability.SpawnQuantityRange[gameDifficulty - 1].y; //Random max value
                 int randGo; //Random gameobject/obstacle
@@ -172,6 +173,7 @@ public class ObstacleManager : MonoBehaviour
                             tempObstacleSpawnPositions.RemoveAt(randPos);
                         }
 
+                        //remainingSpawnSpots = new (tempObstacleSpawnPositions);
                         disabledObstacleLanes.RemoveAt(0);
 
                         break;
@@ -199,8 +201,18 @@ public class ObstacleManager : MonoBehaviour
                             tempObstacleSpawnPositions.RemoveAt(randPos);
                         }
 
-                        disabledObstacleLanes.RemoveAt(0);
+                        //convertingRemainingSpawnSpots = new(tempObstacleSpawnPositions);
+                        //for (int j = 0; j < convertingRemainingSpawnSpots.Count; j++)
+                        //{
+                        //    for (int k = 0; k < 3; k++) //1 whole lane (1x3 slots) -> convertingRemainingSpawnSpots.Count * 3 slots remain
+                        //    {
+                        //        remainingSpawnSpots.Add(new Vector3(convertingRemainingSpawnSpots[j].x, ObstaclePrefabs[0].obstacleSpawnPositions.SpawnPositions[k*3].y, 0));
+                        //
+                        //    }
+                        //}
+                        //Debug.Log($"remainingSpawnSpots Medium1 Count {remainingSpawnSpots.Count}");
 
+                        disabledObstacleLanes.RemoveAt(0);
 
                         break;
                     case ObstacleSizeType.Medium2: //2 whole lanes (2x3 slots)
@@ -231,6 +243,16 @@ public class ObstacleManager : MonoBehaviour
                             tempObstacleSpawnPositions.RemoveAt(randPos);
                         }
 
+                        //convertingRemainingSpawnSpots = new(tempObstacleSpawnPositions);
+                        //Debug.Log("Medium2 convertingRemainingSpawnSpots[0].x * 2 " + convertingRemainingSpawnSpots[0].x * 2);
+                        //for (int k = 0; k < 3; k++) //1 whole lane (1x3 slots) -> convertingRemainingSpawnSpots.Count * 3 slots remain
+                        //{
+                        //    remainingSpawnSpots.Add(new Vector3(convertingRemainingSpawnSpots[0].x * 2, ObstaclePrefabs[0].obstacleSpawnPositions.SpawnPositions[k * 3].y, 0));
+                        //}
+                        //
+                        //Debug.Log($"remainingSpawnSpots Medium2 Count {remainingSpawnSpots.Count}");
+
+
                         disabledObstacleLanes.RemoveAt(0);
 
                         break;
@@ -238,11 +260,12 @@ public class ObstacleManager : MonoBehaviour
                         
                         randGo = Random.Range(0, ObstaclePrefabs[i].disabledObstacleList.Count); //Pick one random deactivated Big Obstacle
 
-                        ObstaclePrefabs[i].activeObstacleList.Add(ObstaclePrefabs[i].disabledObstacleList[randGo]);
-                        
                         disabledObstacleLanes[0].transform.position = new Vector3(0, 0, 13 * obstacleRespawnDistance * (allActiveObstaclesCounter - distanceAdjustment) + spawnAdjustment); //disabledObstacleLanes[0] = The first freely available lane is used 
+                        
                         ObstaclePrefabs[i].disabledObstacleList[randGo].transform.parent = disabledObstacleLanes[0].transform;
+                        ObstaclePrefabs[i].activeObstacleList.Add(ObstaclePrefabs[i].disabledObstacleList[randGo]);
                         ObstaclePrefabs[i].disabledObstacleList[randGo].transform.localPosition = new Vector3(0,0,0);
+                        
                         
                         disabledObstacleLanes[0].GetComponent<ObstacleLane>().obstacles.Add(ObstaclePrefabs[i].disabledObstacleList[randGo].GetComponent<Obstacle>());
                         disabledObstacleLanes[0].GetComponent<ObstacleLane>().movementSpeed = obstacleMovementSpeed;

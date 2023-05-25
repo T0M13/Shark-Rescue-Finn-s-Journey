@@ -32,10 +32,10 @@ public class ObstacleLane : MonoBehaviour
             gameObject.SetActive(false);
             
 
-            if (ObstacleManager.Instance.distanceAdjustment == 0) //After the first obstacle has been deactivated, the new obstacle spawns accordingly at the new location 
-            {
-                //ObstacleManager.Instance.distanceAdjustment = 1;
-            }
+            //if (ObstacleManager.Instance.distanceAdjustment == 0) //After the first obstacle has been deactivated, the new obstacle spawns accordingly at the new location 
+            //{
+            //    ObstacleManager.Instance.distanceAdjustment = 1;
+            //}
 
 
             for (int i = 0; i < ObstacleManager.Instance.ObstaclePrefabs.Count; i++)
