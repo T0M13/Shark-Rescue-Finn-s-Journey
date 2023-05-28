@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float laneXDistance = 4f;
     [SerializeField] private float laneYDistance = 3f;
     [SerializeField] private int lanes = 3;
+    [SerializeField] private FocusedDirection direction;
     [Header("Gizmos")]
     [SerializeField] private bool showGizmos = true;
     [Header("Variables")]
@@ -129,11 +130,13 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         pos = transform.position;
-        rotation = transform.rotation;
-        right = rotation * Vector3.right;
-        up = rotation * Vector3.up;
 
-        pos = startPosition + (laneXDistance * (float)currentLane) * right + (laneYDistance * (float)currentUndulate) * up;
+        if (direction == FocusedDirection.XAxis)
+            pos = startPosition + (laneXDistance * (float)currentLane) * Vector3.forward + (laneYDistance * (float)currentUndulate) * Vector3.up;
+        if (direction == FocusedDirection.ZAxis)
+            pos = startPosition + (laneXDistance * (float)currentLane) * Vector3.right + (laneYDistance * (float)currentUndulate) * Vector3.up;
+
+        //pos = startPosition + (laneXDistance * (float)currentLane) * Vector3.right + (laneYDistance * (float)currentUndulate) * Vector3.up;
 
         transform.position = Vector3.Lerp(transform.position, pos, Time.deltaTime * laneSwitchForce);
 
@@ -149,18 +152,18 @@ public class PlayerController : MonoBehaviour
     private IEnumerator RotatePlayer(float targetAngle, bool horizontal)
     {
         Quaternion initialRotation = transform.rotation;
-        Quaternion targetRotation = new Quaternion();
-        if (horizontal)
-            targetRotation = Quaternion.Euler(transform.rotation.eulerAngles.x, targetAngle, transform.rotation.eulerAngles.z);
-        else
-            targetRotation = Quaternion.Euler(targetAngle, transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z);
+        Quaternion targetRotation;
 
+        if (horizontal)
+            targetRotation = Quaternion.AngleAxis(targetAngle, Vector3.up) * initialRotation;
+        else
+            targetRotation = Quaternion.AngleAxis(targetAngle, Vector3.right) * initialRotation;
 
         float t = 0f;
         while (t < 1f)
         {
             t += Time.deltaTime * rotationSpeed;
-            transform.rotation = Quaternion.Lerp(initialRotation, targetRotation, t);
+            transform.rotation = Quaternion.Slerp(initialRotation, targetRotation, t);
             yield return null;
         }
 
@@ -171,7 +174,8 @@ public class PlayerController : MonoBehaviour
     private IEnumerator RotatePlayerBack(float targetAngle, bool horizontal)
     {
         Quaternion initialRotation = transform.rotation;
-        Quaternion targetRotation = new Quaternion();
+        Quaternion targetRotation;
+
         if (horizontal)
             targetRotation = Quaternion.Euler(transform.rotation.eulerAngles.x, targetAngle, transform.rotation.eulerAngles.z);
         else
@@ -181,12 +185,20 @@ public class PlayerController : MonoBehaviour
         while (t < 1f)
         {
             t += Time.deltaTime * rotationSpeed;
-            transform.rotation = Quaternion.Lerp(initialRotation, targetRotation, t);
+            transform.rotation = Quaternion.Slerp(initialRotation, targetRotation, t);
             yield return null;
         }
 
-        transform.rotation = targetRotation;
+        // Ensure precise alignment on the X and Z axes
+        Vector3 euler = transform.rotation.eulerAngles;
+        euler.x = 0f;
+        euler.z = 0f;
+        transform.rotation = Quaternion.Euler(euler);
     }
+
+
+
+
     //---
 
     private void OnDrawGizmos()
@@ -194,19 +206,17 @@ public class PlayerController : MonoBehaviour
         if (!showGizmos) return;
         Gizmos.color = Color.green;
 
-        if (!Application.isPlaying)
-        {
-            rotation = transform.rotation;
-            right = rotation * Vector3.right;
-            up = rotation * Vector3.up;
-        }
-
         for (int i = 0; i < lanes; i++)
         {
             for (int j = 0; j < lanes; j++)
             {
-                Vector3 pos = startPosition + (-laneXDistance + laneXDistance * j) * right + (-laneYDistance + laneYDistance * i) * up;
+                Vector3 pos = Vector3.one;
+                if (direction == FocusedDirection.XAxis)
+                    pos = startPosition + (-laneXDistance + laneXDistance * j) * Vector3.forward + (-laneYDistance + laneYDistance * i) * Vector3.up;
+                if (direction == FocusedDirection.ZAxis)
+                    pos = startPosition + (-laneXDistance + laneXDistance * j) * Vector3.right + (-laneYDistance + laneYDistance * i) * Vector3.up;
                 Gizmos.DrawSphere(pos, 0.2f);
+
             }
         }
 

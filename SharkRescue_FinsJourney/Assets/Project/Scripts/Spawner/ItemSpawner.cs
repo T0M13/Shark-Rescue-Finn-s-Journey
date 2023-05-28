@@ -9,6 +9,7 @@ public class ItemSpawner : MonoBehaviour
     [SerializeField] protected int amount;
     [SerializeField] protected List<GameObject> pooledList = new List<GameObject>();
     [SerializeField] protected List<float> pooledListChances = new List<float>();
+    [SerializeField] protected FocusedDirection direction;
 
     //spawnInterval should always be above 1
     [SerializeField] protected float spawnInterval = 1f;
@@ -28,6 +29,7 @@ public class ItemSpawner : MonoBehaviour
 
     [Header("Gizmos")]
     [SerializeField] private bool showGizmos = true;
+    private Quaternion rotation;
 
     protected virtual void Start()
     {
@@ -92,8 +94,16 @@ public class ItemSpawner : MonoBehaviour
 
         for (int i = 0; i < numOfRowObjects; i++)
         {
-            Vector3 pos = transform.position + (-laneXDistance + laneXDistance * laneXIndex) * right + (-laneYDistance + laneYDistance * laneYIndex) * up + Vector3.forward * (i * rowDistance);
-            SpawnObject(pos);
+            if (direction == FocusedDirection.ZAxis)
+            {
+                Vector3 pos = transform.position + (-laneXDistance + laneXDistance * laneXIndex) * right + (-laneYDistance + laneYDistance * laneYIndex) * up + Vector3.forward * (i * rowDistance);
+                SpawnObject(pos);
+            }
+            if (direction == FocusedDirection.XAxis)
+            {
+                Vector3 pos = transform.position + (-laneXDistance + laneXDistance * laneXIndex) * Vector3.forward + (-laneYDistance + laneYDistance * laneYIndex) * up + right * (i * rowDistance);
+                SpawnObject(pos);
+            }
         }
     }
 
@@ -119,19 +129,35 @@ public class ItemSpawner : MonoBehaviour
     }
 
     private void OnDrawGizmos()
-    {
+    { 
         if (!showGizmos) return;
-
         Gizmos.color = Color.magenta;
+
+        if (!Application.isPlaying)
+        {
+            rotation = transform.rotation;
+            right = rotation * Vector3.right;
+            up = rotation * Vector3.up;
+        }
 
         for (int i = 0; i < lanes; i++)
         {
             for (int j = 0; j < lanes; j++)
             {
-                Vector3 pos = transform.position + (-laneXDistance + laneXDistance * j) * right + (-laneYDistance + laneYDistance * i) * up;
-                Gizmos.DrawSphere(pos, 0.2f);
+                if (direction == FocusedDirection.ZAxis)
+                {
+                    Vector3 pos = transform.position + (-laneXDistance + laneXDistance * j) * right + (-laneYDistance + laneYDistance * i) * up;
+                    Gizmos.DrawSphere(pos, 0.2f);
+                }
+                if (direction == FocusedDirection.XAxis)
+                {
+                    Vector3 pos = transform.position + (-laneXDistance + laneXDistance * j) * Vector3.forward + (-laneYDistance + laneYDistance * i) * up;
+                    Gizmos.DrawSphere(pos, 0.2f);
+                }
             }
         }
+
+
     }
 }
 
