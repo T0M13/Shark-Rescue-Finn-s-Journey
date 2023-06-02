@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
     [Header("Player Settings")]
     [SerializeField] private Vector3 startPosition;
     [SerializeField] private float laneSwitchForce = 2.5f;
+    [SerializeField] private float interpolationFactor = 2f;
     [SerializeField] private float defaultLaneSwitchForce = 2.5f;
     [SerializeField] private float laneSwitchRotation = 10f;
     [SerializeField] private float rotationSpeed = 5f;
@@ -26,6 +27,8 @@ public class PlayerController : MonoBehaviour
     private Quaternion rotation;
     private Vector3 right;
     private Vector3 up;
+
+    private Coroutine coroutine;
 
     [Header("Speed Power Up")]
     [SerializeField] private float speedMultiplier = 1.5f;
@@ -67,12 +70,12 @@ public class PlayerController : MonoBehaviour
         if (currentUndulate == Undulate.Center)
         {
             currentUndulate = Undulate.Up;
-            StartCoroutine(RotatePlayer(-laneSwitchRotation, false));
+            coroutine = StartCoroutine(RotatePlayer(-laneSwitchRotation, false));
         }
         if (currentUndulate == Undulate.Down)
         {
             currentUndulate = Undulate.Center;
-            StartCoroutine(RotatePlayer(-laneSwitchRotation, false));
+            coroutine = StartCoroutine(RotatePlayer(-laneSwitchRotation, false));
         }
     }
 
@@ -81,12 +84,12 @@ public class PlayerController : MonoBehaviour
         if (currentUndulate == Undulate.Center)
         {
             currentUndulate = Undulate.Down;
-            StartCoroutine(RotatePlayer(laneSwitchRotation, false));
+            coroutine = StartCoroutine(RotatePlayer(laneSwitchRotation, false));
         }
         if (currentUndulate == Undulate.Up)
         {
             currentUndulate = Undulate.Center;
-            StartCoroutine(RotatePlayer(laneSwitchRotation, false));
+            coroutine = StartCoroutine(RotatePlayer(laneSwitchRotation, false));
         }
     }
 
@@ -95,12 +98,12 @@ public class PlayerController : MonoBehaviour
         if (currentLane == Lane.Middle)
         {
             currentLane = Lane.Left;
-            StartCoroutine(RotatePlayer(-laneSwitchRotation, true));
+            coroutine = StartCoroutine(RotatePlayer(-laneSwitchRotation, true));
         }
         if (currentLane == Lane.Right)
         {
             currentLane = Lane.Middle;
-            StartCoroutine(RotatePlayer(-laneSwitchRotation, true));
+            coroutine = StartCoroutine(RotatePlayer(-laneSwitchRotation, true));
         }
     }
 
@@ -109,12 +112,12 @@ public class PlayerController : MonoBehaviour
         if (currentLane == Lane.Middle)
         {
             currentLane = Lane.Right;
-            StartCoroutine(RotatePlayer(laneSwitchRotation, true));
+            coroutine = StartCoroutine(RotatePlayer(laneSwitchRotation, true));
         }
         if (currentLane == Lane.Left)
         {
             currentLane = Lane.Middle;
-            StartCoroutine(RotatePlayer(laneSwitchRotation, true));
+            coroutine = StartCoroutine(RotatePlayer(laneSwitchRotation, true));
         }
     }
 
@@ -138,13 +141,13 @@ public class PlayerController : MonoBehaviour
 
         //pos = startPosition + (laneXDistance * (float)currentLane) * Vector3.right + (laneYDistance * (float)currentUndulate) * Vector3.up;
 
-        transform.position = Vector3.Lerp(transform.position, pos, Time.deltaTime * laneSwitchForce);
+        transform.position = Vector3.Lerp(transform.position, pos, Time.deltaTime * laneSwitchForce * interpolationFactor);
 
-        // Rotation Issue when Diagonal Swipe + Normal Swipe Fix Test
-        //if (transform.rotation.x != 0 || transform.rotation.y != 0)
-        //{
-        //     transform.rotation = Quaternion.Euler(0,0,0);
-        //}
+        //Rotation Issue when Diagonal Swipe + Normal Swipe Fix Test
+        if (transform.rotation.x != 0 || transform.rotation.y != 0)
+        {
+            transform.rotation = Quaternion.Euler(0, 0, 0);
+        }
     }
 
 

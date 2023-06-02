@@ -11,6 +11,8 @@ public class InputManager : MonoBehaviour
     public event StartTouch OnStartTouch;
     public delegate void EndTouch(Vector2 position, float time);
     public event EndTouch OnEndTouch;
+    public delegate void Movement(Vector2 movement);
+    public event Movement OnMovement;
     #endregion
 
     public static InputManager instance { get; private set; }
@@ -57,6 +59,8 @@ public class InputManager : MonoBehaviour
     {
         playerControls.Touch.PrimaryContact.started += ctx => StartTouchPrimary(ctx);
         playerControls.Touch.PrimaryContact.canceled += ctx => EndTouchPrimary(ctx);
+
+        playerControls.Keyboard.Controls.started += ctx => GetMovementPrimary(ctx);
     }
 
     private void StartTouchPrimary(InputAction.CallbackContext context)
@@ -73,5 +77,8 @@ public class InputManager : MonoBehaviour
     {
         return Utils.ScreenToWorld(mainCamera, playerControls.Touch.PrimaryPosition.ReadValue<Vector2>());
     }
-
+    private void GetMovementPrimary(InputAction.CallbackContext context)
+    {
+        OnMovement(context.ReadValue<Vector2>());
+    }
 }
