@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7827992327349610505}
   - component: {fileID: 6860711332162945326}
+  - component: {fileID: 3456139418876563610}
   m_Layer: 0
   m_Name: Coin
   m_TagString: Untagged
@@ -50,7 +51,21 @@ MonoBehaviour:
   rotationSpeedMin: 100
   rotationSpeedMax: 150
   rotationSpeed: 100
+  powerUpType: 0
   value: 1
+--- !u!65 &3456139418876563610
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1813787649271261745}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &2028729645965669680
 GameObject:
   m_ObjectHideFlags: 0
@@ -62,9 +77,8 @@ GameObject:
   - component: {fileID: 3128475574886481671}
   - component: {fileID: 7380942938154940023}
   - component: {fileID: 8047363800712450120}
-  - component: {fileID: 8806059368518282729}
   m_Layer: 0
-  m_Name: Sphere
+  m_Name: Mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -135,16 +149,3 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &8806059368518282729
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2028729645965669680}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}

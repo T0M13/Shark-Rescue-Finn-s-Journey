@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static PowerUpTypes;
 
 public class BaseItem : MonoBehaviour
 {
@@ -13,6 +14,7 @@ public class BaseItem : MonoBehaviour
     [SerializeField] private int rotationSpeedMax = 150;
     [SerializeField] private int rotationSpeed = 100;
 
+    [SerializeField] private PowerUpType powerUpType;
     public int MoveSpeed { get => moveSpeed; set => moveSpeed = value; }
     public int RotationSpeed { get => rotationSpeed; set => rotationSpeed = value; }
 
@@ -37,9 +39,17 @@ public class BaseItem : MonoBehaviour
 
     protected void OnTriggerEnter(Collider other)
     {
-        if (other.GetComponent<Deactivater>())
+        if (other != null && other.gameObject.CompareTag("ChunkCatcher"))
         {
-            GameManager.instance.OnDeactivateGObject?.Invoke(gameObject);
+            for (int i = 0; i < ItemSpawnerNew.Instance.ItemPrefabs.Count; i++)
+            {
+                if(powerUpType == ItemSpawnerNew.Instance.ItemPrefabs[i].powerUpType)
+                {
+                    gameObject.SetActive(false);
+                    ItemSpawnerNew.Instance.ItemPrefabs[i].disabledItemList.Add(gameObject);
+                    ItemSpawnerNew.Instance.ItemPrefabs[i].activeItemList.Remove(gameObject);
+                }
+            }
         }
     }
 
