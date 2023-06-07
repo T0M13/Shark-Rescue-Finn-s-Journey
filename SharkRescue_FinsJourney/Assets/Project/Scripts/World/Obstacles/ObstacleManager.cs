@@ -24,7 +24,7 @@ public class ObstacleManager : MonoBehaviour
     [SerializeField] private int obstacleMovementSpeed = 10;
     [SerializeField] private int maxObstacleLanesShownAtTime = 3;
     [SerializeField] private int obstacleRespawnDistance = 5; //Obstacle Respawn Distance Multiplicator 13 * 5 -> 65 Distance between Obstacles
-    public int distanceAdjustment = 0; //After the first obstacle has been deactivated, the new obstacle spawns accordingly at location (one spot earlier)
+    public int distanceAdjustment = 0; //After the first obstacle has been deactivated, the new obstacle spawns accordingly at location (one spot earlier) (For X-Axis)
     public float spawnAdjustment = 0f; //OnTriggerExit is not precisly enoguh (0.51;0.22;1.04) -> Difference needs to be added
 
     [Header("Obstacles GameManager Settings")]
@@ -35,12 +35,6 @@ public class ObstacleManager : MonoBehaviour
 
     private void Awake()
     {
-        obstacleContainer = new()
-        {
-            name = "Obstacle Container",
-            //isStatic = true,
-        };
-
         if (Instance == null)
         {
             Instance = this;
@@ -50,6 +44,7 @@ public class ObstacleManager : MonoBehaviour
             Destroy(gameObject);
         }
 
+        obstacleContainer = new() { name = "Obstacle Container"};
     }
 
     void Start()
@@ -118,9 +113,9 @@ public class ObstacleManager : MonoBehaviour
     public void SpawnObstacles()
     {
         int maxRange = 0;
-        int counter = 0; //What is currently the value
+        int currentSpawnRate = 0; //What is currently the value
 
-        for (int i = 0; i < spawnRate.Count; i++) //MaxRange for Random, gets from List "Obstacle Prefabs" -> SpawnRate
+        for (int i = 0; i < spawnRate.Count; i++) //MaxRange for Random, gets from List "ObstaclePrefabs" -> SpawnRate
         {
             maxRange += spawnRate[i];
         }
@@ -131,9 +126,9 @@ public class ObstacleManager : MonoBehaviour
 
         for (int i = 0; i < spawnRate.Count; i++) //(randChance) Will be added until the random value is less than the current added spawnRate value (counter) -> With that check we know which Obstacle Typ got the chance to spawn
         {
-            counter += spawnRate[i];
+            currentSpawnRate += spawnRate[i];
 
-            if (randChance <= counter && spawnRate[i] > 0)
+            if (randChance <= currentSpawnRate && spawnRate[i] > 0)
             {
                 allActiveObstaclesCounter++;
 
@@ -146,6 +141,7 @@ public class ObstacleManager : MonoBehaviour
                 int randGo; //Random gameobject/obstacle
                 int randPos; //Random position
                 int maxSmallObstacleCounter = Random.Range(randMinValue, randMaxValue + 1); //Random count of how many obstacle should be created Random.Range(randMinValue, randMaxValue + 1)
+                float overallZDistancePos;
 
                 switch (tempObstacleType)
                 {
@@ -153,7 +149,8 @@ public class ObstacleManager : MonoBehaviour
                         
                         tempObstacleSpawnPositions.Shuffle();
 
-                        disabledObstacleLanes[0].transform.position = new Vector3(0, 0, 13 * obstacleRespawnDistance * (allActiveObstaclesCounter - distanceAdjustment) + spawnAdjustment);
+                        overallZDistancePos = 13 * obstacleRespawnDistance * (allActiveObstaclesCounter - distanceAdjustment) + spawnAdjustment;
+                        disabledObstacleLanes[0].transform.position = new Vector3(0, 0, overallZDistancePos);
                         
                         for (int j = 0; j < maxSmallObstacleCounter; j++)
                         {
@@ -176,12 +173,15 @@ public class ObstacleManager : MonoBehaviour
                         //remainingSpawnSpots = new (tempObstacleSpawnPositions);
                         disabledObstacleLanes.RemoveAt(0);
 
+                        ItemSpawnerNew.Instance.SpawnItems(overallZDistancePos);
+
                         break;
 
                     case ObstacleSizeType.Medium1: //1 whole lane (1x3 slots)
                         tempObstacleSpawnPositions.Shuffle();
 
-                        disabledObstacleLanes[0].transform.position = new Vector3(0, 0, 13 * obstacleRespawnDistance * (allActiveObstaclesCounter - distanceAdjustment) + spawnAdjustment);
+                        overallZDistancePos = 13 * obstacleRespawnDistance * (allActiveObstaclesCounter - distanceAdjustment) + spawnAdjustment;
+                        disabledObstacleLanes[0].transform.position = new Vector3(0, 0, overallZDistancePos);
                         
                         for (int j = 0; j < maxSmallObstacleCounter; j++)
                         {
@@ -214,12 +214,15 @@ public class ObstacleManager : MonoBehaviour
 
                         disabledObstacleLanes.RemoveAt(0);
 
+                        ItemSpawnerNew.Instance.SpawnItems(overallZDistancePos);
+
                         break;
                     case ObstacleSizeType.Medium2: //2 whole lanes (2x3 slots)
 
                         tempObstacleSpawnPositions.Shuffle();
 
-                        disabledObstacleLanes[0].transform.position = new Vector3(0, 0, 13 * obstacleRespawnDistance * (allActiveObstaclesCounter - distanceAdjustment) + spawnAdjustment);
+                        overallZDistancePos = 13 * obstacleRespawnDistance * (allActiveObstaclesCounter - distanceAdjustment) + spawnAdjustment;
+                        disabledObstacleLanes[0].transform.position = new Vector3(0, 0, overallZDistancePos);
                         
                         for (int j = 0; j < maxSmallObstacleCounter; j++)
                         {
@@ -255,12 +258,15 @@ public class ObstacleManager : MonoBehaviour
 
                         disabledObstacleLanes.RemoveAt(0);
 
+                        ItemSpawnerNew.Instance.SpawnItems(overallZDistancePos);
+
                         break;
                     case ObstacleSizeType.Big: //at least 2 whole lane (min: 2x3 slots)
                         
                         randGo = Random.Range(0, ObstaclePrefabs[i].disabledObstacleList.Count); //Pick one random deactivated Big Obstacle
 
-                        disabledObstacleLanes[0].transform.position = new Vector3(0, 0, 13 * obstacleRespawnDistance * (allActiveObstaclesCounter - distanceAdjustment) + spawnAdjustment); //disabledObstacleLanes[0] = The first freely available lane is used 
+                        overallZDistancePos = 13 * obstacleRespawnDistance * (allActiveObstaclesCounter - distanceAdjustment) + spawnAdjustment;
+                        disabledObstacleLanes[0].transform.position = new Vector3(0, 0, overallZDistancePos);
                         
                         ObstaclePrefabs[i].disabledObstacleList[randGo].transform.parent = disabledObstacleLanes[0].transform;
                         ObstaclePrefabs[i].activeObstacleList.Add(ObstaclePrefabs[i].disabledObstacleList[randGo]);
@@ -274,6 +280,8 @@ public class ObstacleManager : MonoBehaviour
 
                         ObstaclePrefabs[i].disabledObstacleList[randGo].SetActive(true);
                         ObstaclePrefabs[i].disabledObstacleList.RemoveAt(randGo);
+
+                        ItemSpawnerNew.Instance.SpawnItems(overallZDistancePos);
 
                         break;
                     default:
