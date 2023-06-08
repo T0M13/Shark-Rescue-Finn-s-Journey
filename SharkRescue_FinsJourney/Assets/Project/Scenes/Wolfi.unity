@@ -27946,24 +27946,31 @@ MonoBehaviour:
     activeItemList: []
     spawnRate: 80
     itemQuantity: 300
+    canSpawn: 1
+    addSpawnChance: 0
   - itemTypes: 2
     powerUpType: 1
     itemPrefabs:
     - {fileID: 5221576319894054712, guid: 4c30f31861bd28b438fd519004b2328f, type: 3}
     disabledItemList: []
     activeItemList: []
-    spawnRate: 10
+    spawnRate: 2
     itemQuantity: 100
+    canSpawn: 1
+    addSpawnChance: 0.5
   - itemTypes: 2
     powerUpType: 2
     itemPrefabs:
     - {fileID: 345697778574707401, guid: 4807fcaf65ef3524ba5a700333950beb, type: 3}
     disabledItemList: []
     activeItemList: []
-    spawnRate: 10
+    spawnRate: 2
     itemQuantity: 100
+    canSpawn: 1
+    addSpawnChance: 1
   itemContainer: {fileID: 0}
-  spawnRate: 
+  defaultSpawnRate: []
+  currentSpawnRate: []
   spawnPositions:
   - {x: -4, y: 2, z: 0}
   - {x: 0, y: 2, z: 0}
@@ -27976,6 +27983,9 @@ MonoBehaviour:
   - {x: 4, y: 8, z: 0}
   spawnPositionBuffer: {x: 6, y: 15}
   spawnDistance: 5
+  noItemSpawnChance: 30
+  powerUpCooldownTimer: 10
+  powerUpAddChance: 1
   itemMinQuantity: 5
   itemMaxQuantity: 9
   itemLaneMaxCount: 1
