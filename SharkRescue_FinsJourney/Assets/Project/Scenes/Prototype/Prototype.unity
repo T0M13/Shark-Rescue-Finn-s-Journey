@@ -15,16 +15,16 @@ RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 9
   m_Fog: 1
-  m_FogColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
-  m_FogMode: 3
+  m_FogColor: {r: 0, g: 0.3882353, b: 0.37254903, a: 1}
+  m_FogMode: 1
   m_FogDensity: 0.01
-  m_LinearFogStart: 0
-  m_LinearFogEnd: 300
-  m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
-  m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
-  m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
+  m_LinearFogStart: 10
+  m_LinearFogEnd: 200
+  m_AmbientSkyColor: {r: 0.18187074, g: 0.37188402, b: 0.6320754, a: 1}
+  m_AmbientEquatorColor: {r: 0.11347453, g: 0.2238269, b: 0.4716981, a: 1}
+  m_AmbientGroundColor: {r: 0, g: 0.9056604, b: 0.7900081, a: 1}
   m_AmbientIntensity: 1
-  m_AmbientMode: 0
+  m_AmbientMode: 1
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
   m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
   m_HaloStrength: 0.5
@@ -37,7 +37,7 @@ RenderSettings:
   m_ReflectionBounces: 1
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
-  m_Sun: {fileID: 0}
+  m_Sun: {fileID: 576295557}
   m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
@@ -4127,7 +4127,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 728528035}
   m_LocalRotation: {x: 0.078459114, y: 0, z: 0, w: 0.99691737}
-  m_LocalPosition: {x: 0, y: 6.878736, z: -12.040682}
+  m_LocalPosition: {x: 0, y: 6.94382, z: -12.018847}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -7973,7 +7973,7 @@ MonoBehaviour:
     activeItemList: []
     itemQuantity: 50
     canSpawn: 1
-    spawnRate: 2
+    spawnRate: 90
     addSpawnChance: 0.5
   - itemTypes: 2
     powerUpType: 2
@@ -12778,6 +12778,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2428571700924738155, guid: 5488fbf317bffca4ebeac09e3454ed73,
+        type: 3}
+      propertyPath: magnetRadius
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2428571700924738155, guid: 5488fbf317bffca4ebeac09e3454ed73,
+        type: 3}
+      propertyPath: magnetCollectTime
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2428571700924738155, guid: 5488fbf317bffca4ebeac09e3454ed73,
+        type: 3}
+      propertyPath: magnetPowerUpTime
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 2428571700924738156, guid: 5488fbf317bffca4ebeac09e3454ed73,
         type: 3}

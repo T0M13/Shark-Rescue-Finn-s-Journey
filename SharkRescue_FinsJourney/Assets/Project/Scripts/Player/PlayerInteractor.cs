@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -12,6 +13,7 @@ public class PlayerInteractor : MonoBehaviour
     [SerializeField] private float magnetPowerUpTime = 10f;
     [SerializeField] private float magnetCollectTime = 1.4f;
     [SerializeField] private GameObject magnetEffect;
+    [SerializeField] private List<GameObject> pulledObjects;
     public Action OnMagnetPowerUp;
 
     private void OnEnable()
@@ -77,6 +79,15 @@ public class PlayerInteractor : MonoBehaviour
     /// </summary>
     private void MagnetLogic()
     {
+        if (pulledObjects.Count > 0)
+        {
+            foreach (GameObject item in pulledObjects)
+            {
+                if (!item.activeInHierarchy) { pulledObjects.Remove(item); return; }
+                item.transform.position = Vector3.Lerp(item.transform.position, transform.position, magnetCollectTime * Time.deltaTime);
+            }
+        }
+
         if (!magnetOn) return;
 
         Collider[] colliders = Physics.OverlapSphere(transform.position, magnetRadius);
@@ -84,7 +95,8 @@ public class PlayerInteractor : MonoBehaviour
         {
             if (collider.GetComponent<BaseCoin>())
             {
-                collider.transform.position = Vector3.Lerp(collider.transform.position, transform.position, magnetCollectTime * Time.deltaTime);
+                if (pulledObjects.Contains(collider.gameObject)) return;
+                pulledObjects.Add(collider.gameObject);
             }
         }
     }
