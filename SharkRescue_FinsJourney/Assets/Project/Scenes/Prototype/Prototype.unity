@@ -4127,7 +4127,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 728528035}
   m_LocalRotation: {x: 0.078459114, y: 0, z: 0, w: 0.99691737}
-  m_LocalPosition: {x: 0, y: 6.826353, z: -12.058256}
+  m_LocalPosition: {x: 0, y: 6.878736, z: -12.040682}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6808,7 +6808,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2651a4c7e50c3274bb02a1b6c03b054b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bendType: 1
+  bendType: 2
   bendID: 1
   bendPivotPoint: {fileID: 709312664}
   bendPivotPointPosition: {x: 0, y: 5, z: -6}
@@ -7925,6 +7925,103 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1327520037}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1366139059
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1366139061}
+  - component: {fileID: 1366139060}
+  m_Layer: 0
+  m_Name: ItemsSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1366139060
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1366139059}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 390d8e4950f64104499c4bb432fd3bd0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ItemPrefabs:
+  - itemTypes: 1
+    powerUpType: 0
+    itemPrefabs:
+    - {fileID: 1813787649271261745, guid: f0b763e76aaba194d901be38eb9cc1b7, type: 3}
+    disabledItemList: []
+    activeItemList: []
+    itemQuantity: 300
+    canSpawn: 1
+    spawnRate: 80
+    addSpawnChance: 0
+  - itemTypes: 2
+    powerUpType: 1
+    itemPrefabs:
+    - {fileID: 5221576319894054712, guid: 4c30f31861bd28b438fd519004b2328f, type: 3}
+    disabledItemList: []
+    activeItemList: []
+    itemQuantity: 50
+    canSpawn: 1
+    spawnRate: 2
+    addSpawnChance: 0.5
+  - itemTypes: 2
+    powerUpType: 2
+    itemPrefabs:
+    - {fileID: 345697778574707401, guid: 4807fcaf65ef3524ba5a700333950beb, type: 3}
+    disabledItemList: []
+    activeItemList: []
+    itemQuantity: 50
+    canSpawn: 1
+    spawnRate: 2
+    addSpawnChance: 1
+  itemContainer: {fileID: 0}
+  defaultSpawnRate: []
+  currentSpawnRate: []
+  spawnPositions:
+  - {x: -4, y: 2, z: 0}
+  - {x: 0, y: 2, z: 0}
+  - {x: 4, y: 2, z: 0}
+  - {x: -4, y: 5, z: 0}
+  - {x: 0, y: 5, z: 0}
+  - {x: 4, y: 5, z: 0}
+  - {x: -4, y: 8, z: 0}
+  - {x: 0, y: 8, z: 0}
+  - {x: 4, y: 8, z: 0}
+  spawnPositionBuffer: {x: 6, y: 15}
+  spawnDistance: 5
+  noItemSpawnChance: 100
+  powerUpCooldownTimer: 10
+  powerUpAddChance: 1
+  itemMinQuantity: 5
+  itemMaxQuantity: 9
+  itemLaneMaxCount: 2
+  itemMovementSpeed: 15
+--- !u!4 &1366139061
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1366139059}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 19
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1369168792
 GameObject:
   m_ObjectHideFlags: 0
@@ -12124,7 +12221,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2097112840
 Transform:
   m_ObjectHideFlags: 0
@@ -12700,7 +12797,7 @@ PrefabInstance:
     - target: {fileID: 2428571700924738156, guid: 5488fbf317bffca4ebeac09e3454ed73,
         type: 3}
       propertyPath: interpolationFactor
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2428571700924738157, guid: 5488fbf317bffca4ebeac09e3454ed73,
         type: 3}
@@ -12866,19 +12963,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6497248131108235341, guid: 966a056f7856b214596c9a38d1ef2163,
         type: 3}
-      propertyPath: itemsSpeed
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 6497248131108235341, guid: 966a056f7856b214596c9a38d1ef2163,
-        type: 3}
       propertyPath: itemSpawner
       value: 
       objectReference: {fileID: 2097112841}
-    - target: {fileID: 6497248131108235341, guid: 966a056f7856b214596c9a38d1ef2163,
-        type: 3}
-      propertyPath: startPosition.y
-      value: 4
-      objectReference: {fileID: 0}
     - target: {fileID: 6497248131108235341, guid: 966a056f7856b214596c9a38d1ef2163,
         type: 3}
       propertyPath: playerReferences

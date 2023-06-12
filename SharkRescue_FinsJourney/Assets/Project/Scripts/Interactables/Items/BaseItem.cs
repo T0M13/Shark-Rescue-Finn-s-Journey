@@ -39,7 +39,7 @@ public class BaseItem : MonoBehaviour
 
     protected void OnTriggerEnter(Collider other)
     {
-        if (other != null && other.gameObject.CompareTag("ChunkCatcher"))
+        if ((other != null && other.gameObject.CompareTag("ChunkCatcher")) || (other != null && other.gameObject.CompareTag("Player")))
         {
             for (int i = 0; i < ItemSpawnerNew.Instance.ItemPrefabs.Count; i++)
             {
