@@ -95,6 +95,7 @@ public class ItemSpawnerNew : MonoBehaviour
 
         for (int i = 0; i < itemLaneMaxCount; i++) //How many random lanes can get items per chunk
         {
+            tempItemSpawnPos.Shuffle();
             randPos = Random.Range(0, tempItemSpawnPos.Count);
             randItemsCount = Random.Range(itemMinQuantity, itemMaxQuantity + 1);
             randSpawnPosBuffer = Random.Range(spawnPositionBuffer.x, spawnPositionBuffer.y);
@@ -188,75 +189,5 @@ public class ItemSpawnerNew : MonoBehaviour
         }
     }
 
-
-
-    //For Debug
-    public IEnumerator Spawn(float startSpawnDistance) //StartCoroutine(Spawn(65));
-    {
-        List<Vector3> tempItemSpawnPos = new(spawnPositions);
-        int randPos;
-        int randItemsCount;
-        float randSpawnPosBuffer;
-        float maxRange = 0;
-        float currentSpawnRate = 0;
-        float randChance;
-        Debug.Log("SpawnItems: " + startSpawnDistance);
-
-        for (int i = 0; i < itemLaneMaxCount; i++) //How many random lanes can get items per chunk
-        {
-            //Debug.Log("itemLaneMaxCount: " + itemLaneMaxCount);
-            randPos = Random.Range(0, tempItemSpawnPos.Count);
-            randItemsCount = Random.Range(itemMinQuantity, itemMaxQuantity + 1);
-            randSpawnPosBuffer = Random.Range(spawnPositionBuffer.x, spawnPositionBuffer.y);
-            //Debug.Log("tempItemSpawnPos[randPos] " + tempItemSpawnPos[randPos]);
-            Debug.Log("-------------randItemsCount " + randItemsCount);
-
-            for (int j = 0; j < randItemsCount; j++) //How many random items can be spawned per lane
-            {
-                maxRange = 0;
-                for (int k = 0; k < defaultSpawnRate.Count; k++) //MaxRange for Random, gets from List "ItemPrefabs" -> SpawnRate
-                {
-                    maxRange += defaultSpawnRate[k];
-                }
-
-                Debug.Log("____________________maxRange " + maxRange);
-
-                randChance = Random.Range(1, maxRange + 1);
-
-                Debug.Log($"randChance {startSpawnDistance}: {j}");
-
-                for (int l = 0; l < defaultSpawnRate.Count; l++) //(randChance) Will be added until the random value is less than the current added spawnRate value (counter) -> With that check we know which Obstacle Typ got the chance to spawn
-                {
-                    currentSpawnRate += defaultSpawnRate[l];
-
-                    if (randChance <= currentSpawnRate && defaultSpawnRate[l] > 0)
-                    {
-                        int randGo = Random.Range(0, ItemPrefabs[l].disabledItemList.Count);
-
-                        ItemPrefabs[l].disabledItemList[randGo].transform.position = tempItemSpawnPos[randPos] + new Vector3(0, 0, startSpawnDistance + randSpawnPosBuffer + spawnDistance * j);
-                        ItemPrefabs[l].disabledItemList[randGo].SetActive(true);
-                        ItemPrefabs[l].activeItemList.Add(ItemPrefabs[l].disabledItemList[randGo]);
-                        //Debug.Log("ItemPrefabs[l].disabledItemList[randGo]" + ItemPrefabs[l].disabledItemList[randGo]);
-                        ItemPrefabs[l].disabledItemList[randGo].GetComponent<BaseItem>().MoveSpeed = itemMovementSpeed;
-
-                        ItemPrefabs[l].disabledItemList.RemoveAt(randGo);
-
-                        if (ItemPrefabs[l].itemTypes == ItemType.ItemTypes.PowerUp)
-                        {
-                            //Debug.Log("PowerUp: +" + ItemPrefabs[l].itemTypes);
-                        }
-                        break;
-                    }
-                    yield return new WaitForSeconds(3);
-                }
-
-            }
-
-
-            tempItemSpawnPos.RemoveAt(randPos);
-        }
-
-
-    }
 
 }

@@ -4841,7 +4841,7 @@ MonoBehaviour:
   allObstacleLanes: []
   allActiveObstaclesCounter: 0
   spawnRate: 
-  obstacleMovementSpeed: 15
+  obstacleMovementSpeed: 40
   maxObstacleLanesShownAtTime: 5
   obstacleRespawnDistance: 5
   distanceAdjustment: 0
@@ -27944,9 +27944,9 @@ MonoBehaviour:
     - {fileID: 1813787649271261745, guid: f0b763e76aaba194d901be38eb9cc1b7, type: 3}
     disabledItemList: []
     activeItemList: []
-    spawnRate: 80
     itemQuantity: 300
     canSpawn: 1
+    spawnRate: 80
     addSpawnChance: 0
   - itemTypes: 2
     powerUpType: 1
@@ -27954,9 +27954,9 @@ MonoBehaviour:
     - {fileID: 5221576319894054712, guid: 4c30f31861bd28b438fd519004b2328f, type: 3}
     disabledItemList: []
     activeItemList: []
-    spawnRate: 2
-    itemQuantity: 100
+    itemQuantity: 50
     canSpawn: 1
+    spawnRate: 2
     addSpawnChance: 0.5
   - itemTypes: 2
     powerUpType: 2
@@ -27964,9 +27964,9 @@ MonoBehaviour:
     - {fileID: 345697778574707401, guid: 4807fcaf65ef3524ba5a700333950beb, type: 3}
     disabledItemList: []
     activeItemList: []
-    spawnRate: 2
-    itemQuantity: 100
+    itemQuantity: 50
     canSpawn: 1
+    spawnRate: 2
     addSpawnChance: 1
   itemContainer: {fileID: 0}
   defaultSpawnRate: []
@@ -27983,13 +27983,13 @@ MonoBehaviour:
   - {x: 4, y: 8, z: 0}
   spawnPositionBuffer: {x: 6, y: 15}
   spawnDistance: 5
-  noItemSpawnChance: 30
+  noItemSpawnChance: 100
   powerUpCooldownTimer: 10
   powerUpAddChance: 1
   itemMinQuantity: 5
   itemMaxQuantity: 9
-  itemLaneMaxCount: 1
-  itemMovementSpeed: 15
+  itemLaneMaxCount: 2
+  itemMovementSpeed: 40
 --- !u!4 &1593687646
 Transform:
   m_ObjectHideFlags: 0
@@ -33354,7 +33354,7 @@ MonoBehaviour:
   chunkColliderCatcher: {fileID: 1546329429}
   chunkColliderCatcherSize: {x: 13, y: 15, z: 13}
   maxChunksShownAtTime: 5
-  chunksMovingSpeed: 15
+  chunksMovingSpeed: 40
   spawnAdjustment: 0
 --- !u!1 &1886565808
 GameObject:
