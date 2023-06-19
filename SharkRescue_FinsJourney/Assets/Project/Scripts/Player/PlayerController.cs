@@ -70,11 +70,21 @@ public class PlayerController : MonoBehaviour
         if (currentUndulate == Undulate.Center)
         {
             currentUndulate = Undulate.Up;
+
+            if (coroutine != null)
+            {
+                StopCoroutine(coroutine);
+            }
             coroutine = StartCoroutine(RotatePlayer(-laneSwitchRotation, false));
         }
         if (currentUndulate == Undulate.Down)
         {
             currentUndulate = Undulate.Center;
+
+            if (coroutine != null)
+            {
+                StopCoroutine(coroutine);
+            }
             coroutine = StartCoroutine(RotatePlayer(-laneSwitchRotation, false));
         }
     }
@@ -84,11 +94,21 @@ public class PlayerController : MonoBehaviour
         if (currentUndulate == Undulate.Center)
         {
             currentUndulate = Undulate.Down;
+
+            if (coroutine != null)
+            {
+                StopCoroutine(coroutine);
+            }
             coroutine = StartCoroutine(RotatePlayer(laneSwitchRotation, false));
         }
         if (currentUndulate == Undulate.Up)
         {
             currentUndulate = Undulate.Center;
+
+            if (coroutine != null)
+            {
+                StopCoroutine(coroutine);
+            }
             coroutine = StartCoroutine(RotatePlayer(laneSwitchRotation, false));
         }
     }
@@ -98,11 +118,21 @@ public class PlayerController : MonoBehaviour
         if (currentLane == Lane.Middle)
         {
             currentLane = Lane.Left;
+
+            if (coroutine != null)
+            {
+                StopCoroutine(coroutine);
+            }
             coroutine = StartCoroutine(RotatePlayer(-laneSwitchRotation, true));
         }
         if (currentLane == Lane.Right)
         {
             currentLane = Lane.Middle;
+
+            if (coroutine != null)
+            {
+                StopCoroutine(coroutine);
+            }
             coroutine = StartCoroutine(RotatePlayer(-laneSwitchRotation, true));
         }
     }
@@ -112,11 +142,21 @@ public class PlayerController : MonoBehaviour
         if (currentLane == Lane.Middle)
         {
             currentLane = Lane.Right;
+
+            if (coroutine != null)
+            {
+                StopCoroutine(coroutine);
+            }
             coroutine = StartCoroutine(RotatePlayer(laneSwitchRotation, true));
         }
         if (currentLane == Lane.Left)
         {
             currentLane = Lane.Middle;
+
+            if (coroutine != null)
+            {
+                StopCoroutine(coroutine);
+            }
             coroutine = StartCoroutine(RotatePlayer(laneSwitchRotation, true));
         }
     }
@@ -139,15 +179,11 @@ public class PlayerController : MonoBehaviour
         if (direction == FocusedDirection.ZAxis)
             pos = startPosition + (laneXDistance * (float)currentLane) * Vector3.right + (laneYDistance * (float)currentUndulate) * Vector3.up;
 
-        //pos = startPosition + (laneXDistance * (float)currentLane) * Vector3.right + (laneYDistance * (float)currentUndulate) * Vector3.up;
 
         transform.position = Vector3.Lerp(transform.position, pos, Time.deltaTime * laneSwitchForce * interpolationFactor);
 
-        //Rotation Issue when Diagonal Swipe + Normal Swipe Fix Test
-        if (transform.rotation.x != 0 || transform.rotation.y != 0)
-        {
-            transform.rotation = Quaternion.Euler(0, 0, 0);
-        }
+        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0, 0, 0), Time.deltaTime * rotationSpeed);
+
     }
 
 
@@ -171,38 +207,8 @@ public class PlayerController : MonoBehaviour
         }
 
         transform.rotation = targetRotation;
-        StartCoroutine(RotatePlayerBack(0, horizontal));
+
     }
-
-    private IEnumerator RotatePlayerBack(float targetAngle, bool horizontal)
-    {
-        Quaternion initialRotation = transform.rotation;
-        Quaternion targetRotation;
-
-        if (horizontal)
-            targetRotation = Quaternion.Euler(transform.rotation.eulerAngles.x, targetAngle, transform.rotation.eulerAngles.z);
-        else
-            targetRotation = Quaternion.Euler(targetAngle, transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z);
-
-        float t = 0f;
-        while (t < 1f)
-        {
-            t += Time.deltaTime * rotationSpeed;
-            transform.rotation = Quaternion.Slerp(initialRotation, targetRotation, t);
-            yield return null;
-        }
-
-        // Ensure precise alignment on the X and Z axes
-        Vector3 euler = transform.rotation.eulerAngles;
-        euler.x = 0f;
-        euler.z = 0f;
-        transform.rotation = Quaternion.Euler(euler);
-    }
-
-
-
-
-    //---
 
     private void OnDrawGizmos()
     {

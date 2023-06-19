@@ -9,16 +9,12 @@ public class CameraFollow : MonoBehaviour
 
     private void Follow()
     {
-        Vector3 desiredPosition = target.position + target.rotation * locationOffset;
+        Vector3 desiredPosition = target.position + locationOffset;
         Vector3 smoothedPosition = Vector3.Lerp(transform.position, desiredPosition, smoothSpeed);
         transform.position = smoothedPosition;
-
-        Quaternion desiredrotation = target.rotation * Quaternion.Euler(rotationOffset);
-        Quaternion smoothedrotation = Quaternion.Lerp(transform.rotation, desiredrotation, smoothSpeed);
-        transform.rotation = smoothedrotation;
     }
 
-    void FixedUpdate()
+    void Update()
     {
         Follow();
     }
