@@ -63,19 +63,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45f332781d7dc2741b85a68dbea431b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startPosition: {x: 0, y: 2.5, z: -6}
+  startPosition: {x: 0, y: 5, z: -6}
   laneSwitchForce: 2.5
+  interpolationFactor: 2
   defaultLaneSwitchForce: 2.5
   laneSwitchRotation: 30
   rotationSpeed: 5
-  defaultRotationSpeed: 5
   currentLane: 0
   currentUndulate: 0
   laneXDistance: 4
   laneYDistance: 3
   lanes: 3
+  direction: 0
   showGizmos: 1
-  powerUpTime: 10
+  speedMultiplier: 1.5
+  speedPowerUpTime: 2
+  speedPowerUpEffect: {fileID: 0}
 --- !u!114 &2428571700924738155
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -89,9 +92,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   magnetOn: 0
-  magnetRadius: 4.2
-  magnetPowerUpTime: 10
-  magnetCollectTime: 1.4
+  magnetRadius: 6
+  magnetPowerUpTime: 20
+  magnetCollectTime: 10
+  magnetEffect: {fileID: 0}
+  pulledObjects: []
 --- !u!54 &2428571700924738154
 Rigidbody:
   m_ObjectHideFlags: 0
