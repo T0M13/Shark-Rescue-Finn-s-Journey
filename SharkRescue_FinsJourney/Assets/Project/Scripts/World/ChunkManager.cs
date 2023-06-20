@@ -13,7 +13,7 @@ public class ChunkManager : MonoBehaviour
     [SerializeField] private Vector3 chunkColliderCatcherSize = new Vector3(13, 15, 13);
     [SerializeField, Range(1, 20), Tooltip("It must alway be 2 less than the 'Chunk.Count'")] 
     private int maxChunksShownAtTime = 3;
-    //[SerializeField] private int chunksMovingSpeed = 5;
+    [SerializeField] private float chunksMovingSpeed;
     private int chunklength = 0;
     private int chunkwidth = 0;
     public float spawnAdjustment = 0f; //OnTriggerExit is not precisly enoguh (0.51;0.22;1.04) -> Difference needs to be added
@@ -53,9 +53,11 @@ public class ChunkManager : MonoBehaviour
 
     private void AdjustAllChunks()
     {
+        chunksMovingSpeed = GameManager.instance.GameSpeed;
+
         for (int i = 0; i < chunks.Count; i++)
         {
-            chunks[i].GetComponent<Chunk>().movingSpeed = GameManager.instance.GameSpeed;
+            chunks[i].GetComponent<Chunk>().movingSpeed = chunksMovingSpeed;
 
             if (i > maxChunksShownAtTime - 1)
             {
@@ -73,29 +75,34 @@ public class ChunkManager : MonoBehaviour
 
     public void AdjustMovementSpeed()
     {
+        if(GameManager.instance == null)
+            return;
+
+        chunksMovingSpeed = GameManager.instance.GameSpeed;
+
         for (int i = 0; i < chunks.Count; i++)
         {
-            chunks[i].GetComponent<Chunk>().movingSpeed = GameManager.instance.GameSpeed;
+            chunks[i].GetComponent<Chunk>().movingSpeed = chunksMovingSpeed;
         }
     }
 
     public void AddNewChunk()
     {
         int randomTemp = Random.Range(0, disabledChunks.Count);
-        int distancMultipl;
+        //int distancMultipl;
 
-        if(maxChunksShownAtTime - 1 <= 0)
-        {
-            distancMultipl = 1;
-        }
-        else
-        {
-            //distancMultipl = maxChunksShownAtTime - 1;
-            distancMultipl = maxChunksShownAtTime;
-        }
+        //if(maxChunksShownAtTime - 1 <= 0)
+        //{
+        //    distancMultipl = 1;
+        //}
+        //else
+        //{
+        //    //distancMultipl = maxChunksShownAtTime - 1;
+        //    distancMultipl = maxChunksShownAtTime + 1;
+        //}
 
 
-        disabledChunks[randomTemp].transform.position = new Vector3(0, 0, 13 * chunklength * distancMultipl + spawnAdjustment);
+        disabledChunks[randomTemp].transform.position = new Vector3(0, 0, 13 * chunklength * (maxChunksShownAtTime + 1) + spawnAdjustment);
         disabledChunks[randomTemp].SetActive(true);
         disabledChunks.RemoveAt(randomTemp);
     }

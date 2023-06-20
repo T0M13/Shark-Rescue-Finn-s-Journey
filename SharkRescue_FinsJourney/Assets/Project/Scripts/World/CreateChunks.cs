@@ -12,7 +12,7 @@ public class CreateChunks : MonoBehaviour
     public int chunklength = 3;
     [Range(3, 20), Tooltip("How wide should a Chunk be generated.\nNumber should be always odd (or it will add 1 number to it).")]
     public int chunkwidth = 3;
-    [Range(1, 20), Tooltip("How many Chunks should be generated.")]
+    [Range(4, 20), Tooltip("How many Chunks should be generated.\nIt must alway be 2 more than the 'maxChunksShownAtTime' (ChunkManager) due to variation")]
     public int chunkQuantity = 8;
 
     [SerializeField] private float tileWidthLength = 13f;

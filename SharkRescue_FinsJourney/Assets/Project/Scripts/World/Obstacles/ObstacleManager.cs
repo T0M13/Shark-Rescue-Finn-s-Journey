@@ -21,7 +21,7 @@ public class ObstacleManager : MonoBehaviour
     //[SerializeField] private List<Vector3> remainingSpawnSpots = new();
 
     [Header("Obstacles Settings")]
-    //[SerializeField] private int obstacleMovementSpeed = 10;
+    [SerializeField] private float obstacleMovementSpeed = 0f;
     [SerializeField] private int maxObstacleLanesShownAtTime = 3;
     [SerializeField] private int obstacleRespawnDistance = 5; //Obstacle Respawn Distance Multiplicator 13 * 5 -> 65 Distance between Obstacles
     public int distanceAdjustment = 0; //After the first obstacle has been deactivated, the new obstacle spawns accordingly at location (one spot earlier) (For X-Axis)
@@ -57,7 +57,13 @@ public class ObstacleManager : MonoBehaviour
         {
             SpawnObstacles();
         }
-        AdjustAllActiveObstacle(); //obstacleMovementSpeed = GameManager.Instance
+        //AdjustAllActiveObstacle(); //obstacleMovementSpeed = GameManager.Instance
+        AdjustMovementSpeed();
+    }
+
+    public void UpdateMovementSpeed(int newMovementSpeed)
+    {
+
     }
 
     private void CreateObstacles()
@@ -94,19 +100,28 @@ public class ObstacleManager : MonoBehaviour
         }
     }
 
-    private void AdjustAllActiveObstacle() 
-    {
-        for (int i = 0; i < allObstacleLanes.Count; i++) //How many prefabs lists exist
-        {
-            allObstacleLanes[i].GetComponent<ObstacleLane>().movementSpeed = GameManager.instance.GameSpeed;
-        }
-    }
+    //private void AdjustAllActiveObstacle() old?
+    //{
+    //    obstacleMovementSpeed = GameManager.instance.GameSpeed;
+
+    //    for (int i = 0; i < allObstacleLanes.Count; i++) //How many prefabs lists exist
+    //    {
+    //        allObstacleLanes[i].GetComponent<ObstacleLane>().movementSpeed = obstacleMovementSpeed;
+    //    }
+    //}
 
     public void AdjustMovementSpeed() 
     {
+        if (GameManager.instance == null)
+            return;
+
+
+        obstacleMovementSpeed = GameManager.instance.GameSpeed;
+        Debug.Log("obstacleMovementSpeed " + obstacleMovementSpeed);
+
         for (int i = 0; i < allObstacleLanes.Count; i++) //How many prefabs lists exist
         {
-            allObstacleLanes[i].GetComponent<ObstacleLane>().movementSpeed = GameManager.instance.GameSpeed;
+            allObstacleLanes[i].GetComponent<ObstacleLane>().movementSpeed = obstacleMovementSpeed;
         }
     }
     

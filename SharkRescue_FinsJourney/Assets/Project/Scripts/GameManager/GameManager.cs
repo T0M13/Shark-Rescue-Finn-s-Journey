@@ -136,7 +136,7 @@ public class GameManager : MonoBehaviour
     private void AddCoin()
     {
         coins++;
-        Debug.Log("Current Coins: " + coins);
+        //Debug.Log("Current Coins: " + coins);
     }
 
     private void GameOver()

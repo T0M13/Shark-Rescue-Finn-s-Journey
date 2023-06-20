@@ -13,7 +13,7 @@ public class BaseCoin : BaseItem, IInteractable
 
     public void Interact()
     {
-        Debug.Log("Adding Coins: " + Value);
+        //Debug.Log("Adding Coins: " + Value);
 
         if (effect != null)
         {

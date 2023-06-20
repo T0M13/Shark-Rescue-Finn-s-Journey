@@ -25,7 +25,7 @@ public class Chunk : MonoBehaviour
         if(other != null && other.gameObject.CompareTag("ChunkCatcher"))
         {
             //Debug.Log(gameObject.name + ": " + gameObject.transform.position);
-            ChunkManager.Instance.spawnAdjustment = gameObject.transform.position.x - 65;
+            ChunkManager.Instance.spawnAdjustment = gameObject.transform.position.z - 65;
             gameObject.SetActive(false);
             ChunkManager.Instance.AddNewChunk();
             ChunkManager.Instance.disabledChunks.Add(gameObject);
