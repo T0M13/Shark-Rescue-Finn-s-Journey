@@ -100,8 +100,8 @@ Shader "Amazing Assets/Curved World/Terrain/Classic Runner (Z Positive) ID 1"
             #include "Packages/com.unity.render-pipelines.universal/Shaders/Terrain/TerrainLitInput.hlsl"
 
 
-            #define CURVEDWORLD_BEND_TYPE_CLASSICRUNNER_Z_POSITIVE
-            #define CURVEDWORLD_BEND_ID_1
+#define CURVEDWORLD_BEND_TYPE_CLASSICRUNNER_Z_POSITIVE
+#define CURVEDWORLD_BEND_ID_1
             #define CURVEDWORLD_NORMAL_TRANSFORMATION_ON
 
             #include "../TerrainLitPasses.hlsl"
@@ -134,8 +134,8 @@ Shader "Amazing Assets/Curved World/Terrain/Classic Runner (Z Positive) ID 1"
             #include "Packages/com.unity.render-pipelines.universal/Shaders/Terrain/TerrainLitInput.hlsl"
             
             
-            #define CURVEDWORLD_BEND_TYPE_CLASSICRUNNER_Z_POSITIVE
-            #define CURVEDWORLD_BEND_ID_1
+#define CURVEDWORLD_BEND_TYPE_CLASSICRUNNER_Z_POSITIVE
+#define CURVEDWORLD_BEND_ID_1
             #define CURVEDWORLD_NORMAL_TRANSFORMATION_ON
 
             #include "../TerrainLitPasses.hlsl"            
@@ -188,8 +188,8 @@ Shader "Amazing Assets/Curved World/Terrain/Classic Runner (Z Positive) ID 1"
 
             #include "Packages/com.unity.render-pipelines.universal/Shaders/Terrain/TerrainLitInput.hlsl"
 
-            #define CURVEDWORLD_BEND_TYPE_CLASSICRUNNER_Z_POSITIVE
-            #define CURVEDWORLD_BEND_ID_1
+#define CURVEDWORLD_BEND_TYPE_CLASSICRUNNER_Z_POSITIVE
+#define CURVEDWORLD_BEND_ID_1
             #define CURVEDWORLD_NORMAL_TRANSFORMATION_ON
 
             #include "../TerrainLitPasses.hlsl"
@@ -216,8 +216,8 @@ Shader "Amazing Assets/Curved World/Terrain/Classic Runner (Z Positive) ID 1"
             #include "Packages/com.unity.render-pipelines.universal/Shaders/Terrain/TerrainLitInput.hlsl"
             
             
-            #define CURVEDWORLD_BEND_TYPE_CLASSICRUNNER_Z_POSITIVE
-            #define CURVEDWORLD_BEND_ID_1
+#define CURVEDWORLD_BEND_TYPE_CLASSICRUNNER_Z_POSITIVE
+#define CURVEDWORLD_BEND_ID_1
 
             #include "../TerrainLitPasses.hlsl"
             ENDHLSL
@@ -242,8 +242,8 @@ Shader "Amazing Assets/Curved World/Terrain/Classic Runner (Z Positive) ID 1"
 
             #include "Packages/com.unity.render-pipelines.universal/Shaders/Terrain/TerrainLitInput.hlsl"
 
-            #define CURVEDWORLD_BEND_TYPE_CLASSICRUNNER_Z_POSITIVE
-            #define CURVEDWORLD_BEND_ID_1
+#define CURVEDWORLD_BEND_TYPE_CLASSICRUNNER_Z_POSITIVE
+#define CURVEDWORLD_BEND_ID_1
             #define CURVEDWORLD_NORMAL_TRANSFORMATION_ON
 
             #include "../TerrainLitDepthNormalsPass.hlsl"

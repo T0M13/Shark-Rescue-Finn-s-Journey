@@ -7,7 +7,7 @@ public class BaseCoin : BaseItem, IInteractable
     [Header("Coin Value")]
     [SerializeField] private int value = 1;
     [Header("Coin Effect")]
-    [SerializeField] private GameObject effect;
+    [SerializeField] private ParticleSystem effect;
 
     public int Value { get => value; set => this.value = value; }
 
@@ -17,8 +17,10 @@ public class BaseCoin : BaseItem, IInteractable
 
         if (effect != null)
         {
-            effect.SetActive(true);
-            effect.transform.SetParent(null);
+            effect.gameObject.transform.SetParent(null);
+            effect.Simulate(0.0f, true, true);
+            effect.Play();
+            effect.gameObject.GetComponent<VFXHelper>().ActivateVFX();
         }
 
         if (GameManager.instance != null)

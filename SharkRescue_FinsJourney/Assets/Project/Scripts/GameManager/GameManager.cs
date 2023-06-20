@@ -9,22 +9,26 @@ public class GameManager : MonoBehaviour
     public static GameManager instance { get; private set; }
 
     [Header("References")]
-    [SerializeField] private ItemSpawner itemSpawner;
     [SerializeField] private PlayerReferences playerReferences;
+    [SerializeField] private InGameUIManager inGameUIManager;
     [Header("Game Positions")]
     [SerializeField] private Vector3 startPosition;
-    [Header("Item Settings")]
-    [SerializeField] private int itemsSpeed = 1;
+    [Header("Game Speed")]
+    [SerializeField] private int gameSpeed = 1;
     [Header("Player Stats")]
     [SerializeField] private int health = 1;
     [SerializeField] private int coins;
+    [SerializeField] private int score;
+    [SerializeField] private float scoreTemp;
     [Header("Save/Load")]
     [SerializeField] private SaveComponent saveBehaviour;
     [SerializeField] private LoadComponent loadBehaviour;
     [Header("Saved Stats")]
     [SerializeField] private int playerProfileCoins;
+    [SerializeField] private int playerProfileHighscore;
 
     public Vector3 StartPosition { get => startPosition; set => startPosition = value; }
+    public int GameSpeed { get => gameSpeed; set => gameSpeed = value; }
 
     public Action OnAddCoin;
     public Action<BaseItem> OnSpawnObject;
@@ -43,7 +47,6 @@ public class GameManager : MonoBehaviour
         OnSave += Save;
         OnLoad += Load;
         OnGameOver += GameOver;
-        OnDeactivateGObject += DeactivateGameObject;
         OnGetDamage += GetDamage;
 
         OnSpawnObject += SetObjectSpeed;
@@ -57,7 +60,6 @@ public class GameManager : MonoBehaviour
         OnSave -= Save;
         OnLoad -= Load;
         OnGameOver -= GameOver;
-        OnDeactivateGObject -= DeactivateGameObject;
         OnGetDamage -= GetDamage;
 
         OnSpawnObject -= SetObjectSpeed;
@@ -83,12 +85,21 @@ public class GameManager : MonoBehaviour
         Load();
         Save();
 
-
-        if (itemSpawner == null)
-            itemSpawner = FindObjectOfType<ItemSpawner>();
-
         if (playerReferences == null)
             playerReferences = FindObjectOfType<PlayerReferences>();
+
+        if (inGameUIManager == null)
+            inGameUIManager = FindObjectOfType<InGameUIManager>();
+
+    }
+
+    private void Update()
+    {
+        scoreTemp += Time.deltaTime;
+        score = Mathf.RoundToInt(scoreTemp);
+
+        if (inGameUIManager != null)
+            inGameUIManager.CurrentScore.text = score.ToString();
     }
 
     private void AddCoin()
@@ -100,16 +111,10 @@ public class GameManager : MonoBehaviour
     private void GameOver()
     {
         SaveData.PlayerProfile.coins += coins;
+        if (SaveData.PlayerProfile.highscore < score)
+            SaveData.PlayerProfile.highscore = score;
         Save();
         Debug.Log("Game Over");
-    }
-
-    private void DeactivateGameObject(GameObject gObject)
-    {
-        if (itemSpawner == null)
-            itemSpawner = FindObjectOfType<ItemSpawner>();
-        if (itemSpawner == null) return;
-        itemSpawner.DeactivateObject(gObject);
     }
 
     public void GetDamage(int damageValue)
@@ -123,7 +128,7 @@ public class GameManager : MonoBehaviour
 
     private void SetObjectSpeed(BaseItem item)
     {
-        item.MoveSpeed = itemsSpeed;
+        item.MoveSpeed = GameSpeed;
     }
 
     private void MagnetPowerUp()
@@ -154,5 +159,6 @@ public class GameManager : MonoBehaviour
         loadBehaviour.Load();
 
         playerProfileCoins = SaveData.PlayerProfile.coins;
+        playerProfileHighscore = SaveData.PlayerProfile.highscore;
     }
 }

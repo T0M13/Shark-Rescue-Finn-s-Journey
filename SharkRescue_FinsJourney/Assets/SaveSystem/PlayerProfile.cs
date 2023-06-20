@@ -8,6 +8,7 @@ namespace tomi.SaveSystem
     public class PlayerProfile
     {
         public int coins;
+        public int highscore;
 
         public int masterVolume;
         public int musicVolume;

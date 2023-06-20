@@ -13,6 +13,7 @@ public class LoadComponent : ScriptableObject, LoadBehaviour
         else
         {
             SetAudio();
+            SetStats();
         }
     }
 
@@ -21,5 +22,11 @@ public class LoadComponent : ScriptableObject, LoadBehaviour
         SaveData.PlayerProfile.masterVolume = -40;
         SaveData.PlayerProfile.musicVolume = -40;
         SaveData.PlayerProfile.effectsVolume = -40;
+    }
+
+    private void SetStats()
+    {
+        SaveData.PlayerProfile.coins = 0;
+        SaveData.PlayerProfile.highscore = 0;
     }
 }
