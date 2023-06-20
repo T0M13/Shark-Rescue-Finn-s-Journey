@@ -44,12 +44,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00a901ac7531e3b40bb9f3c33964ff8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemSpawner: {fileID: 0}
   playerReferences: {fileID: 0}
+  inGameUIManager: {fileID: 0}
+  chunkManager: {fileID: 0}
+  itemSpawner: {fileID: 0}
+  obstacleManager: {fileID: 0}
   startPosition: {x: 0, y: 5, z: -6}
-  itemsSpeed: 15
+  gameSpeed: 15
   health: 1
   coins: 0
+  score: 0
+  scoreTemp: 0
   saveBehaviour: {fileID: 11400000, guid: 0160b4a5516637d498cec83bb7a5a686, type: 2}
   loadBehaviour: {fileID: 11400000, guid: 28ea242922f97cc4c8da32999246b205, type: 2}
   playerProfileCoins: 0
+  playerProfileHighscore: 0

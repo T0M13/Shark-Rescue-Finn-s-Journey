@@ -13,7 +13,7 @@ public class ChunkManager : MonoBehaviour
     [SerializeField] private Vector3 chunkColliderCatcherSize = new Vector3(13, 15, 13);
     [SerializeField, Range(1, 20), Tooltip("It must alway be 2 less than the 'Chunk.Count'")] 
     private int maxChunksShownAtTime = 3;
-    [SerializeField] private int chunksMovingSpeed = 5;
+    //[SerializeField] private int chunksMovingSpeed = 5;
     private int chunklength = 0;
     private int chunkwidth = 0;
     public float spawnAdjustment = 0f; //OnTriggerExit is not precisly enoguh (0.51;0.22;1.04) -> Difference needs to be added
@@ -55,7 +55,7 @@ public class ChunkManager : MonoBehaviour
     {
         for (int i = 0; i < chunks.Count; i++)
         {
-            chunks[i].GetComponent<Chunk>().movingSpeed = chunksMovingSpeed;
+            chunks[i].GetComponent<Chunk>().movingSpeed = GameManager.instance.GameSpeed;
 
             if (i > maxChunksShownAtTime - 1)
             {
@@ -75,7 +75,7 @@ public class ChunkManager : MonoBehaviour
     {
         for (int i = 0; i < chunks.Count; i++)
         {
-            chunks[i].GetComponent<Chunk>().movingSpeed = chunksMovingSpeed;
+            chunks[i].GetComponent<Chunk>().movingSpeed = GameManager.instance.GameSpeed;
         }
     }
 

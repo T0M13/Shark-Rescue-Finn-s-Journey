@@ -405,7 +405,6 @@ MonoBehaviour:
   allObstacleLanes: []
   allActiveObstaclesCounter: 0
   spawnRate: 
-  obstacleMovementSpeed: 15
   maxObstacleLanesShownAtTime: 5
   obstacleRespawnDistance: 5
   distanceAdjustment: 0
@@ -7101,7 +7100,6 @@ MonoBehaviour:
   chunkColliderCatcher: {fileID: 2132426213}
   chunkColliderCatcherSize: {x: 13, y: 15, z: 13}
   maxChunksShownAtTime: 5
-  chunksMovingSpeed: 15
   spawnAdjustment: 0
 --- !u!4 &1253199305
 Transform:
@@ -8266,7 +8264,6 @@ MonoBehaviour:
   itemMinQuantity: 5
   itemMaxQuantity: 9
   itemLaneMaxCount: 2
-  itemMovementSpeed: 15
 --- !u!4 &1366139061
 Transform:
   m_ObjectHideFlags: 0
@@ -13393,9 +13390,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6497248131108235341, guid: 966a056f7856b214596c9a38d1ef2163,
         type: 3}
+      propertyPath: timer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6497248131108235341, guid: 966a056f7856b214596c9a38d1ef2163,
+        type: 3}
       propertyPath: itemSpawner
       value: 
-      objectReference: {fileID: 2097112841}
+      objectReference: {fileID: 1366139060}
+    - target: {fileID: 6497248131108235341, guid: 966a056f7856b214596c9a38d1ef2163,
+        type: 3}
+      propertyPath: chunkManager
+      value: 
+      objectReference: {fileID: 1253199304}
     - target: {fileID: 6497248131108235341, guid: 966a056f7856b214596c9a38d1ef2163,
         type: 3}
       propertyPath: inGameUIManager
@@ -13403,9 +13410,24 @@ PrefabInstance:
       objectReference: {fileID: 1364182879}
     - target: {fileID: 6497248131108235341, guid: 966a056f7856b214596c9a38d1ef2163,
         type: 3}
+      propertyPath: obstacleManager
+      value: 
+      objectReference: {fileID: 105472305}
+    - target: {fileID: 6497248131108235341, guid: 966a056f7856b214596c9a38d1ef2163,
+        type: 3}
       propertyPath: playerReferences
       value: 
       objectReference: {fileID: 1133880935}
+    - target: {fileID: 6497248131108235341, guid: 966a056f7856b214596c9a38d1ef2163,
+        type: 3}
+      propertyPath: speedIncreaseRate
+      value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 6497248131108235341, guid: 966a056f7856b214596c9a38d1ef2163,
+        type: 3}
+      propertyPath: gameSpeedMultiplier
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6497248131108235378, guid: 966a056f7856b214596c9a38d1ef2163,
         type: 3}
       propertyPath: m_RootOrder

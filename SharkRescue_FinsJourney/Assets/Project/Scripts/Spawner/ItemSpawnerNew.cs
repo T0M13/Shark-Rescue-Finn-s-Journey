@@ -29,7 +29,7 @@ public class ItemSpawnerNew : MonoBehaviour
     [SerializeField] private int itemMinQuantity = 5;
     [SerializeField] private int itemMaxQuantity = 9;
     [SerializeField] private int itemLaneMaxCount = 2;
-    [SerializeField] private int itemMovementSpeed = 15;
+    //[SerializeField] private int itemMovementSpeed = 15;
 
 
 
@@ -134,7 +134,7 @@ public class ItemSpawnerNew : MonoBehaviour
                         
                         ItemPrefabs[l].activeItemList.Add(ItemPrefabs[l].disabledItemList[randGo]);
 
-                        ItemPrefabs[l].disabledItemList[randGo].GetComponent<BaseItem>().MoveSpeed = itemMovementSpeed;
+                        ItemPrefabs[l].disabledItemList[randGo].GetComponent<BaseItem>().MoveSpeed = GameManager.instance.GameSpeed;
                         ItemPrefabs[l].disabledItemList.RemoveAt(randGo);
 
                         if (ItemPrefabs[l].itemTypes == ItemType.ItemTypes.PowerUp)
@@ -184,7 +184,7 @@ public class ItemSpawnerNew : MonoBehaviour
         {
             for(int j = 0; j < ItemPrefabs[i].activeItemList.Count; j++)
             {
-                ItemPrefabs[i].activeItemList[j].GetComponent<BaseItem>().MoveSpeed = itemMovementSpeed;
+                ItemPrefabs[i].activeItemList[j].GetComponent<BaseItem>().MoveSpeed = GameManager.instance.GameSpeed;
             }
         }
     }

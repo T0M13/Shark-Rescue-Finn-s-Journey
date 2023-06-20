@@ -11,15 +11,25 @@ public class GameManager : MonoBehaviour
     [Header("References")]
     [SerializeField] private PlayerReferences playerReferences;
     [SerializeField] private InGameUIManager inGameUIManager;
+    [SerializeField] private ChunkManager chunkManager;
+    [SerializeField] private ItemSpawnerNew itemSpawner;
+    [SerializeField] private ObstacleManager obstacleManager;
     [Header("Game Positions")]
     [SerializeField] private Vector3 startPosition;
     [Header("Game Speed")]
-    [SerializeField] private int gameSpeed = 1;
+    [SerializeField] private float originalSpeed = 15;
+    [SerializeField] private float gameSpeed = 15;
+    [SerializeField] private float gameSpeedMultiplier = 1.0f; // Initial speed multiplier
+    [SerializeField] private float speedIncreaseRate = 0.1f; // Rate at which the speed multiplier increases over time
+    [SerializeField] private float adjustedSpeed;
+    [SerializeField] private float timer;
+    [SerializeField] private float timerCooldown = 5f;
     [Header("Player Stats")]
     [SerializeField] private int health = 1;
     [SerializeField] private int coins;
     [SerializeField] private int score;
     [SerializeField] private float scoreTemp;
+    private bool speedPowerup;
     [Header("Save/Load")]
     [SerializeField] private SaveComponent saveBehaviour;
     [SerializeField] private LoadComponent loadBehaviour;
@@ -28,7 +38,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private int playerProfileHighscore;
 
     public Vector3 StartPosition { get => startPosition; set => startPosition = value; }
-    public int GameSpeed { get => gameSpeed; set => gameSpeed = value; }
+    public float GameSpeed { get => gameSpeed; set => gameSpeed = value; }
 
     public Action OnAddCoin;
     public Action<BaseItem> OnSpawnObject;
@@ -49,7 +59,6 @@ public class GameManager : MonoBehaviour
         OnGameOver += GameOver;
         OnGetDamage += GetDamage;
 
-        OnSpawnObject += SetObjectSpeed;
         OnMagnetPowerUp += MagnetPowerUp;
         OnSpeedPowerUp += SpeedPowerUp;
     }
@@ -62,11 +71,8 @@ public class GameManager : MonoBehaviour
         OnGameOver -= GameOver;
         OnGetDamage -= GetDamage;
 
-        OnSpawnObject -= SetObjectSpeed;
         OnMagnetPowerUp -= MagnetPowerUp;
         OnSpeedPowerUp -= SpeedPowerUp;
-
-
     }
 
     private void Awake()
@@ -91,6 +97,17 @@ public class GameManager : MonoBehaviour
         if (inGameUIManager == null)
             inGameUIManager = FindObjectOfType<InGameUIManager>();
 
+        if (chunkManager == null)
+            chunkManager = FindObjectOfType<ChunkManager>();
+
+        if (itemSpawner == null)
+            itemSpawner = FindObjectOfType<ItemSpawnerNew>();
+
+        if (obstacleManager == null)
+            obstacleManager = FindObjectOfType<ObstacleManager>();
+
+        adjustedSpeed = originalSpeed;
+
     }
 
     private void Update()
@@ -100,6 +117,20 @@ public class GameManager : MonoBehaviour
 
         if (inGameUIManager != null)
             inGameUIManager.CurrentScore.text = score.ToString();
+
+        if (speedPowerup) return;
+        timer -= Time.deltaTime;
+        if (timer <= 0)
+        {
+            timer = timerCooldown;
+            gameSpeed = adjustedSpeed;
+            AdjustGameSpeed();
+        }
+        else
+        {
+            gameSpeedMultiplier += speedIncreaseRate * Time.deltaTime;
+            adjustedSpeed = originalSpeed * gameSpeedMultiplier;
+        }
     }
 
     private void AddCoin()
@@ -126,9 +157,19 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void SetObjectSpeed(BaseItem item)
+    private void OnValidate()
     {
-        item.MoveSpeed = GameSpeed;
+        AdjustGameSpeed();
+    }
+
+    private void AdjustGameSpeed()
+    {
+        if (chunkManager != null)
+            chunkManager.AdjustMovementSpeed();
+        if (itemSpawner != null)
+            itemSpawner.AdjustAllActiveItems();
+        if (obstacleManager != null)
+            obstacleManager.AdjustMovementSpeed();
     }
 
     private void MagnetPowerUp()
@@ -147,6 +188,14 @@ public class GameManager : MonoBehaviour
         if (playerReferences == null) return;
 
         playerReferences.PlayerController.OnSpeedPowerUp?.Invoke();
+        speedPowerup = true;
+        gameSpeed = gameSpeed * 1.3f;
+    }
+
+    public void ResetGameSpeed()
+    {
+        speedPowerup = false;
+        gameSpeed = gameSpeed / 1.3f;
     }
 
     private void Save()

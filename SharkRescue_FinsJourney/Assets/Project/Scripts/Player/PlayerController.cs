@@ -253,6 +253,7 @@ public class PlayerController : MonoBehaviour
             speedPowerUpEffect.SetActive(true);
         yield return new WaitForSeconds(speedPowerUpTime);
         laneSwitchForce = defaultLaneSwitchForce;
+        GameManager.instance.ResetGameSpeed();
         if (speedPowerUpEffect != null)
             speedPowerUpEffect.SetActive(false);
     }

@@ -8,14 +8,14 @@ public class BaseItem : MonoBehaviour
     [Header("References")]
     [SerializeField] private Transform meshTransform;
     [Header("Move Speed")]
-    [SerializeField] private int moveSpeed = 1;
+    [SerializeField] private float moveSpeed = 1;
     [Header("Rotation Speed")]
     [SerializeField] private int rotationSpeedMin = 100;
     [SerializeField] private int rotationSpeedMax = 150;
     [SerializeField] private int rotationSpeed = 100;
 
     [SerializeField] private PowerUpType powerUpType;
-    public int MoveSpeed { get => moveSpeed; set => moveSpeed = value; }
+    public float MoveSpeed { get => moveSpeed; set => moveSpeed = value; }
     public int RotationSpeed { get => rotationSpeed; set => rotationSpeed = value; }
 
     protected void Start()

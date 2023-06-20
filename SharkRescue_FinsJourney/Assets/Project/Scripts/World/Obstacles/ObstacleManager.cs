@@ -21,7 +21,7 @@ public class ObstacleManager : MonoBehaviour
     //[SerializeField] private List<Vector3> remainingSpawnSpots = new();
 
     [Header("Obstacles Settings")]
-    [SerializeField] private int obstacleMovementSpeed = 10;
+    //[SerializeField] private int obstacleMovementSpeed = 10;
     [SerializeField] private int maxObstacleLanesShownAtTime = 3;
     [SerializeField] private int obstacleRespawnDistance = 5; //Obstacle Respawn Distance Multiplicator 13 * 5 -> 65 Distance between Obstacles
     public int distanceAdjustment = 0; //After the first obstacle has been deactivated, the new obstacle spawns accordingly at location (one spot earlier) (For X-Axis)
@@ -98,7 +98,7 @@ public class ObstacleManager : MonoBehaviour
     {
         for (int i = 0; i < allObstacleLanes.Count; i++) //How many prefabs lists exist
         {
-            allObstacleLanes[i].GetComponent<ObstacleLane>().movementSpeed = obstacleMovementSpeed;
+            allObstacleLanes[i].GetComponent<ObstacleLane>().movementSpeed = GameManager.instance.GameSpeed;
         }
     }
 
@@ -106,7 +106,7 @@ public class ObstacleManager : MonoBehaviour
     {
         for (int i = 0; i < allObstacleLanes.Count; i++) //How many prefabs lists exist
         {
-            allObstacleLanes[i].GetComponent<ObstacleLane>().movementSpeed = obstacleMovementSpeed;
+            allObstacleLanes[i].GetComponent<ObstacleLane>().movementSpeed = GameManager.instance.GameSpeed;
         }
     }
     
@@ -162,7 +162,7 @@ public class ObstacleManager : MonoBehaviour
                             ObstaclePrefabs[i].disabledObstacleList[randGo].SetActive(true);
 
                             disabledObstacleLanes[0].GetComponent<ObstacleLane>().obstacles.Add(ObstaclePrefabs[i].disabledObstacleList[randGo].GetComponent<Obstacle>());
-                            disabledObstacleLanes[0].GetComponent<ObstacleLane>().movementSpeed = obstacleMovementSpeed;
+                            disabledObstacleLanes[0].GetComponent<ObstacleLane>().movementSpeed = GameManager.instance.GameSpeed; 
                             disabledObstacleLanes[0].SetActive(true);
 
                             ObstaclePrefabs[i].activeObstacleList.Add(ObstaclePrefabs[i].disabledObstacleList[randGo]);
@@ -193,7 +193,7 @@ public class ObstacleManager : MonoBehaviour
                             ObstaclePrefabs[i].disabledObstacleList[randGo].SetActive(true);
 
                             disabledObstacleLanes[0].GetComponent<ObstacleLane>().obstacles.Add(ObstaclePrefabs[i].disabledObstacleList[randGo].GetComponent<Obstacle>());
-                            disabledObstacleLanes[0].GetComponent<ObstacleLane>().movementSpeed = obstacleMovementSpeed;
+                            disabledObstacleLanes[0].GetComponent<ObstacleLane>().movementSpeed = GameManager.instance.GameSpeed;
                             disabledObstacleLanes[0].SetActive(true);
 
                             ObstaclePrefabs[i].activeObstacleList.Add(ObstaclePrefabs[i].disabledObstacleList[randGo]);
@@ -238,7 +238,7 @@ public class ObstacleManager : MonoBehaviour
                             //GameManager.instance.OnSpawnObject()
 
                             disabledObstacleLanes[0].GetComponent<ObstacleLane>().obstacles.Add(ObstaclePrefabs[i].disabledObstacleList[randGo].GetComponent<Obstacle>());
-                            disabledObstacleLanes[0].GetComponent<ObstacleLane>().movementSpeed = obstacleMovementSpeed;
+                            disabledObstacleLanes[0].GetComponent<ObstacleLane>().movementSpeed = GameManager.instance.GameSpeed;
                             disabledObstacleLanes[0].SetActive(true);
 
                             ObstaclePrefabs[i].activeObstacleList.Add(ObstaclePrefabs[i].disabledObstacleList[randGo]);
@@ -274,7 +274,7 @@ public class ObstacleManager : MonoBehaviour
                         
                         
                         disabledObstacleLanes[0].GetComponent<ObstacleLane>().obstacles.Add(ObstaclePrefabs[i].disabledObstacleList[randGo].GetComponent<Obstacle>());
-                        disabledObstacleLanes[0].GetComponent<ObstacleLane>().movementSpeed = obstacleMovementSpeed;
+                        disabledObstacleLanes[0].GetComponent<ObstacleLane>().movementSpeed = GameManager.instance.GameSpeed;
                         disabledObstacleLanes[0].SetActive(true);
                         disabledObstacleLanes.RemoveAt(0);
 

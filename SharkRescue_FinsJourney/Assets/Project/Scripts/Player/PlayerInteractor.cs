@@ -11,7 +11,6 @@ public class PlayerInteractor : MonoBehaviour
     [SerializeField] private bool magnetOn = false;
     [SerializeField] private float magnetRadius = 4.2f;
     [SerializeField] private float magnetPowerUpTime = 10f;
-    [SerializeField] private float magnetCollectTime = 1.4f;
     [SerializeField] private GameObject magnetEffect;
     [SerializeField] private List<GameObject> pulledObjects;
     public Action OnMagnetPowerUp;
@@ -84,7 +83,7 @@ public class PlayerInteractor : MonoBehaviour
             foreach (GameObject item in pulledObjects)
             {
                 if (!item.activeInHierarchy) { pulledObjects.Remove(item); return; }
-                item.transform.position = Vector3.Lerp(item.transform.position, transform.position, magnetCollectTime * Time.deltaTime);
+                item.transform.position = Vector3.Lerp(item.transform.position, transform.position, GameManager.instance.GameSpeed * Time.deltaTime);
             }
         }
 

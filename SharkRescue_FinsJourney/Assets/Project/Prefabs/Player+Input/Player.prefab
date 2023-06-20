@@ -78,8 +78,7 @@ MonoBehaviour:
   lanes: 3
   direction: 0
   showGizmos: 1
-  speedMultiplier: 1.5
-  speedPowerUpTime: 2
+  speedPowerUpTime: 10
   speedPowerUpEffect: {fileID: 0}
 --- !u!114 &2428571700924738155
 MonoBehaviour:
