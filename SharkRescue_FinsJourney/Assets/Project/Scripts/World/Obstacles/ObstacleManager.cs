@@ -158,6 +158,7 @@ public class ObstacleManager : MonoBehaviour
                 int maxSmallObstacleCounter = Random.Range(randMinValue, randMaxValue + 1); //Random count of how many obstacle should be created Random.Range(randMinValue, randMaxValue + 1)
                 float overallZDistancePos;
 
+
                 switch (tempObstacleType)
                 {
                     case ObstacleSizeType.Small: //at least 1 slot from lane (min: 1/8)
@@ -177,7 +178,8 @@ public class ObstacleManager : MonoBehaviour
                             ObstaclePrefabs[i].disabledObstacleList[randGo].SetActive(true);
 
                             disabledObstacleLanes[0].GetComponent<ObstacleLane>().obstacles.Add(ObstaclePrefabs[i].disabledObstacleList[randGo].GetComponent<Obstacle>());
-                            disabledObstacleLanes[0].GetComponent<ObstacleLane>().movementSpeed = GameManager.instance.GameSpeed; 
+                            disabledObstacleLanes[0].GetComponent<ObstacleLane>().movementSpeed = obstacleMovementSpeed;
+                            ;
                             disabledObstacleLanes[0].SetActive(true);
 
                             ObstaclePrefabs[i].activeObstacleList.Add(ObstaclePrefabs[i].disabledObstacleList[randGo]);
@@ -208,7 +210,7 @@ public class ObstacleManager : MonoBehaviour
                             ObstaclePrefabs[i].disabledObstacleList[randGo].SetActive(true);
 
                             disabledObstacleLanes[0].GetComponent<ObstacleLane>().obstacles.Add(ObstaclePrefabs[i].disabledObstacleList[randGo].GetComponent<Obstacle>());
-                            disabledObstacleLanes[0].GetComponent<ObstacleLane>().movementSpeed = GameManager.instance.GameSpeed;
+                            disabledObstacleLanes[0].GetComponent<ObstacleLane>().movementSpeed = obstacleMovementSpeed;
                             disabledObstacleLanes[0].SetActive(true);
 
                             ObstaclePrefabs[i].activeObstacleList.Add(ObstaclePrefabs[i].disabledObstacleList[randGo]);
@@ -253,7 +255,7 @@ public class ObstacleManager : MonoBehaviour
                             //GameManager.instance.OnSpawnObject()
 
                             disabledObstacleLanes[0].GetComponent<ObstacleLane>().obstacles.Add(ObstaclePrefabs[i].disabledObstacleList[randGo].GetComponent<Obstacle>());
-                            disabledObstacleLanes[0].GetComponent<ObstacleLane>().movementSpeed = GameManager.instance.GameSpeed;
+                            disabledObstacleLanes[0].GetComponent<ObstacleLane>().movementSpeed = obstacleMovementSpeed;
                             disabledObstacleLanes[0].SetActive(true);
 
                             ObstaclePrefabs[i].activeObstacleList.Add(ObstaclePrefabs[i].disabledObstacleList[randGo]);
@@ -289,7 +291,7 @@ public class ObstacleManager : MonoBehaviour
                         
                         
                         disabledObstacleLanes[0].GetComponent<ObstacleLane>().obstacles.Add(ObstaclePrefabs[i].disabledObstacleList[randGo].GetComponent<Obstacle>());
-                        disabledObstacleLanes[0].GetComponent<ObstacleLane>().movementSpeed = GameManager.instance.GameSpeed;
+                        disabledObstacleLanes[0].GetComponent<ObstacleLane>().movementSpeed = obstacleMovementSpeed;
                         disabledObstacleLanes[0].SetActive(true);
                         disabledObstacleLanes.RemoveAt(0);
 
