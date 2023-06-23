@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Rock_Triplanar_01
+  m_Name: Rock_Triplanar_01_Changed
   m_Shader: {fileID: 4800000, guid: 66f8401a4c881134f8803eceae302347, type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
@@ -92,7 +92,7 @@ Material:
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
-    - _Tiling: 0.2
+    - _Tiling: 0
     - _UVSec: 0
     - _ZWrite: 1
     - __dirty: 0
