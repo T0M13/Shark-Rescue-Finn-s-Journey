@@ -405,6 +405,7 @@ MonoBehaviour:
   allObstacleLanes: []
   allActiveObstaclesCounter: 0
   spawnRate: 
+  obstacleMovementSpeed: 0
   maxObstacleLanesShownAtTime: 5
   obstacleRespawnDistance: 5
   distanceAdjustment: 0
@@ -423,7 +424,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 16
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &112535607
 GameObject:
@@ -5931,7 +5932,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 21
+  m_RootOrder: 20
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1025237559
 GameObject:
@@ -7058,7 +7059,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 17
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1242621859 stripped
 GameObject:
@@ -7095,11 +7096,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 119c57cab821e1846a60c8f3c9edca27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mainChunksPref:
+  - {fileID: 5157561890094783115, guid: 018b1a4f10e5a0e48b7344a621c9d12d, type: 3}
+  - {fileID: 5330115395612513139, guid: bae9759ad485b174facdeb537b4d7151, type: 3}
+  - {fileID: 8586770372814024120, guid: c9e9904032b6fdb4e9e8bcd20195efc8, type: 3}
+  - {fileID: 3600801417857203612, guid: b86eb0d152b5e4648ba88cdba5de33b9, type: 3}
+  - {fileID: 73902098614863047, guid: 724da5438ac7e5c4ab11148ef3893502, type: 3}
+  - {fileID: 5773857935687359588, guid: e21b3445b30ca4d4cbe47a601c7ccc86, type: 3}
+  - {fileID: 6812926653815410231, guid: c99c7945675f348428b392ea89ef1d0c, type: 3}
+  - {fileID: 1879179258873878074, guid: 4392487f930f0894891e5ae70765e7cb, type: 3}
+  - {fileID: 3024226807172674610, guid: fbc2bf6c3372aeb4681611fb1e42109e, type: 3}
+  environmentChunksPref:
+  - {fileID: 5157561890094783115, guid: 018b1a4f10e5a0e48b7344a621c9d12d, type: 3}
+  - {fileID: 5330115395612513139, guid: bae9759ad485b174facdeb537b4d7151, type: 3}
+  - {fileID: 8586770372814024120, guid: c9e9904032b6fdb4e9e8bcd20195efc8, type: 3}
+  - {fileID: 3600801417857203612, guid: b86eb0d152b5e4648ba88cdba5de33b9, type: 3}
+  - {fileID: 73902098614863047, guid: 724da5438ac7e5c4ab11148ef3893502, type: 3}
+  - {fileID: 5773857935687359588, guid: e21b3445b30ca4d4cbe47a601c7ccc86, type: 3}
+  - {fileID: 6812926653815410231, guid: c99c7945675f348428b392ea89ef1d0c, type: 3}
+  - {fileID: 1879179258873878074, guid: 4392487f930f0894891e5ae70765e7cb, type: 3}
+  - {fileID: 3024226807172674610, guid: fbc2bf6c3372aeb4681611fb1e42109e, type: 3}
+  chunklength: 5
+  chunkwidth: 5
+  chunkQuantity: 8
+  tileWidthLength: 13
   chunks: []
   disabledChunks: []
   chunkColliderCatcher: {fileID: 2132426213}
   chunkColliderCatcherSize: {x: 13, y: 15, z: 13}
   maxChunksShownAtTime: 5
+  chunksMovingSpeed: 0
   spawnAdjustment: 0
 --- !u!4 &1253199305
 Transform:
@@ -7114,7 +7140,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1259118621
 GameObject:
@@ -7359,7 +7385,7 @@ Transform:
   - {fileID: 734144219}
   - {fileID: 746289302}
   m_Father: {fileID: 0}
-  m_RootOrder: 18
+  m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!1 &1274660463
 GameObject:
@@ -8167,7 +8193,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 23
+  m_RootOrder: 22
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1364182879
 MonoBehaviour:
@@ -8277,7 +8303,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 20
+  m_RootOrder: 19
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1369168792
 GameObject:
@@ -8567,7 +8593,7 @@ RectTransform:
   m_Children:
   - {fileID: 1110406668}
   m_Father: {fileID: 0}
-  m_RootOrder: 22
+  m_RootOrder: 21
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -11224,7 +11250,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 19
+  m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1835064766
 GameObject:
@@ -12584,74 +12610,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2061264101}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &2076675548
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2076675550}
-  - component: {fileID: 2076675549}
-  m_Layer: 0
-  m_Name: ChunkCreater
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &2076675549
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2076675548}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d1658933ed27a184ea95cb82d84ac580, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mainChunksPref:
-  - {fileID: 5157561890094783115, guid: 018b1a4f10e5a0e48b7344a621c9d12d, type: 3}
-  - {fileID: 5330115395612513139, guid: bae9759ad485b174facdeb537b4d7151, type: 3}
-  - {fileID: 8586770372814024120, guid: c9e9904032b6fdb4e9e8bcd20195efc8, type: 3}
-  - {fileID: 3600801417857203612, guid: b86eb0d152b5e4648ba88cdba5de33b9, type: 3}
-  - {fileID: 73902098614863047, guid: 724da5438ac7e5c4ab11148ef3893502, type: 3}
-  - {fileID: 5773857935687359588, guid: e21b3445b30ca4d4cbe47a601c7ccc86, type: 3}
-  - {fileID: 6812926653815410231, guid: c99c7945675f348428b392ea89ef1d0c, type: 3}
-  - {fileID: 1879179258873878074, guid: 4392487f930f0894891e5ae70765e7cb, type: 3}
-  - {fileID: 3024226807172674610, guid: fbc2bf6c3372aeb4681611fb1e42109e, type: 3}
-  environmentChunksPref:
-  - {fileID: 5157561890094783115, guid: 018b1a4f10e5a0e48b7344a621c9d12d, type: 3}
-  - {fileID: 5330115395612513139, guid: bae9759ad485b174facdeb537b4d7151, type: 3}
-  - {fileID: 8586770372814024120, guid: c9e9904032b6fdb4e9e8bcd20195efc8, type: 3}
-  - {fileID: 3600801417857203612, guid: b86eb0d152b5e4648ba88cdba5de33b9, type: 3}
-  - {fileID: 73902098614863047, guid: 724da5438ac7e5c4ab11148ef3893502, type: 3}
-  - {fileID: 5773857935687359588, guid: e21b3445b30ca4d4cbe47a601c7ccc86, type: 3}
-  - {fileID: 6812926653815410231, guid: c99c7945675f348428b392ea89ef1d0c, type: 3}
-  - {fileID: 1879179258873878074, guid: 4392487f930f0894891e5ae70765e7cb, type: 3}
-  - {fileID: 3024226807172674610, guid: fbc2bf6c3372aeb4681611fb1e42109e, type: 3}
-  chunklength: 5
-  chunkwidth: 5
-  chunkQuantity: 8
-  tileWidthLength: 13
---- !u!4 &2076675550
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2076675548}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 13
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2097112838
 GameObject:
   m_ObjectHideFlags: 0
@@ -13065,7 +13023,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2140427874
 GameObject:
