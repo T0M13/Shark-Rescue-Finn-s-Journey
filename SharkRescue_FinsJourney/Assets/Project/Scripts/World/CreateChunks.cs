@@ -90,7 +90,7 @@ public class CreateChunks : MonoBehaviour
                 }
             }
             chunk.AddComponent<Chunk>();
-            ChunkManager.Instance.chunks.Add(chunk);
+            //ChunkManager.Instance.chunks.Add(chunk);
 
             //Box Collider Settings
             chunk.AddComponent<BoxCollider>();
@@ -164,7 +164,7 @@ public class CreateChunks : MonoBehaviour
                 }
             }
             chunk.AddComponent<Chunk>();
-            ChunkManager.Instance.chunks.Add(chunk);
+            //----ChunkManager.Instance.chunks.Add(chunk);
 
             //Box Collider Settings
             chunk.AddComponent<BoxCollider>();

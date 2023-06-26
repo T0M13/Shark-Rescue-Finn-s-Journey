@@ -9167,6 +9167,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movingSpeed: 15
+  eChunkType: 0
 --- !u!4 &729286828
 Transform:
   m_ObjectHideFlags: 0
@@ -15731,37 +15732,45 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 119c57cab821e1846a60c8f3c9edca27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainChunksPref:
-  - {fileID: 5157561890094783115, guid: 018b1a4f10e5a0e48b7344a621c9d12d, type: 3}
-  - {fileID: 5330115395612513139, guid: bae9759ad485b174facdeb537b4d7151, type: 3}
-  - {fileID: 8586770372814024120, guid: c9e9904032b6fdb4e9e8bcd20195efc8, type: 3}
-  - {fileID: 3600801417857203612, guid: b86eb0d152b5e4648ba88cdba5de33b9, type: 3}
-  - {fileID: 73902098614863047, guid: 724da5438ac7e5c4ab11148ef3893502, type: 3}
-  - {fileID: 5773857935687359588, guid: e21b3445b30ca4d4cbe47a601c7ccc86, type: 3}
-  - {fileID: 6812926653815410231, guid: c99c7945675f348428b392ea89ef1d0c, type: 3}
-  - {fileID: 1879179258873878074, guid: 4392487f930f0894891e5ae70765e7cb, type: 3}
-  - {fileID: 3024226807172674610, guid: fbc2bf6c3372aeb4681611fb1e42109e, type: 3}
-  environmentChunksPref:
-  - {fileID: 5157561890094783115, guid: 018b1a4f10e5a0e48b7344a621c9d12d, type: 3}
-  - {fileID: 5330115395612513139, guid: bae9759ad485b174facdeb537b4d7151, type: 3}
-  - {fileID: 8586770372814024120, guid: c9e9904032b6fdb4e9e8bcd20195efc8, type: 3}
-  - {fileID: 3600801417857203612, guid: b86eb0d152b5e4648ba88cdba5de33b9, type: 3}
-  - {fileID: 73902098614863047, guid: 724da5438ac7e5c4ab11148ef3893502, type: 3}
-  - {fileID: 5773857935687359588, guid: e21b3445b30ca4d4cbe47a601c7ccc86, type: 3}
-  - {fileID: 6812926653815410231, guid: c99c7945675f348428b392ea89ef1d0c, type: 3}
-  - {fileID: 1879179258873878074, guid: 4392487f930f0894891e5ae70765e7cb, type: 3}
-  - {fileID: 3024226807172674610, guid: fbc2bf6c3372aeb4681611fb1e42109e, type: 3}
+  MainTilePrefabs: []
+  EnvTilePrefabs: []
   chunklength: 5
   chunkwidth: 5
   chunkQuantity: 8
   tileWidthLength: 13
-  chunks: []
-  disabledChunks: []
-  chunkColliderCatcher: {fileID: 2132426213}
+  eChunkType: 0
   chunkColliderCatcherSize: {x: 13, y: 15, z: 13}
   maxChunksShownAtTime: 5
   chunksMovingSpeed: 0
   spawnAdjustment: 0
+  chunks:
+  - EChunkType: 1
+    MainFloorTilePrefabs:
+    - {fileID: 5157561890094783115, guid: 018b1a4f10e5a0e48b7344a621c9d12d, type: 3}
+    - {fileID: 5330115395612513139, guid: bae9759ad485b174facdeb537b4d7151, type: 3}
+    - {fileID: 8586770372814024120, guid: c9e9904032b6fdb4e9e8bcd20195efc8, type: 3}
+    - {fileID: 3600801417857203612, guid: b86eb0d152b5e4648ba88cdba5de33b9, type: 3}
+    - {fileID: 73902098614863047, guid: 724da5438ac7e5c4ab11148ef3893502, type: 3}
+    - {fileID: 5773857935687359588, guid: e21b3445b30ca4d4cbe47a601c7ccc86, type: 3}
+    - {fileID: 6812926653815410231, guid: c99c7945675f348428b392ea89ef1d0c, type: 3}
+    - {fileID: 1879179258873878074, guid: 4392487f930f0894891e5ae70765e7cb, type: 3}
+    - {fileID: 3024226807172674610, guid: fbc2bf6c3372aeb4681611fb1e42109e, type: 3}
+    EnvFloorTilePrefabs:
+    - {fileID: 5157561890094783115, guid: 018b1a4f10e5a0e48b7344a621c9d12d, type: 3}
+    - {fileID: 5330115395612513139, guid: bae9759ad485b174facdeb537b4d7151, type: 3}
+    - {fileID: 8586770372814024120, guid: c9e9904032b6fdb4e9e8bcd20195efc8, type: 3}
+    - {fileID: 3600801417857203612, guid: b86eb0d152b5e4648ba88cdba5de33b9, type: 3}
+    - {fileID: 73902098614863047, guid: 724da5438ac7e5c4ab11148ef3893502, type: 3}
+    - {fileID: 5773857935687359588, guid: e21b3445b30ca4d4cbe47a601c7ccc86, type: 3}
+    - {fileID: 6812926653815410231, guid: c99c7945675f348428b392ea89ef1d0c, type: 3}
+    - {fileID: 1879179258873878074, guid: 4392487f930f0894891e5ae70765e7cb, type: 3}
+    - {fileID: 3024226807172674610, guid: fbc2bf6c3372aeb4681611fb1e42109e, type: 3}
+    DisabledChunkList: []
+    ActiveChunkList: []
+    DisabledEnvChunkList: []
+    ActiveEnvChunkList: []
+  disabledChunks: []
+  chunkColliderCatcher: {fileID: 2132426213}
 --- !u!4 &1253199305
 Transform:
   m_ObjectHideFlags: 0
@@ -31141,6 +31150,11 @@ PrefabInstance:
         type: 3}
       propertyPath: timer
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6497248131108235341, guid: 966a056f7856b214596c9a38d1ef2163,
+        type: 3}
+      propertyPath: eChunkType
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6497248131108235341, guid: 966a056f7856b214596c9a38d1ef2163,
         type: 3}

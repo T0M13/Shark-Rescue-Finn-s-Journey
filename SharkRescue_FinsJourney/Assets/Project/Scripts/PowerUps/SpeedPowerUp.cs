@@ -6,7 +6,7 @@ public class SpeedPowerUp : BaseItem, IInteractable
 {
     public void Interact()
     {
-        Debug.Log("Speed Power Up Activated");
+        //Debug.Log("Speed Power Up Activated");
 
         if (GameManager.instance != null)
             GameManager.instance.OnSpeedPowerUp?.Invoke();

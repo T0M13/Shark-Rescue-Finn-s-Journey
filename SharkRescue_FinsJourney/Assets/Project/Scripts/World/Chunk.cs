@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static ChunkTypes;
 
 public class Chunk : MonoBehaviour
 {
     public float movingSpeed = 5;
-    
+    public EChunkType eChunkType;
+
     void Update()
     {
         //gameObject.transform.position += new Vector3(movingSpeed * Time.deltaTime, 0, 0);
@@ -25,10 +27,18 @@ public class Chunk : MonoBehaviour
         if(other != null && other.gameObject.CompareTag("ChunkCatcher"))
         {
             //Debug.Log(gameObject.name + ": " + gameObject.transform.position);
-            ChunkManager.Instance.spawnAdjustment = gameObject.transform.position.z - 65;
+            ChunkManager.Instance.spawnAdjustment = gameObject.transform.position.z + 65;
             gameObject.SetActive(false);
-            ChunkManager.Instance.AddNewChunk();
-            ChunkManager.Instance.disabledChunks.Add(gameObject);
+            ChunkManager.Instance.SpawnNewChunk();
+
+            for (int i = 0; i < ChunkManager.Instance.chunks.Count; i++)
+            {
+                if (ChunkManager.Instance.chunks[i].EChunkType == eChunkType)
+                {
+                    ChunkManager.Instance.chunks[i].DisabledChunkList.Add(gameObject);
+                    ChunkManager.Instance.chunks[i].ActiveChunkList.Remove(gameObject);
+                }
+            }
         }
     }
 }

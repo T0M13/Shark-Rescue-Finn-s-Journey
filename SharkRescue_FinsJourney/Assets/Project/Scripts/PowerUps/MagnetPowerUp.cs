@@ -6,7 +6,7 @@ public class MagnetPowerUp : BaseItem, IInteractable
 {
     public void Interact()
     {
-        Debug.Log("Magnet Power Up Activated");
+        //Debug.Log("Magnet Power Up Activated");
 
         if (GameManager.instance != null)
             GameManager.instance.OnMagnetPowerUp?.Invoke();
