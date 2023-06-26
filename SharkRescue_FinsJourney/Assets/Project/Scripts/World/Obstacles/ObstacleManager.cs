@@ -117,7 +117,7 @@ public class ObstacleManager : MonoBehaviour
 
 
         obstacleMovementSpeed = GameManager.instance.GameSpeed;
-        Debug.Log("obstacleMovementSpeed " + obstacleMovementSpeed);
+        //Debug.Log("obstacleMovementSpeed " + obstacleMovementSpeed);
 
         for (int i = 0; i < allObstacleLanes.Count; i++) //How many prefabs lists exist
         {
