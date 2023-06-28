@@ -1,12 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static ChunkTypes;
+using static EnvironmentType;
 
 public class Chunk : MonoBehaviour
 {
     public float movingSpeed = 5;
-    public EChunkType eChunkType;
+    public EEnvironmentType eEnvironmentType;
 
     void Update()
     {
@@ -31,12 +31,12 @@ public class Chunk : MonoBehaviour
             gameObject.SetActive(false);
             ChunkManager.Instance.SpawnNewChunk();
 
-            for (int i = 0; i < ChunkManager.Instance.chunks.Count; i++)
+            for (int i = 0; i < ChunkManager.Instance.chunkListEnvironment.Count; i++)
             {
-                if (ChunkManager.Instance.chunks[i].EChunkType == eChunkType)
+                if (ChunkManager.Instance.chunkListEnvironment[i].EEnvironmentType == eEnvironmentType)
                 {
-                    ChunkManager.Instance.chunks[i].DisabledChunkList.Add(gameObject);
-                    ChunkManager.Instance.chunks[i].ActiveChunkList.Remove(gameObject);
+                    ChunkManager.Instance.chunkListEnvironment[i].DisabledChunkList.Add(gameObject);
+                    ChunkManager.Instance.chunkListEnvironment[i].ActiveChunkList.Remove(gameObject);
                 }
             }
         }

@@ -5,6 +5,31 @@ using static UnityEditor.Experimental.AssetDatabaseExperimental.AssetDatabaseCou
 
 public class ItemSpawnerNew : MonoBehaviour
 {
+
+    [Header("Item Spawn Settings")]
+    [SerializeField] private List<Vector3> spawnPositions = new();
+    [Tooltip("Adds an additional random number to its startpoint.\nSo it looks more natural.")]
+    [SerializeField] private Vector2 spawnPositionBuffer = new(6f, 15f);
+    [SerializeField] private float spawnDistance = 5f;
+    [Space(10)]
+
+    [Tooltip("Chance that there will not spawn an Item.")]
+    [SerializeField, Range(0, 200)] private int noItemSpawnChance = 10;
+    [Tooltip("The same PowerUp will have a cooldown until it can spawn again.")]
+    [SerializeField] private float powerUpCooldownTimer = 20;
+    [Tooltip("When a PowerUp spawns, others have a small cooldown too until they can spawn.")]
+    [SerializeField] private float powerUpOtherCooldownTimer = 4;
+    [SerializeField] private bool canSpawnAtStart = false;
+    [Tooltip("When PowerUp do not spawn, it will be higher next time")]
+    [SerializeField] private float powerUpCooldownTimerAtStart = 3;
+    //[SerializeField] private int powerUpAddChance = 1;
+    
+    [Space(10)]
+    [SerializeField] private int itemMinQuantity = 5;
+    [SerializeField] private int itemMaxQuantity = 9;
+    [SerializeField] private int itemLaneMaxCount = 2;
+    [SerializeField] private float itemMovementSpeed = 0f;
+
     [Header("Item Creation")]
     public List<ItemListPrefabs> ItemPrefabs;
 
@@ -12,25 +37,6 @@ public class ItemSpawnerNew : MonoBehaviour
     public GameObject itemContainer;
     [SerializeField] private List<float> defaultSpawnRate = new();
     [SerializeField] private List<float> currentSpawnRate = new();
-
-    [Header("Item Spawn Settings")]
-    [SerializeField] private List<Vector3> spawnPositions = new();
-    [SerializeField] private Vector2 spawnPositionBuffer = new(6f, 15f);
-    [SerializeField] private float spawnDistance = 5f;
-    [Space(10)]
-
-    [Tooltip("Chance that there will not spawn an Item.")]
-    [SerializeField, Range(0, 100)] private int noItemSpawnChance = 10;
-    [Tooltip("The same PowerUp will have a cooldown until it can spawn again.")]
-    [SerializeField] private float powerUpCooldownTimer = 5;
-    [Tooltip("When PowerUp do not spawn, it will be higher next time")]
-    [SerializeField] private int powerUpAddChance = 1;
-    [Space(10)]
-    [SerializeField] private int itemMinQuantity = 5;
-    [SerializeField] private int itemMaxQuantity = 9;
-    [SerializeField] private int itemLaneMaxCount = 2;
-    //[SerializeField] private int itemMovementSpeed = 15;
-
 
 
     public static ItemSpawnerNew Instance { get; private set; }
@@ -51,6 +57,12 @@ public class ItemSpawnerNew : MonoBehaviour
         itemContainer = new() { name = "Item Container" };
 
         CreateItems();
+
+        if (!canSpawnAtStart)
+        {
+            StartCoroutine(DeactivatePowerUpSpawnChanceAtStart());
+        }
+
     }
 
     void Start()
@@ -91,6 +103,8 @@ public class ItemSpawnerNew : MonoBehaviour
         float maxRange;
         float currentSpawnRateValue;
         float randChance;
+
+        itemMovementSpeed = GameManager.instance.GameSpeed;
         //Debug.Log("SpawnItems: " + startSpawnDistance);
 
         for (int i = 0; i < itemLaneMaxCount; i++) //How many random lanes can get items per chunk
@@ -131,20 +145,23 @@ public class ItemSpawnerNew : MonoBehaviour
 
                         ItemPrefabs[l].disabledItemList[randGo].transform.position = tempItemSpawnPos[randPos] + new Vector3(0, 0, startSpawnDistance + randSpawnPosBuffer + spawnDistance * j);
                         ItemPrefabs[l].disabledItemList[randGo].SetActive(true);
-                        
+
                         ItemPrefabs[l].activeItemList.Add(ItemPrefabs[l].disabledItemList[randGo]);
 
-                        ItemPrefabs[l].disabledItemList[randGo].GetComponent<BaseItem>().MoveSpeed = GameManager.instance.GameSpeed;
+                        ItemPrefabs[l].disabledItemList[randGo].GetComponent<BaseItem>().MoveSpeed = itemMovementSpeed;
                         ItemPrefabs[l].disabledItemList.RemoveAt(randGo);
 
                         if (ItemPrefabs[l].itemTypes == ItemType.ItemTypes.PowerUp)
                         {
-                            StartCoroutine(DeactivateSpawnChance(l));
+                            Debug.Log("ItemPrefabs[l].powerUpType " + ItemPrefabs[l].powerUpType);
+                            StartCoroutine(DeactivateCurrentPowerUpSpawnChance(l));
+                            StartCoroutine(DeactivateOtherPowerUpSpawnChance(l));
+
                         }
 
                         for (int m = 0; m < ItemPrefabs.Count; m++)
                         {
-                            if(ItemPrefabs[m].itemTypes == ItemType.ItemTypes.PowerUp && m != l && ItemPrefabs[m].canSpawn)
+                            if (ItemPrefabs[m].itemTypes == ItemType.ItemTypes.PowerUp && m != l && ItemPrefabs[m].canSpawn)
                             {
                                 currentSpawnRate[m] += ItemPrefabs[m].addSpawnChance;
                             }
@@ -163,28 +180,93 @@ public class ItemSpawnerNew : MonoBehaviour
 
     }
 
+
     /// <summary>
     /// Set current PowerUp "canSpawn" false for the next "powerUpCooldownTimer" seconds
     /// </summary>
     /// <param name="currentPowerUp">Current PowerUp which should be deactivated (ItemPrefabs[?])</param>
     /// <returns></returns>
-    public IEnumerator DeactivateSpawnChance(int currentPowerUp)
+    public IEnumerator DeactivateCurrentPowerUpSpawnChance(int currentPowerUp)
     {
+
+        //ItemPrefabs[currentPowerUp].spawnRate = 0f;
         ItemPrefabs[currentPowerUp].canSpawn = false;
-        currentSpawnRate[currentPowerUp] = defaultSpawnRate[currentPowerUp];
 
         yield return new WaitForSeconds(powerUpCooldownTimer);
 
+        currentSpawnRate[currentPowerUp] = defaultSpawnRate[currentPowerUp];
         ItemPrefabs[currentPowerUp].canSpawn = true;
+    }
+
+    /// <summary>
+    /// Set other PowerUp "canSpawn" false for the next "powerUpCooldownTimer" seconds
+    /// </summary>
+    /// <param name="currentPowerUp">Current PowerUp which should not be affected (ItemPrefabs[?])</param>
+    /// <returns></returns>
+    public IEnumerator DeactivateOtherPowerUpSpawnChance(int currentPowerUp)
+    {
+        //List<float> currentspawnRate = new();
+
+        for (int i = 0; i < ItemPrefabs.Count; i++)
+        {
+            //currentspawnRate.Add(ItemPrefabs[currentPowerUp].spawnRate);
+
+            if (i != currentPowerUp && ItemPrefabs[i].itemTypes == ItemType.ItemTypes.PowerUp)
+            {
+                //Debug.Log("ItemPrefabs[i].powerUpType " + ItemPrefabs[i].powerUpType);
+                //ItemPrefabs[i].spawnRate = 0f;
+                ItemPrefabs[i].canSpawn = false;
+            }
+        }
+
+        yield return new WaitForSeconds(powerUpOtherCooldownTimer);
+
+        for (int i = 0; i < ItemPrefabs.Count; i++)
+        {
+            if (i != currentPowerUp && ItemPrefabs[i].itemTypes == ItemType.ItemTypes.PowerUp)
+            {
+                //ItemPrefabs[i].spawnRate = currentspawnRate[i];
+                ItemPrefabs[i].canSpawn = true;
+            }
+        }
+    }
+    /// <summary>
+    /// Disables PowerUp spawn chance at start for the next "powerUpCooldownTimerAtStart" seconds
+    /// </summary>
+    /// <returns></returns>
+    public IEnumerator DeactivatePowerUpSpawnChanceAtStart()
+    {
+        for (int i = 0; i < ItemPrefabs.Count; i++)
+        {
+            if (ItemPrefabs[i].itemTypes == ItemType.ItemTypes.PowerUp)
+            {
+                ItemPrefabs[i].canSpawn = false;
+            }
+        }
+
+        yield return new WaitForSeconds(powerUpCooldownTimerAtStart);
+
+        for (int i = 0; i < ItemPrefabs.Count; i++)
+        {
+            if (ItemPrefabs[i].itemTypes == ItemType.ItemTypes.PowerUp)
+            {
+                ItemPrefabs[i].canSpawn = true;
+            }
+        }
     }
 
     public void AdjustAllActiveItems()
     {
+        if (GameManager.instance == null)
+            return;
+
+        itemMovementSpeed = GameManager.instance.GameSpeed;
+
         for (int i = 0; i < ItemPrefabs.Count; i++)
         {
-            for(int j = 0; j < ItemPrefabs[i].activeItemList.Count; j++)
+            for (int j = 0; j < ItemPrefabs[i].activeItemList.Count; j++)
             {
-                ItemPrefabs[i].activeItemList[j].GetComponent<BaseItem>().MoveSpeed = GameManager.instance.GameSpeed;
+                ItemPrefabs[i].activeItemList[j].GetComponent<BaseItem>().MoveSpeed = itemMovementSpeed;
             }
         }
     }

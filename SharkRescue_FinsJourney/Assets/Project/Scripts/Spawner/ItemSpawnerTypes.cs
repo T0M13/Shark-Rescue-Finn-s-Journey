@@ -6,7 +6,7 @@ public class ItemSpawnerTypes : MonoBehaviour
 {
     public enum ItemSpawnerType
     {
-        None,
+        NONE,
         StartGame,
         MidGame,
         EndGame,

@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static ChunkTypes;
+using static EnvironmentType;
 using Random = UnityEngine.Random;
 
 public class ChunkManager : MonoBehaviour
@@ -17,17 +17,15 @@ public class ChunkManager : MonoBehaviour
     [SerializeField] private float tileWidthLength = 13f;
 
     [Header("Chunk Settings")]
-    [SerializeField] private EChunkType eChunkType = new();
+    [SerializeField] private EEnvironmentType eCurrentEnvironmentType = new();
     [SerializeField] private Vector3 chunkColliderCatcherSize = new Vector3(13, 15, 13);
     [SerializeField, Range(1, 20), Tooltip("It must alway be 2 less than the 'Chunk.Count'")]
     private int maxChunksShownAtTime = 3;
     [SerializeField] private float chunksMovingSpeed;
     public float spawnAdjustment = 0f; //OnTriggerExit is not precisly enoguh (0.51;0.22;1.04) -> Difference needs to be added
 
-    public EChunkType EChunkType { get => eChunkType; }
-
     [Header("Chunk List")]
-    public List<ChunkListPrefabs> chunks = new();
+    public List<ChunkListPrefabs> chunkListEnvironment = new();
     [SerializeField] private GameObject chunkColliderCatcher;
 
 
@@ -54,7 +52,7 @@ public class ChunkManager : MonoBehaviour
 
         AdjustChunkColliderCatcher();
 
-        CheckValuesBeforeEnabling();
+        //CheckValuesBeforeEnabling();
         SpawnFirstChunks();
     }
 
@@ -66,7 +64,7 @@ public class ChunkManager : MonoBehaviour
         chunksparent.name = "ChunksParent";
         chunksparent.transform.position = new Vector3(0, 0, 0);
 
-        for (int h = 0; h < chunks.Count; h++)
+        for (int h = 0; h < chunkListEnvironment.Count; h++)
         {
 
             while (counter < chunkQuantity)
@@ -88,15 +86,15 @@ public class ChunkManager : MonoBehaviour
                     {
                         if (i == 0)
                         {
-                            int temp = Random.Range(0, chunks[h].MainFloorTilePrefabs.Count);
-                            GameObject go = Instantiate(chunks[h].MainFloorTilePrefabs[temp], transform.position, transform.rotation);
+                            int temp = Random.Range(0, chunkListEnvironment[h].MainFloorTilePrefabs.Count);
+                            GameObject go = Instantiate(chunkListEnvironment[h].MainFloorTilePrefabs[temp], transform.position, transform.rotation);
                             go.transform.position = new Vector3(-tileWidthLength * j, 0, tileWidthLength * i);
                             go.transform.parent = chunk.transform;
                         }
                         else
                         {
-                            int temp = Random.Range(0, chunks[h].EnvFloorTilePrefabs.Count);
-                            GameObject go = Instantiate(chunks[h].EnvFloorTilePrefabs[temp], transform.position, transform.rotation);
+                            int temp = Random.Range(0, chunkListEnvironment[h].EnvFloorTilePrefabs.Count);
+                            GameObject go = Instantiate(chunkListEnvironment[h].EnvFloorTilePrefabs[temp], transform.position, transform.rotation);
                             go.transform.position = new Vector3(-tileWidthLength * j, 0, tileWidthLength * i);
                             go.transform.parent = chunk.transform;
                         }
@@ -105,9 +103,9 @@ public class ChunkManager : MonoBehaviour
                     //Mid (exclusive) to Right
                     for (int k = 1; k < chunkwidth + 1 - firstchunkwidth; k++)
                     {
-                        int temp = Random.Range(0, chunks[h].EnvFloorTilePrefabs.Count);
+                        int temp = Random.Range(0, chunkListEnvironment[h].EnvFloorTilePrefabs.Count);
                         //Debug.Log("Math.Floor(chunkwidth - chunkwidth * 0.5) " + Math.Floor(chunkwidth * 0.5));
-                        GameObject go = Instantiate(chunks[h].EnvFloorTilePrefabs[temp]);
+                        GameObject go = Instantiate(chunkListEnvironment[h].EnvFloorTilePrefabs[temp]);
                         go.transform.position = new Vector3(tileWidthLength * k, 0, tileWidthLength * i);
                         go.transform.parent = chunk.transform;
                     }
@@ -121,9 +119,9 @@ public class ChunkManager : MonoBehaviour
                 chunk.GetComponent<BoxCollider>().size = new Vector3(tileWidthLength, 1, tileWidthLength);
                 chunk.SetActive(false);
                 chunk.transform.parent = chunksparent.transform;
-                chunk.GetComponent<Chunk>().eChunkType = chunks[h].EChunkType;
+                chunk.GetComponent<Chunk>().eEnvironmentType = chunkListEnvironment[h].EEnvironmentType;
 
-                chunks[h].DisabledChunkList.Add(chunk);
+                chunkListEnvironment[h].DisabledChunkList.Add(chunk);
 
                 counter++;
             };
@@ -146,26 +144,26 @@ public class ChunkManager : MonoBehaviour
 
         chunksMovingSpeed = GameManager.instance.GameSpeed;
 
-        for (int i = 0; i < chunks.Count; i++)
+        for (int i = 0; i < chunkListEnvironment.Count; i++)
         {
-            for (int j = 0; j < chunks[i].DisabledChunkList.Count; j++)
+            for (int j = 0; j < chunkListEnvironment[i].DisabledChunkList.Count; j++)
             {
-                chunks[i].DisabledChunkList[j].GetComponent<Chunk>().movingSpeed = chunksMovingSpeed;
+                chunkListEnvironment[i].DisabledChunkList[j].GetComponent<Chunk>().movingSpeed = chunksMovingSpeed;
             }
 
-            for (int j = 0; j < chunks[i].ActiveChunkList.Count; j++)
+            for (int j = 0; j < chunkListEnvironment[i].ActiveChunkList.Count; j++)
             {
-                chunks[i].ActiveChunkList[j].GetComponent<Chunk>().movingSpeed = chunksMovingSpeed;
+                chunkListEnvironment[i].ActiveChunkList[j].GetComponent<Chunk>().movingSpeed = chunksMovingSpeed;
             }
         }
     }
 
-    public void ChangeEnvironment(EChunkType eChunkType)
+    public void ChangeEnvironment(EEnvironmentType eChunkType)
     {
         if (GameManager.instance == null)
             return;
 
-        this.eChunkType = eChunkType;
+        this.eCurrentEnvironmentType = eChunkType;
     }
 
     private void SpawnFirstChunks()
@@ -174,22 +172,22 @@ public class ChunkManager : MonoBehaviour
             return;
 
         chunksMovingSpeed = GameManager.instance.GameSpeed;
-        eChunkType = GameManager.instance.EChunkType;
+        eCurrentEnvironmentType = GameManager.instance.EEnvironmentTyp;
 
-        for (int i = 0; i < chunks.Count; i++)
+        for (int i = 0; i < chunkListEnvironment.Count; i++)
         {
-            for (int j = chunks[i].DisabledChunkList.Count - 1; j >= 0; j--)
+            for (int j = chunkListEnvironment[i].DisabledChunkList.Count - 1; j >= 0; j--)
             {
-                chunks[i].DisabledChunkList[j].GetComponent<Chunk>().movingSpeed = chunksMovingSpeed;
+                chunkListEnvironment[i].DisabledChunkList[j].GetComponent<Chunk>().movingSpeed = chunksMovingSpeed;
 
-                if (j < maxChunksShownAtTime && chunks[i].EChunkType == eChunkType)
+                if (j < maxChunksShownAtTime && chunkListEnvironment[i].EEnvironmentType == eCurrentEnvironmentType)
                 {
-                    chunks[i].ActiveChunkList.Add(chunks[i].DisabledChunkList[j]);
+                    chunkListEnvironment[i].ActiveChunkList.Add(chunkListEnvironment[i].DisabledChunkList[j]);
 
-                    chunks[i].DisabledChunkList[j].SetActive(true);
-                    chunks[i].DisabledChunkList[j].transform.position = new Vector3(0, 0, 13 * chunklength * j);
+                    chunkListEnvironment[i].DisabledChunkList[j].SetActive(true);
+                    chunkListEnvironment[i].DisabledChunkList[j].transform.position = new Vector3(0, 0, 13 * chunklength * j);
 
-                    chunks[i].DisabledChunkList.Remove(chunks[i].DisabledChunkList[j]);
+                    chunkListEnvironment[i].DisabledChunkList.Remove(chunkListEnvironment[i].DisabledChunkList[j]);
                 }
             }
         }
@@ -198,18 +196,18 @@ public class ChunkManager : MonoBehaviour
     public void SpawnNewChunk()
     {
         int randomTemp;
-        for (int i = 0; i < chunks.Count; i++)
+        for (int i = 0; i < chunkListEnvironment.Count; i++)
         {
-            if (chunks[i].EChunkType == eChunkType)
+            if (chunkListEnvironment[i].EEnvironmentType == eCurrentEnvironmentType)
             {
-                randomTemp = Random.Range(0, chunks[i].DisabledChunkList.Count);
+                randomTemp = Random.Range(0, chunkListEnvironment[i].DisabledChunkList.Count);
 
-                chunks[i].ActiveChunkList.Add(chunks[i].DisabledChunkList[randomTemp]);
+                chunkListEnvironment[i].ActiveChunkList.Add(chunkListEnvironment[i].DisabledChunkList[randomTemp]);
 
-                chunks[i].DisabledChunkList[randomTemp].transform.position = new Vector3(0, 0, tileWidthLength * chunklength * (maxChunksShownAtTime - 1) + spawnAdjustment);
-                chunks[i].DisabledChunkList[randomTemp].SetActive(true);
+                chunkListEnvironment[i].DisabledChunkList[randomTemp].transform.position = new Vector3(0, 0, tileWidthLength * chunklength * (maxChunksShownAtTime - 1) + spawnAdjustment);
+                chunkListEnvironment[i].DisabledChunkList[randomTemp].SetActive(true);
 
-                chunks[i].DisabledChunkList.RemoveAt(randomTemp);
+                chunkListEnvironment[i].DisabledChunkList.RemoveAt(randomTemp);
 
             }
         }

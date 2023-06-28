@@ -38,16 +38,20 @@ public class ObstacleLane : MonoBehaviour
             //}
 
 
-            for (int i = 0; i < ObstacleManager.Instance.ObstaclePrefabs.Count; i++)
+            for (int i = 0; i < ObstacleManager.Instance.ObstacleList.Count; i++)
             {
-                for (int j = obstacles.Count - 1; j >= 0; j--)
+                for (int j = 0; j < ObstacleManager.Instance.ObstacleList[i].obstacleConfigurations.Count; j++)
                 {
-                    if (ObstacleManager.Instance.ObstaclePrefabs[i].obstacleType == obstacles[j].obstacleSizeType)
+                    for (int k = obstacles.Count - 1; k >= 0; k--)
                     {
-                        ObstacleManager.Instance.ObstaclePrefabs[i].disabledObstacleList.Add(obstacles[j].gameObject);
-                        ObstacleManager.Instance.ObstaclePrefabs[i].activeObstacleList.Remove(obstacles[j].gameObject);
+                        if (ObstacleManager.Instance.ObstacleList[i].obstacleConfigurations[j].obstacleType == obstacles[k].obstacleSizeType)
+                        {
+                            ObstacleManager.Instance.ObstacleList[i].obstacleConfigurations[j].disabledObstacleList.Add(obstacles[k].gameObject);
+                            ObstacleManager.Instance.ObstacleList[i].obstacleConfigurations[j].activeObstacleList.Remove(obstacles[k].gameObject);
+                        }
                     }
                 }
+
             }
             obstacles.Clear();
             ObstacleManager.Instance.disabledObstacleLanes.Add(gameObject);

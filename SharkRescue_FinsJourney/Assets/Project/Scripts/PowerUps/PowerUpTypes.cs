@@ -6,7 +6,7 @@ public class PowerUpTypes : MonoBehaviour
 {
     public enum PowerUpType
     {
-        None,
+        NONE,
         Magnet,
         Speed,
     }

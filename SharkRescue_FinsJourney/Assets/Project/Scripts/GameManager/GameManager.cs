@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using tomi.SaveSystem;
 using UnityEngine;
-using static ChunkTypes;
+using static EnvironmentType;
 
 public class GameManager : MonoBehaviour
 {
@@ -16,7 +16,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private ItemSpawnerNew itemSpawner;
     [SerializeField] private ObstacleManager obstacleManager;
     [Header("Game Environment")]
-    [SerializeField] private EChunkType eChunkType = new();
+    [SerializeField] private EEnvironmentType eEnvironmentTyp = new();
     [Header("Game Positions")]
     [SerializeField] private Vector3 startPosition;
     [Header("Game Speed")]
@@ -42,7 +42,7 @@ public class GameManager : MonoBehaviour
 
     public Vector3 StartPosition { get => startPosition; set => startPosition = value; }
     public float GameSpeed { get => gameSpeed; set => gameSpeed = value; }
-    public EChunkType EChunkType { get => eChunkType;}
+    public EEnvironmentType EEnvironmentTyp { get => eEnvironmentTyp;}
 
     public Action OnAddCoin;
     public Action<BaseItem> OnSpawnObject;

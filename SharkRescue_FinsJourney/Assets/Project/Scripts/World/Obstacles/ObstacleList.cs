@@ -1,10 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static EnvironmentType;
 using static ObstacleTypes;
 
 [System.Serializable]
-public class ObstacleListPrefabs
+public class ObstacleList
+{
+    public EEnvironmentType environmentType = new();
+    public List<ObstacleConfiguration> obstacleConfigurations = new();
+    public List<int> spawnRate = new();
+
+}
+
+[System.Serializable]
+public class ObstacleConfiguration
 {
     public ObstacleSizeType obstacleType = new();
     [Tooltip("Unique Prefabs.")]

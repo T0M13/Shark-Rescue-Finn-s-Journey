@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ChunkTypes : MonoBehaviour
+public class EnvironmentType : MonoBehaviour
 {
-    public enum EChunkType
+    public enum EEnvironmentType
     {
         NONE,
         Sand,
