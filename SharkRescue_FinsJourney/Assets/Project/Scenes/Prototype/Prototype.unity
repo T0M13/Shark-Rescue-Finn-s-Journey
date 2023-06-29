@@ -15800,7 +15800,7 @@ MonoBehaviour:
     - {fileID: 8625296291214481592, guid: 6fe6664b46ba4064094aa1a14b47580e, type: 3}
     DisabledEnvChunkList: []
     ActiveEnvChunkList: []
-  chunkColliderCatcher: {fileID: 0}
+  chunkColliderCatcher: {fileID: 2132426213}
 --- !u!4 &1253199305
 Transform:
   m_ObjectHideFlags: 0
