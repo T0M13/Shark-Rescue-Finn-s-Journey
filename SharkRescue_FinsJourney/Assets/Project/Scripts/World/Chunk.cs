@@ -5,18 +5,12 @@ using static EnvironmentType;
 
 public class Chunk : MonoBehaviour
 {
-    public float movingSpeed = 5;
+    public float movingSpeed = 0; //Will be setted by ChunkManager
     public EEnvironmentType eEnvironmentType;
 
-    void Update()
+    protected void Update()
     {
-        //gameObject.transform.position += new Vector3(movingSpeed * Time.deltaTime, 0, 0);
         gameObject.transform.position += new Vector3(0, 0, -movingSpeed * Time.deltaTime);
-
-        //if(gameObject.transform.position.x >= 65)
-        //{
-        //    Debug.Log(gameObject.name + " Update: " + gameObject.transform.position);
-        //}
     }
 
 

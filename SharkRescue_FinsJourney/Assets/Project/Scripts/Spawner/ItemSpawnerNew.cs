@@ -153,7 +153,7 @@ public class ItemSpawnerNew : MonoBehaviour
 
                         if (ItemPrefabs[l].itemTypes == ItemType.ItemTypes.PowerUp)
                         {
-                            Debug.Log("ItemPrefabs[l].powerUpType " + ItemPrefabs[l].powerUpType);
+                            //Debug.Log("ItemPrefabs[l].powerUpType " + ItemPrefabs[l].powerUpType);
                             StartCoroutine(DeactivateCurrentPowerUpSpawnChance(l));
                             StartCoroutine(DeactivateOtherPowerUpSpawnChance(l));
 

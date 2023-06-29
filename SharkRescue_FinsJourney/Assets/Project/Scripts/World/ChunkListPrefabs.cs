@@ -20,7 +20,7 @@ public class ChunkListPrefabs
     public List<GameObject> DisabledChunkList = new();
     [Tooltip("Currently active Chunks.")]
     public List<GameObject> ActiveChunkList = new();
-    //[Space(20)]
+    [Space(10)]
     [Header("Finished Environment Chunk Prefabs")]
     [Tooltip("Unique Environment Chunk Prefabs.")]
     public List<GameObject> EnvChunkPrefabs = new();

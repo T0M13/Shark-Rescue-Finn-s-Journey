@@ -15738,6 +15738,7 @@ MonoBehaviour:
   chunklength: 5
   chunkwidth: 5
   chunkQuantity: 8
+  environmentChunkQuantity: 8
   tileWidthLength: 13
   eCurrentEnvironmentType: 0
   chunkColliderCatcherSize: {x: 13, y: 15, z: 13}
@@ -15768,7 +15769,8 @@ MonoBehaviour:
     - {fileID: 3024226807172674610, guid: fbc2bf6c3372aeb4681611fb1e42109e, type: 3}
     DisabledChunkList: []
     ActiveChunkList: []
-    EnvChunkPrefabs: []
+    EnvChunkPrefabs:
+    - {fileID: 8625296291214481592, guid: 3ec78e79b29532d4a889d0c49b34d5e0, type: 3}
     DisabledEnvChunkList: []
     ActiveEnvChunkList: []
   - EEnvironmentType: 2
@@ -15794,10 +15796,11 @@ MonoBehaviour:
     - {fileID: 3024226807172674610, guid: eab244b6459b60e498bf6b8064181481, type: 3}
     DisabledChunkList: []
     ActiveChunkList: []
-    EnvChunkPrefabs: []
+    EnvChunkPrefabs:
+    - {fileID: 8625296291214481592, guid: 6fe6664b46ba4064094aa1a14b47580e, type: 3}
     DisabledEnvChunkList: []
     ActiveEnvChunkList: []
-  chunkColliderCatcher: {fileID: 2132426213}
+  chunkColliderCatcher: {fileID: 0}
 --- !u!4 &1253199305
 Transform:
   m_ObjectHideFlags: 0
