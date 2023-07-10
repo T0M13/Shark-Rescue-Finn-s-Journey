@@ -12,4 +12,10 @@ public class MagnetPowerUp : BaseItem, IInteractable
             GameManager.instance.OnMagnetPowerUp?.Invoke();
         GameManager.instance.OnDeactivateGObject?.Invoke(gameObject);
     }
+
+    public void PlaySFX()
+    {
+        if (AudioManager.instance)
+            AudioManager.instance.Play("magnet");
+    }
 }

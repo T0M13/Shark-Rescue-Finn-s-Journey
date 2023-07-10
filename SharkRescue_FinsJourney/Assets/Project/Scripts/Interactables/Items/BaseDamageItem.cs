@@ -16,4 +16,10 @@ public class BaseDamageItem : BaseItem, IInteractable
             GameManager.instance.OnGetDamage?.Invoke(damageValue);
         GameManager.instance.OnDeactivateGObject?.Invoke(gameObject);
     }
+
+    public void PlaySFX()
+    {
+        //if (AudioManager.instance)
+            //AudioManager.instance.Play("damage");
+    }
 }

@@ -101,7 +101,7 @@ public class AudioManager : MonoBehaviour
             Debug.Log("Can't find Sound");
         }
         s.source.Play();
-        if (s.loop) return;
+        if (s.loop || !s.destroyAfter) return;
         StartCoroutine(RemoveAfterPlayed(s.clip.length, s.source));
     }
 

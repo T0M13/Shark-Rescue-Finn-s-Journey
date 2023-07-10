@@ -47,7 +47,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   audioMixer: {fileID: 24100000, guid: e51e6f84945a2f848b0eab571f528298, type: 2}
   audioSource: {fileID: 5607157440213826452}
-  songs: []
+  songs:
+  - {fileID: 8300000, guid: 772d98e2cc16a7a4baf2db95ae11835c, type: 3}
+  - {fileID: 8300000, guid: 16d11eb79954fe74ca5497c16fe213eb, type: 3}
   prevSong: 0
   nextSong: 0
   masterGroup: {fileID: 24300002, guid: e51e6f84945a2f848b0eab571f528298, type: 2}
@@ -55,9 +57,103 @@ MonoBehaviour:
     type: 2}
   effectsGroup: {fileID: 4707923197465392448, guid: e51e6f84945a2f848b0eab571f528298,
     type: 2}
-  sounds: []
-  saveBehaviour: {fileID: 11400000, guid: 0160b4a5516637d498cec83bb7a5a686, type: 2}
-  loadBehaviour: {fileID: 11400000, guid: 28ea242922f97cc4c8da32999246b205, type: 2}
+  sounds:
+  - name: bubbles
+    clip: {fileID: 8300000, guid: fcad919f9f6e6a746a0d2c789091dcb1, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    spatialBand: 0
+    type: 2
+    source: {fileID: 0}
+  - name: buttonClick
+    clip: {fileID: 8300000, guid: 510a3dd25845d4048b1e4e6e5e6665d7, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    spatialBand: 0
+    type: 2
+    source: {fileID: 0}
+  - name: coin
+    clip: {fileID: 8300000, guid: 0446adb0cf1f648409b57e4a4088bcdc, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    spatialBand: 0
+    type: 2
+    source: {fileID: 0}
+  - name: collision
+    clip: {fileID: 8300000, guid: 770e31b3ed1798740b76016e3bb7ea36, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    spatialBand: 0
+    type: 2
+    source: {fileID: 0}
+  - name: eatOne
+    clip: {fileID: 8300000, guid: 05fa66a1fcb32554a817b41b16518709, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    spatialBand: 0
+    type: 2
+    source: {fileID: 0}
+  - name: eatTwo
+    clip: {fileID: 8300000, guid: f92ce14d5fd1752439bdbc367b4c3da3, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    spatialBand: 0
+    type: 2
+    source: {fileID: 0}
+  - name: magnet
+    clip: {fileID: 8300000, guid: 6a139d52c05b8a04da39752104186d95, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    spatialBand: 0
+    type: 2
+    source: {fileID: 0}
+  - name: swipeCL
+    clip: {fileID: 8300000, guid: a66a2e633d6bad04c935c0584cb00abd, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    spatialBand: 0
+    type: 2
+    source: {fileID: 0}
+  - name: swipeCR
+    clip: {fileID: 8300000, guid: c7a0be595e821024ca34f4e037742d4a, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    spatialBand: 0
+    type: 2
+    source: {fileID: 0}
+  - name: swipeLC
+    clip: {fileID: 8300000, guid: ad983fb7957776e4ea3e7741d0c89653, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    spatialBand: 0
+    type: 2
+    source: {fileID: 0}
+  - name: swipeRC
+    clip: {fileID: 8300000, guid: 5899a9b2acd40f647a11741b0dc42cd5, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    spatialBand: 0
+    type: 2
+    source: {fileID: 0}
+  - name: intro
+    clip: {fileID: 8300000, guid: cde848893b9d7cc4da789cae6d94ebeb, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    spatialBand: 0
+    type: 2
+    source: {fileID: 0}
 --- !u!82 &5607157440213826452
 AudioSource:
   m_ObjectHideFlags: 0

@@ -101,48 +101,40 @@ public class SwipeDetection : MonoBehaviour
     {
         if (Vector2.Dot(Vector2.up, direction) > directionThreshold)
         {
-            Debug.Log("Up");
             OnSwipeUp?.Invoke();
         }
         if (Vector2.Dot(Vector2.down, direction) > directionThreshold)
         {
-            Debug.Log("Down");
             OnSwipeDown?.Invoke();
         }
         if (Vector2.Dot(Vector2.left, direction) > directionThreshold)
         {
-            Debug.Log("Left");
             OnSwipeLeft?.Invoke();
         }
         if (Vector2.Dot(Vector2.right, direction) > directionThreshold)
         {
-            Debug.Log("Right");
             OnSwipeRight?.Invoke();
         }
 
 
         if ((Vector2.Dot(Vector2.down, direction) > diagonalThreshold) && (Vector2.Dot(Vector2.left, direction) > diagonalThreshold))
         {
-            Debug.Log("Down Left Diagonal");
             OnSwipeDown?.Invoke();
             OnSwipeLeft?.Invoke();
         }
         if ((Vector2.Dot(Vector2.down, direction) > diagonalThreshold) && (Vector2.Dot(Vector2.right, direction) > diagonalThreshold))
         {
-            Debug.Log("Down Right Diagonal");
             OnSwipeDown?.Invoke();
             OnSwipeRight?.Invoke();
         }
 
         if ((Vector2.Dot(Vector2.up, direction) > diagonalThreshold) && (Vector2.Dot(Vector2.left, direction) > diagonalThreshold))
         {
-            Debug.Log("Up Left Diagonal");
             OnSwipeUp?.Invoke();
             OnSwipeLeft?.Invoke();
         }
         if ((Vector2.Dot(Vector2.up, direction) > diagonalThreshold) && (Vector2.Dot(Vector2.right, direction) > diagonalThreshold))
         {
-            Debug.Log("Up Right Diagonal");
             OnSwipeUp?.Invoke();
             OnSwipeRight?.Invoke();
         }
@@ -153,22 +145,18 @@ public class SwipeDetection : MonoBehaviour
     {
         if (movement == Vector2.up)
         {
-            Debug.Log("Up");
             OnSwipeUp?.Invoke();
         }
         if (movement == Vector2.down)
         {
-            Debug.Log("Down");
             OnSwipeDown?.Invoke();
         }
         if (movement == Vector2.left)
         {
-            Debug.Log("Left");
             OnSwipeLeft?.Invoke();
         }
         if (movement == Vector2.right)
         {
-            Debug.Log("Right");
             OnSwipeRight?.Invoke();
         }
     }

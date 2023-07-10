@@ -71,6 +71,9 @@ public class PlayerController : MonoBehaviour
         {
             currentUndulate = Undulate.Up;
 
+            if (AudioManager.instance)
+                AudioManager.instance.Play("swipe");
+
             if (coroutine != null)
             {
                 StopCoroutine(coroutine);
@@ -80,6 +83,9 @@ public class PlayerController : MonoBehaviour
         if (currentUndulate == Undulate.Down)
         {
             currentUndulate = Undulate.Center;
+
+            if (AudioManager.instance)
+                AudioManager.instance.Play("swipe");
 
             if (coroutine != null)
             {
@@ -95,6 +101,9 @@ public class PlayerController : MonoBehaviour
         {
             currentUndulate = Undulate.Down;
 
+            if (AudioManager.instance)
+                AudioManager.instance.Play("swipe");
+
             if (coroutine != null)
             {
                 StopCoroutine(coroutine);
@@ -105,12 +114,16 @@ public class PlayerController : MonoBehaviour
         {
             currentUndulate = Undulate.Center;
 
+            if (AudioManager.instance)
+                AudioManager.instance.Play("swipe");
+
             if (coroutine != null)
             {
                 StopCoroutine(coroutine);
             }
             coroutine = StartCoroutine(RotatePlayer(laneSwitchRotation, false));
         }
+
     }
 
     private void SwipeLeft()
@@ -118,6 +131,9 @@ public class PlayerController : MonoBehaviour
         if (currentLane == Lane.Middle)
         {
             currentLane = Lane.Left;
+
+            if (AudioManager.instance)
+                AudioManager.instance.Play("swipeCL");
 
             if (coroutine != null)
             {
@@ -128,6 +144,9 @@ public class PlayerController : MonoBehaviour
         if (currentLane == Lane.Right)
         {
             currentLane = Lane.Middle;
+
+            if (AudioManager.instance)
+                AudioManager.instance.Play("swipeRC");
 
             if (coroutine != null)
             {
@@ -143,6 +162,9 @@ public class PlayerController : MonoBehaviour
         {
             currentLane = Lane.Right;
 
+            if (AudioManager.instance)
+                AudioManager.instance.Play("swipeCR");
+
             if (coroutine != null)
             {
                 StopCoroutine(coroutine);
@@ -152,6 +174,9 @@ public class PlayerController : MonoBehaviour
         if (currentLane == Lane.Left)
         {
             currentLane = Lane.Middle;
+
+            if (AudioManager.instance)
+                AudioManager.instance.Play("swipeLC");
 
             if (coroutine != null)
             {

@@ -12,4 +12,10 @@ public class SpeedPowerUp : BaseItem, IInteractable
             GameManager.instance.OnSpeedPowerUp?.Invoke();
         GameManager.instance.OnDeactivateGObject?.Invoke(gameObject);
     }
+
+    public void PlaySFX()
+    {
+        //if (AudioManager.instance)
+            //AudioManager.instance.Play("speedPower");
+    }
 }

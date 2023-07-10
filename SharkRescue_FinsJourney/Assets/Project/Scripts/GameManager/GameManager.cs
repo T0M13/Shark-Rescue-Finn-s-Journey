@@ -112,6 +112,9 @@ public class GameManager : MonoBehaviour
 
         adjustedSpeed = originalSpeed;
 
+        if (AudioManager.instance)
+            AudioManager.instance.Play("bubbles");
+
     }
 
     private void Update()

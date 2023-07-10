@@ -27,4 +27,10 @@ public class BaseCoin : BaseItem, IInteractable
             GameManager.instance.OnAddCoin?.Invoke();
         GameManager.instance.OnDeactivateGObject?.Invoke(gameObject);
     }
+
+    public void PlaySFX()
+    {
+        if (AudioManager.instance)
+            AudioManager.instance.Play("coin");
+    }
 }
