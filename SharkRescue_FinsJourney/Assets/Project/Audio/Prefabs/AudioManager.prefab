@@ -49,7 +49,6 @@ MonoBehaviour:
   audioSource: {fileID: 5607157440213826452}
   songs:
   - {fileID: 8300000, guid: 772d98e2cc16a7a4baf2db95ae11835c, type: 3}
-  - {fileID: 8300000, guid: 16d11eb79954fe74ca5497c16fe213eb, type: 3}
   prevSong: 0
   nextSong: 0
   masterGroup: {fileID: 24300002, guid: e51e6f84945a2f848b0eab571f528298, type: 2}
@@ -63,6 +62,7 @@ MonoBehaviour:
     volume: 1
     pitch: 1
     loop: 0
+    destroyAfter: 0
     spatialBand: 0
     type: 2
     source: {fileID: 0}
@@ -71,6 +71,7 @@ MonoBehaviour:
     volume: 1
     pitch: 1
     loop: 0
+    destroyAfter: 0
     spatialBand: 0
     type: 2
     source: {fileID: 0}
@@ -79,6 +80,7 @@ MonoBehaviour:
     volume: 1
     pitch: 1
     loop: 0
+    destroyAfter: 0
     spatialBand: 0
     type: 2
     source: {fileID: 0}
@@ -87,6 +89,7 @@ MonoBehaviour:
     volume: 1
     pitch: 1
     loop: 0
+    destroyAfter: 0
     spatialBand: 0
     type: 2
     source: {fileID: 0}
@@ -95,6 +98,7 @@ MonoBehaviour:
     volume: 1
     pitch: 1
     loop: 0
+    destroyAfter: 0
     spatialBand: 0
     type: 2
     source: {fileID: 0}
@@ -103,6 +107,7 @@ MonoBehaviour:
     volume: 1
     pitch: 1
     loop: 0
+    destroyAfter: 0
     spatialBand: 0
     type: 2
     source: {fileID: 0}
@@ -111,6 +116,7 @@ MonoBehaviour:
     volume: 1
     pitch: 1
     loop: 0
+    destroyAfter: 0
     spatialBand: 0
     type: 2
     source: {fileID: 0}
@@ -119,6 +125,7 @@ MonoBehaviour:
     volume: 1
     pitch: 1
     loop: 0
+    destroyAfter: 0
     spatialBand: 0
     type: 2
     source: {fileID: 0}
@@ -127,6 +134,7 @@ MonoBehaviour:
     volume: 1
     pitch: 1
     loop: 0
+    destroyAfter: 0
     spatialBand: 0
     type: 2
     source: {fileID: 0}
@@ -135,6 +143,7 @@ MonoBehaviour:
     volume: 1
     pitch: 1
     loop: 0
+    destroyAfter: 0
     spatialBand: 0
     type: 2
     source: {fileID: 0}
@@ -143,6 +152,7 @@ MonoBehaviour:
     volume: 1
     pitch: 1
     loop: 0
+    destroyAfter: 0
     spatialBand: 0
     type: 2
     source: {fileID: 0}
@@ -151,6 +161,16 @@ MonoBehaviour:
     volume: 1
     pitch: 1
     loop: 0
+    destroyAfter: 0
+    spatialBand: 0
+    type: 2
+    source: {fileID: 0}
+  - name: swipe
+    clip: {fileID: 8300000, guid: 389cd2ed31e90ef4d8e1110bf24c05ff, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    destroyAfter: 0
     spatialBand: 0
     type: 2
     source: {fileID: 0}

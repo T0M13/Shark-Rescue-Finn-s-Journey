@@ -38,14 +38,15 @@ public class AudioManager : MonoBehaviour
 
     private void Awake()
     {
-        if (instance != null)
-        {
-            Destroy(gameObject);
-        }
-        else
+        if (instance == null)
         {
             instance = this;
             DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+            return;
         }
 
         GetAudioSource();
@@ -346,6 +347,13 @@ public class AudioManager : MonoBehaviour
     private void SetVolumeOfMixer(int volume, string name)
     {
         audioMixer.SetFloat(name, volume);
+    }
+
+    public void LoadVolumes()
+    {
+        SetVolumeOfMixer(SaveData.PlayerProfile.masterVolume, masterVolName);
+        SetVolumeOfMixer(SaveData.PlayerProfile.musicVolume, musicVolName);
+        SetVolumeOfMixer(SaveData.PlayerProfile.effectsVolume, effectsVolName);
     }
 
 }

@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private ChunkManager chunkManager;
     [SerializeField] private ItemSpawnerNew itemSpawner;
     [SerializeField] private ObstacleManager obstacleManager;
+    [SerializeField] private AudioManager audioManager;
     [Header("Game Environment")]
     [SerializeField] private EEnvironmentType eEnvironmentTyp = new();
     [Header("Game Positions")]
@@ -39,10 +40,13 @@ public class GameManager : MonoBehaviour
     [Header("Saved Stats")]
     [SerializeField] private int playerProfileCoins;
     [SerializeField] private int playerProfileHighscore;
+    [SerializeField] private int playerMaster;
+    [SerializeField] private int playerMusic;
+    [SerializeField] private int playerEffects;
 
     public Vector3 StartPosition { get => startPosition; set => startPosition = value; }
     public float GameSpeed { get => gameSpeed; set => gameSpeed = value; }
-    public EEnvironmentType EEnvironmentTyp { get => eEnvironmentTyp;}
+    public EEnvironmentType EEnvironmentTyp { get => eEnvironmentTyp; }
 
     public Action OnAddCoin;
     public Action<BaseItem> OnSpawnObject;
@@ -110,11 +114,20 @@ public class GameManager : MonoBehaviour
         if (obstacleManager == null)
             obstacleManager = FindObjectOfType<ObstacleManager>();
 
+        if (audioManager == null)
+            audioManager = FindObjectOfType<AudioManager>();
+
         adjustedSpeed = originalSpeed;
 
-        if (AudioManager.instance)
-            AudioManager.instance.Play("bubbles");
+    }
 
+    private void Start()
+    {
+        if (audioManager)
+        {
+            audioManager.Play("bubbles");
+            audioManager.LoadVolumes();
+        }
     }
 
     private void Update()
@@ -216,5 +229,11 @@ public class GameManager : MonoBehaviour
 
         playerProfileCoins = SaveData.PlayerProfile.coins;
         playerProfileHighscore = SaveData.PlayerProfile.highscore;
+        playerMaster = SaveData.PlayerProfile.masterVolume;
+        playerMusic = SaveData.PlayerProfile.musicVolume;
+        playerEffects = SaveData.PlayerProfile.effectsVolume;
+
+
+
     }
 }
