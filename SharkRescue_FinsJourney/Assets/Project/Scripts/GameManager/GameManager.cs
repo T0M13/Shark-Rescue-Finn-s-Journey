@@ -28,6 +28,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float adjustedSpeed;
     [SerializeField] private float timer;
     [SerializeField] private float timerCooldown = 5f;
+    [Header("Game Settings")]
+    [SerializeField] private bool paused = false;
     [Header("Player Stats")]
     [SerializeField] private int health = 1;
     [SerializeField] private int coins;
@@ -47,6 +49,7 @@ public class GameManager : MonoBehaviour
     public Vector3 StartPosition { get => startPosition; set => startPosition = value; }
     public float GameSpeed { get => gameSpeed; set => gameSpeed = value; }
     public EEnvironmentType EEnvironmentTyp { get => eEnvironmentTyp; }
+    public bool Paused { get => paused; set => paused = value; }
 
     public Action OnAddCoin;
     public Action<BaseItem> OnSpawnObject;
@@ -211,6 +214,19 @@ public class GameManager : MonoBehaviour
         speedPowerup = true;
         gameSpeed = gameSpeed * 1.3f;
     }
+
+    public void PauseGame()
+    {
+        Time.timeScale = 0;
+        Paused = true;
+    }
+
+    public void ResumeGame()
+    {
+        Time.timeScale = 1;
+        Paused = false;
+    }
+
 
     public void ResetGameSpeed()
     {

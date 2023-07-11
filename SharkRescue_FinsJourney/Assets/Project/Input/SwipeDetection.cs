@@ -47,6 +47,11 @@ public class SwipeDetection : MonoBehaviour
 
     private void SwipeStart(Vector2 position, float time)
     {
+        if (GameManager.instance)
+        {
+            if (GameManager.instance.Paused) return;
+        }
+
         startPosition = position;
         startTime = time;
 
@@ -67,6 +72,11 @@ public class SwipeDetection : MonoBehaviour
 
     private void SwipeEnd(Vector2 position, float time)
     {
+        if (GameManager.instance)
+        {
+            if (GameManager.instance.Paused) return;
+        }
+
         if (trail != null)
         {
             trail.SetActive(false);
