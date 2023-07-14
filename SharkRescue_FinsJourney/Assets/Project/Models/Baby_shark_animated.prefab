@@ -684,7 +684,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2803471062117837054
 Transform:
   m_ObjectHideFlags: 0
@@ -712,10 +712,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b37cffab30b939469bac076fdd82c59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Weight: 1
+  m_Weight: 0
   m_Data:
     m_ConstrainedObject: {fileID: 3935151456639351319}
-    m_Source: {fileID: 6322490656629653775}
+    m_Source: {fileID: 1116554929081148490}
     m_DampPosition: 0
     m_DampRotation: 0.335
     m_MaintainAim: 1
@@ -1739,7 +1739,7 @@ Transform:
   - {fileID: 8464269750352532856}
   m_Father: {fileID: 3935151456639351319}
   m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: -52.655}
 --- !u!1 &7181064058740957336
 GameObject:
   m_ObjectHideFlags: 0
