@@ -104,7 +104,7 @@ public class ItemSpawnerNew : MonoBehaviour
         float currentSpawnRateValue;
         float randChance;
 
-        itemMovementSpeed = GameManager.instance.GameSpeed;
+        //itemMovementSpeed = GameManager.instance.GameSpeed;
         //Debug.Log("SpawnItems: " + startSpawnDistance);
 
         for (int i = 0; i < itemLaneMaxCount; i++) //How many random lanes can get items per chunk

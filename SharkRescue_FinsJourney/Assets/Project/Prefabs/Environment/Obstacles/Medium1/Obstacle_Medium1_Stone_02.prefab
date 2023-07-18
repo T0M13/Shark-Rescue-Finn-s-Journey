@@ -179,8 +179,8 @@ GameObject:
   - component: {fileID: 6364968006812335673}
   - component: {fileID: 5892111995546935148}
   m_Layer: 0
-  m_Name: Obstacle_Medium1_02
-  m_TagString: Untagged
+  m_Name: Obstacle_Medium1_Stone_02
+  m_TagString: HardObstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
