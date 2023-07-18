@@ -34,6 +34,7 @@ public class PlayerInteractor : MonoBehaviour
             interactable.Interact();
             interactable.PlaySFX();
         }
+
     }
 
     private void Update()
@@ -101,5 +102,13 @@ public class PlayerInteractor : MonoBehaviour
         }
     }
     #endregion
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (GameManager.instance && collision.gameObject.CompareTag("HardObstacle"))
+        {
+            GameManager.instance.OnGameOver?.Invoke();
+        }
+    }
 
 }

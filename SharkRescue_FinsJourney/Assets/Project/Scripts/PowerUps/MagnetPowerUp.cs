@@ -10,7 +10,6 @@ public class MagnetPowerUp : BaseItem, IInteractable
 
         if (GameManager.instance != null)
             GameManager.instance.OnMagnetPowerUp?.Invoke();
-        GameManager.instance.OnDeactivateGObject?.Invoke(gameObject);
     }
 
     public void PlaySFX()

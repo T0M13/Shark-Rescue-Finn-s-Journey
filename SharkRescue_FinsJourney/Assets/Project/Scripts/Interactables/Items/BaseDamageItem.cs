@@ -13,8 +13,11 @@ public class BaseDamageItem : BaseItem, IInteractable
         Debug.Log("Damaging Player: " + Value);
 
         if (GameManager.instance != null)
+        {
             GameManager.instance.OnGetDamage?.Invoke(damageValue);
-        GameManager.instance.OnDeactivateGObject?.Invoke(gameObject);
+            GameManager.instance.OnReAddHealth?.Invoke();
+        }
+        //GameManager.instance.OnDeactivateGObject?.Invoke(gameObject);
     }
 
     public void PlaySFX()

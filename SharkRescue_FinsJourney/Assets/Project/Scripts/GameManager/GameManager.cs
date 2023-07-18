@@ -30,6 +30,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float timerCooldown = 5f;
     [Header("Game Settings")]
     [SerializeField] private bool paused = false;
+    [SerializeField] private int reAddHealthTime = 10;
     [Header("Player Stats")]
     [SerializeField] private int health = 1;
     [SerializeField] private int coins;
@@ -54,10 +55,10 @@ public class GameManager : MonoBehaviour
     public Action OnAddCoin;
     public Action<BaseItem> OnSpawnObject;
     public Action<int> OnGetDamage;
-    public Action<GameObject> OnDeactivateGObject;
     public Action OnSave;
     public Action OnLoad;
     public Action OnGameOver;
+    public Action OnReAddHealth;
 
     public Action OnMagnetPowerUp;
     public Action OnSpeedPowerUp;
@@ -68,6 +69,7 @@ public class GameManager : MonoBehaviour
         OnSave += Save;
         OnLoad += Load;
         OnGameOver += GameOver;
+        OnReAddHealth += ReAddHealth;
         OnGetDamage += GetDamage;
 
         OnMagnetPowerUp += MagnetPowerUp;
@@ -80,6 +82,7 @@ public class GameManager : MonoBehaviour
         OnSave -= Save;
         OnLoad -= Load;
         OnGameOver -= GameOver;
+        OnReAddHealth -= ReAddHealth;
         OnGetDamage -= GetDamage;
 
         OnMagnetPowerUp -= MagnetPowerUp;
@@ -213,6 +216,20 @@ public class GameManager : MonoBehaviour
         playerReferences.PlayerController.OnSpeedPowerUp?.Invoke();
         speedPowerup = true;
         gameSpeed = gameSpeed * 1.3f;
+    }
+
+    public void ReAddHealth()
+    {
+        StartCoroutine(IReAddHealth());
+    }
+
+    private IEnumerator IReAddHealth()
+    {
+        yield return new WaitForSeconds(reAddHealthTime);
+        if (health > 0)
+        {
+            health++;
+        }
     }
 
     public void PauseGame()

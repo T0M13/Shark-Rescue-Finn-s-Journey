@@ -1055,7 +1055,7 @@ MonoBehaviour:
     obstacleConfigurations:
     - obstacleType: 1
       obstaclePrefabs:
-      - {fileID: 6944444999079064903, guid: b2229e986a89cc0488c10f93dc19d295, type: 3}
+      - {fileID: 3643289242992397168, guid: 54ef914aa18eb6e4e93231e7cc6e84f5, type: 3}
       - {fileID: 2571547666607429077, guid: 9c310dfeb205519439088b3d7994f750, type: 3}
       - {fileID: 3136708029960765973, guid: db1d1c40a0e4d98459759d69d0556d79, type: 3}
       disabledObstacleList: []
@@ -26456,6 +26456,11 @@ PrefabInstance:
         type: 3}
       propertyPath: timer
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6497248131108235341, guid: 966a056f7856b214596c9a38d1ef2163,
+        type: 3}
+      propertyPath: health
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6497248131108235341, guid: 966a056f7856b214596c9a38d1ef2163,
         type: 3}

@@ -25,7 +25,6 @@ public class BaseCoin : BaseItem, IInteractable
 
         if (GameManager.instance != null)
             GameManager.instance.OnAddCoin?.Invoke();
-        GameManager.instance.OnDeactivateGObject?.Invoke(gameObject);
     }
 
     public void PlaySFX()
