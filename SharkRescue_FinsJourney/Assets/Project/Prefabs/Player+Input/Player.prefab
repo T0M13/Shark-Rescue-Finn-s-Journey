@@ -78,6 +78,7 @@ MonoBehaviour:
   lanes: 3
   direction: 0
   showGizmos: 1
+  speedMultiplier: 1.5
   speedPowerUpTime: 10
   speedPowerUpEffect: {fileID: 0}
 --- !u!114 &2428571700924738155
@@ -95,7 +96,6 @@ MonoBehaviour:
   magnetOn: 0
   magnetRadius: 6
   magnetPowerUpTime: 20
-  magnetCollectTime: 10
   magnetEffect: {fileID: 8726327232959869057}
   pulledObjects: []
 --- !u!54 &2428571700924738154
@@ -291,6 +291,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2428571700924738152}
     m_Modifications:
+    - target: {fileID: 1675965618742532566, guid: da76daf41264146ea826fd5efec60ef8,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 74bda146cd3ce482ab9cf4f770db4870, type: 2}
+    - target: {fileID: 4006054964024021406, guid: da76daf41264146ea826fd5efec60ef8,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: c9c4cf1f150324efaafb0dde9fa47f20, type: 2}
+    - target: {fileID: 4056000274004407727, guid: da76daf41264146ea826fd5efec60ef8,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: c9c4cf1f150324efaafb0dde9fa47f20, type: 2}
+    - target: {fileID: 5339972948683561514, guid: da76daf41264146ea826fd5efec60ef8,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: c9c4cf1f150324efaafb0dde9fa47f20, type: 2}
     - target: {fileID: 7076493691824395840, guid: da76daf41264146ea826fd5efec60ef8,
         type: 3}
       propertyPath: m_RootOrder
