@@ -1123,7 +1123,7 @@ MonoBehaviour:
       - {fileID: 3136708029960765973, guid: db1d1c40a0e4d98459759d69d0556d79, type: 3}
       disabledObstacleList: []
       activeObstacleList: []
-      spawnRate: 0
+      spawnRate: 25
       obstacleQuantity: 25
       additionalObstacleProbability: {fileID: 11400000, guid: 7685981f59505fe46b630db511050c11,
         type: 2}
@@ -1136,7 +1136,7 @@ MonoBehaviour:
       - {fileID: 873682508058528038, guid: 509cea45b77d63746a6d0f50c3035906, type: 3}
       disabledObstacleList: []
       activeObstacleList: []
-      spawnRate: 0
+      spawnRate: 25
       obstacleQuantity: 15
       additionalObstacleProbability: {fileID: 11400000, guid: be57a044af28c4840a1d9bb54cb1bfc9,
         type: 2}
@@ -1148,7 +1148,7 @@ MonoBehaviour:
       - {fileID: 8509167365768827539, guid: 75c039de67ffc5f4bb6dd248008f71e3, type: 3}
       disabledObstacleList: []
       activeObstacleList: []
-      spawnRate: 0
+      spawnRate: 25
       obstacleQuantity: 10
       additionalObstacleProbability: {fileID: 11400000, guid: 5233a67bcaec72f4ca2e73402c6a4fc0,
         type: 2}
@@ -26480,7 +26480,7 @@ PrefabInstance:
     - target: {fileID: 6497248131108235341, guid: 966a056f7856b214596c9a38d1ef2163,
         type: 3}
       propertyPath: eEnvironmentTyp
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6497248131108235341, guid: 966a056f7856b214596c9a38d1ef2163,
         type: 3}
