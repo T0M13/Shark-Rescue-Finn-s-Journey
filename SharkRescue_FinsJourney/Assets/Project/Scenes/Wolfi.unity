@@ -1042,7 +1042,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ObstacleList:
-  - environmentType: 1
+  - environmentType: 2
     obstacleConfigurations:
     - obstacleType: 1
       obstaclePrefabs:
@@ -1059,9 +1059,9 @@ MonoBehaviour:
         type: 2}
     - obstacleType: 2
       obstaclePrefabs:
-      - {fileID: 8683965855826147816, guid: 2d9e3cb0f0613094b81f95e918106c32, type: 3}
-      - {fileID: 4817452408131953429, guid: eb0dfba9112937a4f934c2c5f86ffa52, type: 3}
-      - {fileID: 873682508058528038, guid: 509cea45b77d63746a6d0f50c3035906, type: 3}
+      - {fileID: 8683965855826147816, guid: 66ad9e95460fe774f9cfb927daae01bf, type: 3}
+      - {fileID: 4817452408131953429, guid: 320b2998328dd7144b970358bb5004f6, type: 3}
+      - {fileID: 873682508058528038, guid: 39bd99010db0f344baba99ebd0cc0e5c, type: 3}
       disabledObstacleList: []
       activeObstacleList: []
       spawnRate: 25
@@ -1072,7 +1072,7 @@ MonoBehaviour:
         type: 2}
     - obstacleType: 3
       obstaclePrefabs:
-      - {fileID: 1642668588538000059, guid: ccbe5df2da03fb046a337fdbf0170ffb, type: 3}
+      - {fileID: 1642668588538000059, guid: 969c4d7577b840c4bb1200073b742a51, type: 3}
       - {fileID: 8509167365768827539, guid: 75c039de67ffc5f4bb6dd248008f71e3, type: 3}
       disabledObstacleList: []
       activeObstacleList: []
@@ -1086,11 +1086,83 @@ MonoBehaviour:
       obstaclePrefabs:
       - {fileID: 1499747622211405067, guid: 443abce1ddbdfe54b83cd692a140a832, type: 3}
       - {fileID: 5554653630235779479, guid: cf97632bc553622449b946a09988af55, type: 3}
-      - {fileID: 7719492139529849989, guid: 7ca1b61a1c6172f429b0eb6bfa603554, type: 3}
+      - {fileID: 4040695619608224068, guid: 7ca1b61a1c6172f429b0eb6bfa603554, type: 3}
+      - {fileID: 1758505003498673850, guid: b8c1a18b619ffd544b9cae2ce65896f8, type: 3}
+      - {fileID: 6894320280537561671, guid: 8eec11a578ed9c1438b9b96248bc3458, type: 3}
+      - {fileID: 1913956949178904466, guid: ca494a54bdde42d4d9950f71b7ad7993, type: 3}
+      - {fileID: 5119632643663648162, guid: d5806e19bdbc25947a764e5021b87538, type: 3}
+      - {fileID: 5015377212630257308, guid: f7e876b286797584e93d5ddb9f17fc80, type: 3}
+      - {fileID: 6635210774288767565, guid: 746f1492b77bbdb4fb0a9b9446f652b7, type: 3}
+      - {fileID: 3921537232096872364, guid: e3eedfaa9577d734da826a02df8a2fa7, type: 3}
+      - {fileID: 8053697320732331142, guid: 8cd3bb1dd75b008418c0151e677c40d4, type: 3}
+      - {fileID: 1688429662918881257, guid: aa321acfe6404c74daef4afbcb17277b, type: 3}
       disabledObstacleList: []
       activeObstacleList: []
       spawnRate: 25
-      obstacleQuantity: 8
+      obstacleQuantity: 4
+      additionalObstacleProbability: {fileID: 11400000, guid: 40c39f49e1c2a8840b318009365ead43,
+        type: 2}
+      obstacleSpawnPositions: {fileID: 11400000, guid: a6356843f98f1574f9f79da9b046ef35,
+        type: 2}
+    spawnRate: 
+  - environmentType: 1
+    obstacleConfigurations:
+    - obstacleType: 1
+      obstaclePrefabs:
+      - {fileID: 6944444999079064903, guid: b2229e986a89cc0488c10f93dc19d295, type: 3}
+      - {fileID: 2571547666607429077, guid: 9c310dfeb205519439088b3d7994f750, type: 3}
+      - {fileID: 3136708029960765973, guid: db1d1c40a0e4d98459759d69d0556d79, type: 3}
+      disabledObstacleList: []
+      activeObstacleList: []
+      spawnRate: 0
+      obstacleQuantity: 25
+      additionalObstacleProbability: {fileID: 11400000, guid: 7685981f59505fe46b630db511050c11,
+        type: 2}
+      obstacleSpawnPositions: {fileID: 11400000, guid: ae596dde41d578648a1a8f31f70c6939,
+        type: 2}
+    - obstacleType: 2
+      obstaclePrefabs:
+      - {fileID: 8683965855826147816, guid: 2d9e3cb0f0613094b81f95e918106c32, type: 3}
+      - {fileID: 4817452408131953429, guid: eb0dfba9112937a4f934c2c5f86ffa52, type: 3}
+      - {fileID: 873682508058528038, guid: 509cea45b77d63746a6d0f50c3035906, type: 3}
+      disabledObstacleList: []
+      activeObstacleList: []
+      spawnRate: 0
+      obstacleQuantity: 15
+      additionalObstacleProbability: {fileID: 11400000, guid: be57a044af28c4840a1d9bb54cb1bfc9,
+        type: 2}
+      obstacleSpawnPositions: {fileID: 11400000, guid: b3373cfb8ae217141bfc16936c49356a,
+        type: 2}
+    - obstacleType: 3
+      obstaclePrefabs:
+      - {fileID: 1642668588538000059, guid: ccbe5df2da03fb046a337fdbf0170ffb, type: 3}
+      - {fileID: 8509167365768827539, guid: 75c039de67ffc5f4bb6dd248008f71e3, type: 3}
+      disabledObstacleList: []
+      activeObstacleList: []
+      spawnRate: 0
+      obstacleQuantity: 10
+      additionalObstacleProbability: {fileID: 11400000, guid: 5233a67bcaec72f4ca2e73402c6a4fc0,
+        type: 2}
+      obstacleSpawnPositions: {fileID: 11400000, guid: a84f3fc02fc1b294f8304bd91e2d91b7,
+        type: 2}
+    - obstacleType: 4
+      obstaclePrefabs:
+      - {fileID: 7577041363070149869, guid: fc7811cf21668c548a4ef3e2cab1d34c, type: 3}
+      - {fileID: 7936136474753765053, guid: 1f0f8e88f7528a049825a2626711375a, type: 3}
+      - {fileID: 4236656295739084500, guid: 4752499707ea2dc409f6368c60bbcbdd, type: 3}
+      - {fileID: 5315681395169078302, guid: 3b5fb3767f9c54244aa1c6dacd1d3e64, type: 3}
+      - {fileID: 8769931102788359249, guid: 0dd10c77eb3cec7408c4e1d9f67e0a3d, type: 3}
+      - {fileID: 2350350179504661183, guid: e9c7dfbaa2971434c80a33099b795d51, type: 3}
+      - {fileID: 8949649807542231916, guid: 95f9345fe5240a7409b5f5bbe4959f99, type: 3}
+      - {fileID: 7703165484478905910, guid: 201737d2ec806c242bb52134ec89529b, type: 3}
+      - {fileID: 1103139115406461113, guid: 26b808992db7505479d8cda8582a9dda, type: 3}
+      - {fileID: 8061850785060823690, guid: a98bb351215a73144ad11ca2ec48fac9, type: 3}
+      - {fileID: 7082164393852472930, guid: 52f903c6986dafc4b920ea9047584044, type: 3}
+      - {fileID: 770256968567012086, guid: b0d0f62a2549fd34a9cd62f9b0d65a25, type: 3}
+      disabledObstacleList: []
+      activeObstacleList: []
+      spawnRate: 25
+      obstacleQuantity: 4
       additionalObstacleProbability: {fileID: 11400000, guid: 40c39f49e1c2a8840b318009365ead43,
         type: 2}
       obstacleSpawnPositions: {fileID: 11400000, guid: a6356843f98f1574f9f79da9b046ef35,
@@ -2407,7 +2479,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 4689277348443155225}
+  - {fileID: 961660251}
   - {fileID: 7901309837959321709}
   - {fileID: 1482416373377469687}
   m_Father: {fileID: 259837444}
@@ -11375,6 +11447,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7ca1b61a1c6172f429b0eb6bfa603554, type: 3}
+--- !u!4 &961660251 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4040695619608224069, guid: 7ca1b61a1c6172f429b0eb6bfa603554,
+    type: 3}
+  m_PrefabInstance: {fileID: 961660250}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &973562711
 GameObject:
   m_ObjectHideFlags: 0
@@ -28714,12 +28792,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aa0d80f74b73411469132c1182d3d4f4, type: 3}
---- !u!4 &4689277348443155225 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 7719492139529849988, guid: 7ca1b61a1c6172f429b0eb6bfa603554,
-    type: 3}
-  m_PrefabInstance: {fileID: 961660250}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6497248130828646034
 PrefabInstance:
   m_ObjectHideFlags: 0

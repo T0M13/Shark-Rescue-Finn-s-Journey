@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7917459290693478923}
   - component: {fileID: -201991390025243286}
   m_Layer: 0
-  m_Name: Obstacle_Medium1_03
+  m_Name: Obstacle_Medium1_Sand_03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -109,7 +109,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 5e1235b2e417983469723d36f05de88d, type: 2}
+  - {fileID: 2100000, guid: 0c2a15a765e668b46a60dd3363aa72c2, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
