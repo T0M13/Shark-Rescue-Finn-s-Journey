@@ -31,7 +31,7 @@ public class BaseItem : MonoBehaviour
             meshTransform = transform.GetChild(0);
     }
 
-    protected void Update()
+    protected virtual void Update()
     {
         //transform.Translate(Vector3.back * MoveSpeed * Time.deltaTime);
         meshTransform.Rotate(Vector3.up * RotationSpeed * Time.deltaTime);

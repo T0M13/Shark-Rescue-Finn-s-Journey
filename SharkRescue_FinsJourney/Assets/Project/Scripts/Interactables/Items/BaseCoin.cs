@@ -11,6 +11,12 @@ public class BaseCoin : BaseItem, IInteractable
 
     public int Value { get => value; set => this.value = value; }
 
+    protected override void Update()
+    {
+        base.Update();
+        transform.Translate(Vector3.back * MoveSpeed * Time.deltaTime);
+    }
+
     public void Interact()
     {
         //Debug.Log("Adding Coins: " + Value);

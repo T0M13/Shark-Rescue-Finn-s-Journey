@@ -177,9 +177,12 @@ public class ObstacleManager : MonoBehaviour
                                     {
                                         randGo = Random.Range(0, ObstacleList[g].obstacleConfigurations[i].disabledObstacleList.Count); //Pick one random deactivated Small Obstacle
                                         randPos = Random.Range(0, tempObstacleSpawnPositions.Count); //Pick one random Position from List
+                                        int randRo = Random.Range(-90, 90); //One random Rotation for GO
+                                        //Debug.Log("randRo " + randRo);
 
                                         ObstacleList[g].obstacleConfigurations[i].disabledObstacleList[randGo].transform.parent = disabledObstacleLanes[0].transform;
                                         ObstacleList[g].obstacleConfigurations[i].disabledObstacleList[randGo].transform.position = new Vector3(tempObstacleSpawnPositions[randPos].x, tempObstacleSpawnPositions[randPos].y, 13 * obstacleRespawnDistance * (allActiveObstaclesCounter - distanceAdjustment) + spawnAdjustment);
+                                        ObstacleList[g].obstacleConfigurations[i].disabledObstacleList[randGo].gameObject.transform.rotation = Quaternion.Euler(0f,0f, randRo);
                                         ObstacleList[g].obstacleConfigurations[i].disabledObstacleList[randGo].SetActive(true);
 
                                         disabledObstacleLanes[0].GetComponent<ObstacleLane>().obstacles.Add(ObstacleList[g].obstacleConfigurations[i].disabledObstacleList[randGo].GetComponent<Obstacle>());
