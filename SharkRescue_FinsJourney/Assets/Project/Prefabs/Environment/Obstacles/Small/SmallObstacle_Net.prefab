@@ -11,10 +11,9 @@ GameObject:
   - component: {fileID: 4330600122997589418}
   - component: {fileID: 1716749558072900940}
   - component: {fileID: 2910987737202430899}
-  - component: {fileID: 5506271127609095642}
   m_Layer: 0
   m_Name: S_Obstacle_1
-  m_TagString: HardObstacle
+  m_TagString: LightObstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -26,9 +25,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6503214753287480892}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.25, y: 1.25, z: 1.25}
+  m_LocalScale: {x: 0.8, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7662478548472727538}
@@ -41,7 +40,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6503214753287480892}
-  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: -5066523906300639224, guid: 729fd007cacd347d1a745431989ca510, type: 3}
 --- !u!23 &2910987737202430899
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -62,7 +61,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 9f94034acc1cb8e438e63f3a08763af0, type: 2}
+  - {fileID: 2100000, guid: be06609b01ab64a2188e00a37f7ccc7c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -84,19 +83,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &5506271127609095642
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6503214753287480892}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &6944444999079064903
 GameObject:
   m_ObjectHideFlags: 0
@@ -108,9 +94,10 @@ GameObject:
   - component: {fileID: 7662478548472727538}
   - component: {fileID: -3452331917593590557}
   - component: {fileID: 2208546802628293164}
+  - component: {fileID: 30478148094583545}
   m_Layer: 0
-  m_Name: S_Obstacle_1
-  m_TagString: Untagged
+  m_Name: SmallObstacle_Net
+  m_TagString: LightObstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -158,9 +145,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   meshTransform: {fileID: 3949901496178902393, guid: 54ef914aa18eb6e4e93231e7cc6e84f5,
     type: 3}
-  moveSpeed: 1
-  rotationSpeedMin: 100
-  rotationSpeedMax: 150
-  rotationSpeed: 100
+  moveSpeed: 0
+  rotationSpeedMin: 20
+  rotationSpeedMax: 60
+  rotationSpeed: 20
   powerUpType: 0
   damageValue: 1
+--- !u!65 &30478148094583545
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6944444999079064903}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.2, y: 2.440862, z: 1.5994157}
+  m_Center: {x: 0, y: 0, z: 0}

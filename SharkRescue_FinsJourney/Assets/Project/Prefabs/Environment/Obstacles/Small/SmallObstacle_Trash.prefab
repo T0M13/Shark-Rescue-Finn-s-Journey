@@ -10,10 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 3643289242992397165}
   - component: {fileID: 3643289242992397170}
-  - component: {fileID: 3299807609356463500}
   - component: {fileID: 8926850238020452561}
+  - component: {fileID: 5017675852708492764}
   m_Layer: 0
-  m_Name: BaseDamageItem
+  m_Name: SmallObstacle_Trash
   m_TagString: LightObstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -48,25 +48,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &3299807609356463500
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3643289242992397168}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4771a369db193324f86386cde073c809, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  meshTransform: {fileID: 3949901496178902393}
-  moveSpeed: 1
-  rotationSpeedMin: 100
-  rotationSpeedMax: 150
-  rotationSpeed: 100
-  powerUpType: 0
-  damageValue: 1
 --- !u!114 &8926850238020452561
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -80,6 +61,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   obstacleSizeType: 1
+--- !u!114 &5017675852708492764
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3643289242992397168}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4771a369db193324f86386cde073c809, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  meshTransform: {fileID: 3949901496178902393}
+  moveSpeed: 1
+  rotationSpeedMin: 40
+  rotationSpeedMax: 60
+  rotationSpeed: 40
+  powerUpType: 0
+  damageValue: 1
 --- !u!1 &4131223592791849715
 GameObject:
   m_ObjectHideFlags: 0
@@ -105,7 +105,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4131223592791849715}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: -0.9980002, z: 0, w: -0.06321178}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1

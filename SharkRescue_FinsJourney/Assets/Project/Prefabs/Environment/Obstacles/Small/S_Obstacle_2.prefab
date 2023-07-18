@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8938032109814532}
   - component: {fileID: 8919769570685292395}
+  - component: {fileID: -5135023505860546325}
   m_Layer: 0
   m_Name: S_Obstacle_2
   m_TagString: Untagged
@@ -46,6 +47,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   obstacleSizeType: 1
+--- !u!114 &-5135023505860546325
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2571547666607429077}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4771a369db193324f86386cde073c809, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  meshTransform: {fileID: 9175144660661480596}
+  moveSpeed: 1
+  rotationSpeedMin: 100
+  rotationSpeedMax: 150
+  rotationSpeed: 100
+  powerUpType: 0
+  damageValue: 1
 --- !u!1 &4519188424081373945
 GameObject:
   m_ObjectHideFlags: 0
