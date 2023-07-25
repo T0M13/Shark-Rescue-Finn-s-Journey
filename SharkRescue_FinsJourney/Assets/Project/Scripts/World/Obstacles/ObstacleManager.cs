@@ -154,7 +154,8 @@ public class ObstacleManager : MonoBehaviour
 
                             ObstacleTypes.ObstacleSizeType tempObstacleType = ObstacleList[g].obstacleConfigurations[i].obstacleType; //Which random obstacle type has been chosen
                             List<Vector3> tempObstacleSpawnPositions = new(ObstacleList[g].obstacleConfigurations[i].obstacleSpawnPositions.SpawnPositions); //Temo list of possible spawn locations
-                                                                                                                                   //List<Vector3> remainingSpawnSpots = new();
+                            
+                            gameDifficulty = GameManager.instance.GameDifficutly;                                                  //List<Vector3> remainingSpawnSpots = new();
                                                                                                                                    //List<Vector3> convertingRemainingSpawnSpots = new();
                             int randMinValue = (int)ObstacleList[g].obstacleConfigurations[i].additionalObstacleProbability.SpawnQuantityRange[gameDifficulty - 1].x; //Random min value
                             int randMaxValue = (int)ObstacleList[g].obstacleConfigurations[i].additionalObstacleProbability.SpawnQuantityRange[gameDifficulty - 1].y; //Random max value

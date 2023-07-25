@@ -35,6 +35,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] private bool paused = false;
     [SerializeField] private bool gameOver = false;
     [SerializeField] private int reAddHealthTime = 10;
+    [SerializeField] private int gameDifficulty = 1;
+    [SerializeField] private int timerChangeGameDifficutly = 30;
+    [SerializeField] private bool changeGameDifficutly = true;
     [Header("Player Stats")]
     [SerializeField] private int health = 1;
     [SerializeField] private int coins;
@@ -57,6 +60,7 @@ public class GameManager : MonoBehaviour
     public EEnvironmentType EEnvironmentTyp { get => eEnvironmentTyp; }
     public bool Paused { get => paused; set => paused = value; }
     public bool GameOverEG { get => gameOver; set => gameOver = value; }
+    public int GameDifficutly { get => gameDifficulty;}
 
     public Action OnAddCoin;
     public Action<BaseItem> OnSpawnObject;
@@ -80,6 +84,7 @@ public class GameManager : MonoBehaviour
 
         OnMagnetPowerUp += MagnetPowerUp;
         OnStarPowerUp += StarPowerUp;
+
     }
 
     private void OnDisable()
@@ -93,6 +98,7 @@ public class GameManager : MonoBehaviour
 
         OnMagnetPowerUp -= MagnetPowerUp;
         OnStarPowerUp -= StarPowerUp;
+
     }
 
     private void Awake()
@@ -131,6 +137,9 @@ public class GameManager : MonoBehaviour
         runTimer = true;
         gameOver = false;
         paused = false;
+
+
+        Application.targetFrameRate = 144;
     }
 
     private void Start()
@@ -140,6 +149,8 @@ public class GameManager : MonoBehaviour
             audioManager.Play("bubbles");
             audioManager.LoadVolumes();
         }
+
+        StartCoroutine(ChangeGameDifficutly(timerChangeGameDifficutly));
     }
 
     private void Update()
@@ -304,7 +315,19 @@ public class GameManager : MonoBehaviour
         playerMusic = SaveData.PlayerProfile.musicVolume;
         playerEffects = SaveData.PlayerProfile.effectsVolume;
 
+    }
 
+    private IEnumerator ChangeGameDifficutly(int timerChangeGameDifficutly)
+    {
+        while (changeGameDifficutly) 
+        { 
+            yield return new WaitForSeconds(timerChangeGameDifficutly);
+            gameDifficulty++;
 
+            if (gameDifficulty == 10)
+            {
+                changeGameDifficutly = false;
+            }
+        }
     }
 }
