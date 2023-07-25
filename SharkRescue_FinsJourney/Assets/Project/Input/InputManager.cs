@@ -24,16 +24,15 @@ public class InputManager : MonoBehaviour
 
     private void Awake()
     {
-        if (instance == null)
+        if (instance != null && instance != this)
         {
-            instance = this;
-            DontDestroyOnLoad(gameObject);
+            Destroy(this.gameObject);
         }
         else
         {
-            Destroy(gameObject);
-            return;
+            instance = this;
         }
+
 
         swipeDetector = GetComponent<SwipeDetection>();
         playerControls = new Controls();

@@ -345,7 +345,7 @@ GameObject:
   - component: {fileID: 4674776301277432720}
   m_Layer: 0
   m_Name: Obstacle_Big_03_Sand
-  m_TagString: Untagged
+  m_TagString: HardObstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

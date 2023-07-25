@@ -49,7 +49,7 @@ public class SwipeDetection : MonoBehaviour
     {
         if (GameManager.instance)
         {
-            if (GameManager.instance.Paused) return;
+            if (GameManager.instance.Paused || GameManager.instance.GameOverEG) return;
         }
 
         startPosition = position;
@@ -74,7 +74,7 @@ public class SwipeDetection : MonoBehaviour
     {
         if (GameManager.instance)
         {
-            if (GameManager.instance.Paused) return;
+            if (GameManager.instance.Paused || GameManager.instance.GameOverEG) return;
         }
 
         if (trail != null)

@@ -6,6 +6,9 @@ using UnityEngine.Events;
 
 public class PlayerInteractor : MonoBehaviour
 {
+    [Header("Collision")]
+    [SerializeField] private GameObject collisionEffect;
+
 
     [Header("Magnet")]
     [SerializeField] private bool magnetOn = false;
@@ -108,6 +111,9 @@ public class PlayerInteractor : MonoBehaviour
         if (GameManager.instance && collision.gameObject.CompareTag("HardObstacle"))
         {
             GameManager.instance.OnGameOver?.Invoke();
+            collisionEffect.SetActive(true);
+            collisionEffect.transform.SetParent(null);
+            gameObject.SetActive(false);
         }
     }
 
