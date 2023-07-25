@@ -190,6 +190,8 @@ public class GameManager : MonoBehaviour
         gameSpeed = 0;
         AdjustGameSpeed();
 
+        if (inGameUIManager) { inGameUIManager.GameOverPanel.gameObject.SetActive(true); }
+
         SaveData.PlayerProfile.coins += coins;
         if (SaveData.PlayerProfile.highscore < score)
             SaveData.PlayerProfile.highscore = score;
@@ -282,7 +284,9 @@ public class GameManager : MonoBehaviour
         gameOver = false;
         paused = false;
         Time.timeScale = 1;
+        if (inGameUIManager) { inGameUIManager.GameOverPanel.gameObject.SetActive(false); }
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+
     }
 
     private void Save()
