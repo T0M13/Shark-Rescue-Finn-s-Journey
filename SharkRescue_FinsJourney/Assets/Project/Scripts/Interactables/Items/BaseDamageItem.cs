@@ -15,7 +15,6 @@ public class BaseDamageItem : BaseItem, IInteractable
         if (GameManager.instance != null)
         {
             GameManager.instance.OnGetDamage?.Invoke(damageValue);
-            GameManager.instance.OnReAddHealth?.Invoke();
         }
         //GameManager.instance.OnDeactivateGObject?.Invoke(gameObject);
     }

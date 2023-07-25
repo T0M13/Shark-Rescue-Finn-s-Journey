@@ -110,6 +110,7 @@ public class PlayerInteractor : MonoBehaviour
     {
         if (GameManager.instance && collision.gameObject.CompareTag("HardObstacle"))
         {
+            if (GameManager.instance.Invincible) return;
             GameManager.instance.OnGameOver?.Invoke();
             collisionEffect.SetActive(true);
             collisionEffect.transform.SetParent(null);

@@ -60,7 +60,8 @@ public class GameManager : MonoBehaviour
     public EEnvironmentType EEnvironmentTyp { get => eEnvironmentTyp; }
     public bool Paused { get => paused; set => paused = value; }
     public bool GameOverEG { get => gameOver; set => gameOver = value; }
-    public int GameDifficutly { get => gameDifficulty;}
+    public int GameDifficutly { get => gameDifficulty; }
+    public bool Invincible { get => invincible; set => invincible = value; }
 
     public Action OnAddCoin;
     public Action<BaseItem> OnSpawnObject;
@@ -211,7 +212,10 @@ public class GameManager : MonoBehaviour
 
     public void GetDamage(int damageValue)
     {
+        if (invincible) return;
+
         health -= damageValue;
+        ReAddHealth();
         if (health <= 0)
         {
             GameOver();
@@ -250,7 +254,7 @@ public class GameManager : MonoBehaviour
 
         playerReferences.PlayerController.OnStarPowerUp?.Invoke();
         starPowerUp = true;
-        invincible = true;
+        Invincible = true;
         gameSpeed = gameSpeed * 1.3f;
     }
 
@@ -284,7 +288,7 @@ public class GameManager : MonoBehaviour
     public void ResetStar()
     {
         starPowerUp = false;
-        invincible = false;
+        Invincible = false;
         gameSpeed = gameSpeed / 1.3f;
     }
 
@@ -319,8 +323,8 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator ChangeGameDifficutly(int timerChangeGameDifficutly)
     {
-        while (changeGameDifficutly) 
-        { 
+        while (changeGameDifficutly)
+        {
             yield return new WaitForSeconds(timerChangeGameDifficutly);
             gameDifficulty++;
 
