@@ -17,4 +17,9 @@ public class MagnetPowerUp : BaseItem, IInteractable
         if (AudioManager.instance)
             AudioManager.instance.Play("magnet");
     }
+    protected override void Update()
+    {
+        base.Update();
+        transform.Translate(Vector3.back * MoveSpeed * Time.deltaTime);
+    }
 }

@@ -17,4 +17,10 @@ public class SpeedPowerUp : BaseItem, IInteractable
         //if (AudioManager.instance)
             //AudioManager.instance.Play("speedPower");
     }
+
+    protected override void Update()
+    {
+        base.Update();
+        transform.Translate(Vector3.back * MoveSpeed * Time.deltaTime);
+    }
 }
