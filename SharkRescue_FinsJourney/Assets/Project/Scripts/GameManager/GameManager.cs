@@ -153,6 +153,7 @@ public class GameManager : MonoBehaviour
         if (timer <= 0)
         {
             timer = timerCooldown;
+            if (adjustedSpeed > timeSpeedCap) { adjustedSpeed = timeSpeedCap; }
             gameSpeed = adjustedSpeed;
             AdjustGameSpeed();
         }
@@ -160,13 +161,18 @@ public class GameManager : MonoBehaviour
         {
             gameSpeedMultiplier += speedIncreaseRate * Time.deltaTime;
             adjustedSpeed = originalSpeed * gameSpeedMultiplier;
+            if (adjustedSpeed > timeSpeedCap) { adjustedSpeed = timeSpeedCap; }
         }
     }
 
     private void AddCoin()
     {
         coins++;
-        //Debug.Log("Current Coins: " + coins);
+
+        if (inGameUIManager)
+        {
+            inGameUIManager.CurrentCoins.text = coins.ToString();
+        }
     }
 
     private void GameOver()
