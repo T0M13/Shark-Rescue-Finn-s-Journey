@@ -14,7 +14,7 @@ public class BaseItem : MonoBehaviour
     [SerializeField] private int rotationSpeedMax = 150;
     [SerializeField] private int rotationSpeed = 100;
 
-    [SerializeField] private PowerUpType powerUpType;
+    [SerializeField] protected PowerUpType powerUpType;
     public float MoveSpeed { get => moveSpeed; set => moveSpeed = value; }
     public int RotationSpeed { get => rotationSpeed; set => rotationSpeed = value; }
 
@@ -37,10 +37,11 @@ public class BaseItem : MonoBehaviour
         meshTransform.Rotate(Vector3.up * RotationSpeed * Time.deltaTime);
     }
 
-    protected void OnTriggerEnter(Collider other)
+    protected virtual void OnTriggerEnter(Collider other)
     {
         if ((other != null && other.gameObject.CompareTag("ChunkCatcher")) || (other != null && other.gameObject.CompareTag("Player")))
         {
+
             for (int i = 0; i < ItemSpawnerNew.Instance.ItemPrefabs.Count; i++)
             {
                 if(powerUpType == ItemSpawnerNew.Instance.ItemPrefabs[i].powerUpType)

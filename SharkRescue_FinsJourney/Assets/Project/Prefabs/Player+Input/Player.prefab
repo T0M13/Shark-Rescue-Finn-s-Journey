@@ -54,6 +54,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerController: {fileID: 2428571700924738156}
   playerInteractor: {fileID: 2428571700924738155}
+  playerAnimator: {fileID: 8488316235838129798}
 --- !u!114 &2428571700924738156
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -94,7 +95,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7083b40f010089e4a83f75313880ce6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collisionEffect: {fileID: 0}
+  playerReferences: {fileID: 8137896454878996491}
+  collisionEffect: {fileID: 6379821107458970277}
   magnetOn: 0
   magnetRadius: 6
   magnetPowerUpTime: 20
@@ -406,6 +408,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 2428571700678927132}
   m_PrefabAsset: {fileID: 0}
+--- !u!95 &8488316235838129798 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 6086768538123019674, guid: da76daf41264146ea826fd5efec60ef8,
+    type: 3}
+  m_PrefabInstance: {fileID: 2428571700678927132}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2428571701751026076
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -540,11 +548,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: SmokeArcExplosionBright
       objectReference: {fileID: 0}
+    - target: {fileID: 8068940972642133975, guid: 04a5d3d48f12ec0499c47ecfe4ea1f77,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 04a5d3d48f12ec0499c47ecfe4ea1f77, type: 3}
 --- !u!4 &6378419224722915005 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8068124047473232847, guid: 04a5d3d48f12ec0499c47ecfe4ea1f77,
+    type: 3}
+  m_PrefabInstance: {fileID: 3995553162622432626}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &6379821107458970277 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8068940972642133975, guid: 04a5d3d48f12ec0499c47ecfe4ea1f77,
     type: 3}
   m_PrefabInstance: {fileID: 3995553162622432626}
   m_PrefabAsset: {fileID: 0}

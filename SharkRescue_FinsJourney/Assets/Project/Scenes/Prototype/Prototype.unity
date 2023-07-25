@@ -40501,29 +40501,13 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2428571700924738155, guid: 5488fbf317bffca4ebeac09e3454ed73,
-        type: 3}
-      propertyPath: collisionEffect
-      value: 
-      objectReference: {fileID: 2428571700509527094}
     - target: {fileID: 2428571700924738157, guid: 5488fbf317bffca4ebeac09e3454ed73,
         type: 3}
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 6379821107458970277, guid: 5488fbf317bffca4ebeac09e3454ed73,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5488fbf317bffca4ebeac09e3454ed73, type: 3}
---- !u!1 &2428571700509527094 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6379821107458970277, guid: 5488fbf317bffca4ebeac09e3454ed73,
-    type: 3}
-  m_PrefabInstance: {fileID: 2428571700509527093}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &3654616433705845233
 PrefabInstance:
   m_ObjectHideFlags: 0

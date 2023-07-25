@@ -24,4 +24,25 @@ public class BaseDamageItem : BaseItem, IInteractable
         //if (AudioManager.instance)
             //AudioManager.instance.Play("damage");
     }
+
+    protected override void OnTriggerEnter(Collider other)
+    {
+        if ((other != null && other.gameObject.CompareTag("ChunkCatcher")) || (other != null && other.gameObject.CompareTag("Player")))
+        {
+            if((other != null && other.gameObject.CompareTag("Player")))
+            {
+                other.gameObject.GetComponent<PlayerReferences>().PlayerAnimator.SetTrigger("DamageTrigger");
+            }
+
+            for (int i = 0; i < ItemSpawnerNew.Instance.ItemPrefabs.Count; i++)
+            {
+                if (powerUpType == ItemSpawnerNew.Instance.ItemPrefabs[i].powerUpType)
+                {
+                    gameObject.SetActive(false);
+                    ItemSpawnerNew.Instance.ItemPrefabs[i].disabledItemList.Add(gameObject);
+                    ItemSpawnerNew.Instance.ItemPrefabs[i].activeItemList.Remove(gameObject);
+                }
+            }
+        }
+    }
 }

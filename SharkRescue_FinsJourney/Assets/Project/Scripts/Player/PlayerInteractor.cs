@@ -6,6 +6,8 @@ using UnityEngine.Events;
 
 public class PlayerInteractor : MonoBehaviour
 {
+    [SerializeField] private PlayerReferences playerReferences;
+
     [Header("Collision")]
     [SerializeField] private GameObject collisionEffect;
 
@@ -38,6 +40,11 @@ public class PlayerInteractor : MonoBehaviour
             interactable.PlaySFX();
         }
 
+    }
+
+    private void Awake()
+    {
+        if (playerReferences == null) playerReferences = GetComponent<PlayerReferences>();
     }
 
     private void Update()
@@ -112,8 +119,12 @@ public class PlayerInteractor : MonoBehaviour
         {
             if (GameManager.instance.Invincible) return;
             GameManager.instance.OnGameOver?.Invoke();
+
             collisionEffect.SetActive(true);
             collisionEffect.transform.SetParent(null);
+
+            //playerReferences.PlayerAnimator.SetBool("isGameOver", true);
+
             gameObject.SetActive(false);
         }
     }
