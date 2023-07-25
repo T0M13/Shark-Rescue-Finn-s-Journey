@@ -28,6 +28,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float adjustedSpeed;
     [SerializeField] private float timer;
     [SerializeField] private float timerCooldown = 5f;
+    [SerializeField] private const float timeSpeedCap = 55f;
     [Header("Game Settings")]
     [SerializeField] private bool paused = false;
     [SerializeField] private int reAddHealthTime = 10;
@@ -145,6 +146,9 @@ public class GameManager : MonoBehaviour
             inGameUIManager.CurrentScore.text = score.ToString();
 
         if (speedPowerup) return;
+
+        if (gameSpeed == timeSpeedCap) return;
+        if (gameSpeed > timeSpeedCap) { gameSpeed = timeSpeedCap; }
         timer -= Time.deltaTime;
         if (timer <= 0)
         {
