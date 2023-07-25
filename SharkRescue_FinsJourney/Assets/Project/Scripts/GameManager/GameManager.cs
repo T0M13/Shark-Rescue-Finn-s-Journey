@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using tomi.SaveSystem;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using static EnvironmentType;
 
 public class GameManager : MonoBehaviour
@@ -28,16 +29,19 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float adjustedSpeed;
     [SerializeField] private float timer;
     [SerializeField] private float timerCooldown = 5f;
+    [SerializeField] private bool runTimer = true;
     [SerializeField] private const float timeSpeedCap = 55f;
     [Header("Game Settings")]
     [SerializeField] private bool paused = false;
+    [SerializeField] private bool gameOver = false;
     [SerializeField] private int reAddHealthTime = 10;
     [Header("Player Stats")]
     [SerializeField] private int health = 1;
     [SerializeField] private int coins;
     [SerializeField] private int score;
     [SerializeField] private float scoreTemp;
-    private bool speedPowerup;
+    [SerializeField] private bool invincible;
+    private bool starPowerUp;
     [Header("Save/Load")]
     [SerializeField] private SaveComponent saveBehaviour;
     [SerializeField] private LoadComponent loadBehaviour;
@@ -52,6 +56,7 @@ public class GameManager : MonoBehaviour
     public float GameSpeed { get => gameSpeed; set => gameSpeed = value; }
     public EEnvironmentType EEnvironmentTyp { get => eEnvironmentTyp; }
     public bool Paused { get => paused; set => paused = value; }
+    public bool GameOverEG { get => gameOver; set => gameOver = value; }
 
     public Action OnAddCoin;
     public Action<BaseItem> OnSpawnObject;
@@ -62,7 +67,7 @@ public class GameManager : MonoBehaviour
     public Action OnReAddHealth;
 
     public Action OnMagnetPowerUp;
-    public Action OnSpeedPowerUp;
+    public Action OnStarPowerUp;
 
     private void OnEnable()
     {
@@ -74,7 +79,7 @@ public class GameManager : MonoBehaviour
         OnGetDamage += GetDamage;
 
         OnMagnetPowerUp += MagnetPowerUp;
-        OnSpeedPowerUp += SpeedPowerUp;
+        OnStarPowerUp += StarPowerUp;
     }
 
     private void OnDisable()
@@ -87,20 +92,18 @@ public class GameManager : MonoBehaviour
         OnGetDamage -= GetDamage;
 
         OnMagnetPowerUp -= MagnetPowerUp;
-        OnSpeedPowerUp -= SpeedPowerUp;
+        OnStarPowerUp -= StarPowerUp;
     }
 
     private void Awake()
     {
-        if (instance == null)
+        if (instance != null && instance != this)
         {
-            instance = this;
-            DontDestroyOnLoad(gameObject);
+            Destroy(this.gameObject);
         }
         else
         {
-            Destroy(gameObject);
-            return;
+            instance = this;
         }
 
         Load();
@@ -125,7 +128,9 @@ public class GameManager : MonoBehaviour
             audioManager = FindObjectOfType<AudioManager>();
 
         adjustedSpeed = originalSpeed;
-
+        runTimer = true;
+        gameOver = false;
+        paused = false;
     }
 
     private void Start()
@@ -139,14 +144,17 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
+        if (gameOver) return;
+
         scoreTemp += Time.deltaTime;
         score = Mathf.RoundToInt(scoreTemp);
 
         if (inGameUIManager != null)
             inGameUIManager.CurrentScore.text = score.ToString();
 
-        if (speedPowerup) return;
+        if (starPowerUp) return;
 
+        if (!runTimer) return;
         if (gameSpeed == timeSpeedCap) return;
         if (gameSpeed > timeSpeedCap) { gameSpeed = timeSpeedCap; }
         timer -= Time.deltaTime;
@@ -177,11 +185,15 @@ public class GameManager : MonoBehaviour
 
     private void GameOver()
     {
+        gameOver = true;
+        runTimer = false;
+        gameSpeed = 0;
+        AdjustGameSpeed();
+
         SaveData.PlayerProfile.coins += coins;
         if (SaveData.PlayerProfile.highscore < score)
             SaveData.PlayerProfile.highscore = score;
         Save();
-        Debug.Log("Game Over");
     }
 
     public void GetDamage(int damageValue)
@@ -217,14 +229,15 @@ public class GameManager : MonoBehaviour
         playerReferences.PlayerInteractor.OnMagnetPowerUp?.Invoke();
     }
 
-    private void SpeedPowerUp()
+    private void StarPowerUp()
     {
         if (playerReferences == null)
             playerReferences = FindObjectOfType<PlayerReferences>();
         if (playerReferences == null) return;
 
-        playerReferences.PlayerController.OnSpeedPowerUp?.Invoke();
-        speedPowerup = true;
+        playerReferences.PlayerController.OnStarPowerUp?.Invoke();
+        starPowerUp = true;
+        invincible = true;
         gameSpeed = gameSpeed * 1.3f;
     }
 
@@ -255,10 +268,21 @@ public class GameManager : MonoBehaviour
     }
 
 
-    public void ResetGameSpeed()
+    public void ResetStar()
     {
-        speedPowerup = false;
+        starPowerUp = false;
+        invincible = false;
         gameSpeed = gameSpeed / 1.3f;
+    }
+
+    public void RestartGame()
+    {
+        adjustedSpeed = originalSpeed;
+        runTimer = true;
+        gameOver = false;
+        paused = false;
+        Time.timeScale = 1;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     private void Save()

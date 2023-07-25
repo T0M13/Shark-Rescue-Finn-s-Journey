@@ -477,7 +477,7 @@ GameObject:
   - component: {fileID: 5119632643663648163}
   m_Layer: 0
   m_Name: Obstacle_Big_M1_Stone
-  m_TagString: Untagged
+  m_TagString: HardObstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

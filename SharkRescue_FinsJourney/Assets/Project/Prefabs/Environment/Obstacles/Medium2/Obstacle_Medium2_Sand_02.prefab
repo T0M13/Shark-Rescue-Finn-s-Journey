@@ -46,7 +46,7 @@ GameObject:
   - component: {fileID: 8318919656296459474}
   m_Layer: 0
   m_Name: MediumRock
-  m_TagString: Untagged
+  m_TagString: HardObstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

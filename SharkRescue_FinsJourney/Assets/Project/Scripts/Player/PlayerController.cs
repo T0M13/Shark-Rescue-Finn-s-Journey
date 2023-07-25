@@ -34,7 +34,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float speedMultiplier = 1.5f;
     [SerializeField] private float speedPowerUpTime = 10f;
     [SerializeField] private GameObject speedPowerUpEffect;
-    public Action OnSpeedPowerUp;
+    public Action OnStarPowerUp;
 
 
     private void Awake()
@@ -51,7 +51,7 @@ public class PlayerController : MonoBehaviour
         InputManager.instance.swipeDetector.OnSwipeLeft += SwipeLeft;
         InputManager.instance.swipeDetector.OnSwipeRight += SwipeRight;
 
-        OnSpeedPowerUp += SpeedPowerUp;
+        OnStarPowerUp += StarPowerUp;
     }
 
     private void OnDisable()
@@ -61,7 +61,7 @@ public class PlayerController : MonoBehaviour
         InputManager.instance.swipeDetector.OnSwipeLeft -= SwipeLeft;
         InputManager.instance.swipeDetector.OnSwipeRight -= SwipeRight;
 
-        OnSpeedPowerUp -= SpeedPowerUp;
+        OnStarPowerUp -= StarPowerUp;
     }
 
 
@@ -262,23 +262,23 @@ public class PlayerController : MonoBehaviour
     /// <summary>
     /// Starts the Coroutine Speed Power Up
     /// </summary>
-    private void SpeedPowerUp()
+    private void StarPowerUp()
     {
-        StartCoroutine(SpeedPowerUpIE());
+        StartCoroutine(StarPowerUpIE());
     }
 
     /// <summary>
     /// Activates Power Up for Speed and after *speedPowerUpTime* it deactivates it
     /// </summary>
     /// <returns></returns>
-    private IEnumerator SpeedPowerUpIE()
+    private IEnumerator StarPowerUpIE()
     {
         laneSwitchForce = laneSwitchForce * speedMultiplier;
         if (speedPowerUpEffect != null)
             speedPowerUpEffect.SetActive(true);
         yield return new WaitForSeconds(speedPowerUpTime);
         laneSwitchForce = defaultLaneSwitchForce;
-        GameManager.instance.ResetGameSpeed();
+        GameManager.instance.ResetStar();
         if (speedPowerUpEffect != null)
             speedPowerUpEffect.SetActive(false);
     }

@@ -8,6 +8,6 @@ public class PowerUpTypes : MonoBehaviour
     {
         NONE,
         Magnet,
-        Speed,
+        Star,
     }
 }

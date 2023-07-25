@@ -36,6 +36,7 @@ Transform:
   - {fileID: 2428571701750656434}
   - {fileID: 4864103776936850780}
   - {fileID: 8723986222684324375}
+  - {fileID: 6378419224722915005}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -93,6 +94,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7083b40f010089e4a83f75313880ce6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  collisionEffect: {fileID: 0}
   magnetOn: 0
   magnetRadius: 6
   magnetPowerUpTime: 20
@@ -470,4 +472,79 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 425006, guid: e8d31fb942e91c3478cedbdae2b384a0,
     type: 3}
   m_PrefabInstance: {fileID: 2428571701751026076}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &3995553162622432626
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 2428571700924738152}
+    m_Modifications:
+    - target: {fileID: 8068124047473232847, guid: 04a5d3d48f12ec0499c47ecfe4ea1f77,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8068124047473232847, guid: 04a5d3d48f12ec0499c47ecfe4ea1f77,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8068124047473232847, guid: 04a5d3d48f12ec0499c47ecfe4ea1f77,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8068124047473232847, guid: 04a5d3d48f12ec0499c47ecfe4ea1f77,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.84
+      objectReference: {fileID: 0}
+    - target: {fileID: 8068124047473232847, guid: 04a5d3d48f12ec0499c47ecfe4ea1f77,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8068124047473232847, guid: 04a5d3d48f12ec0499c47ecfe4ea1f77,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8068124047473232847, guid: 04a5d3d48f12ec0499c47ecfe4ea1f77,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8068124047473232847, guid: 04a5d3d48f12ec0499c47ecfe4ea1f77,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8068124047473232847, guid: 04a5d3d48f12ec0499c47ecfe4ea1f77,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8068124047473232847, guid: 04a5d3d48f12ec0499c47ecfe4ea1f77,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8068124047473232847, guid: 04a5d3d48f12ec0499c47ecfe4ea1f77,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8068940972642133975, guid: 04a5d3d48f12ec0499c47ecfe4ea1f77,
+        type: 3}
+      propertyPath: m_Name
+      value: SmokeArcExplosionBright
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 04a5d3d48f12ec0499c47ecfe4ea1f77, type: 3}
+--- !u!4 &6378419224722915005 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8068124047473232847, guid: 04a5d3d48f12ec0499c47ecfe4ea1f77,
+    type: 3}
+  m_PrefabInstance: {fileID: 3995553162622432626}
   m_PrefabAsset: {fileID: 0}
