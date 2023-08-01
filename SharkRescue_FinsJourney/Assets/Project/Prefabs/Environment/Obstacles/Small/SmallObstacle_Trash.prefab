@@ -74,10 +74,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   meshTransform: {fileID: 3949901496178902393}
-  moveSpeed: 1
-  rotationSpeedMin: 40
+  moveSpeed: 0
+  rotationSpeedMin: 20
   rotationSpeedMax: 60
-  rotationSpeed: 40
+  rotationSpeed: 20
   powerUpType: 0
   damageValue: 1
 --- !u!1 &4131223592791849715
@@ -105,7 +105,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4131223592791849715}
-  m_LocalRotation: {x: 0, y: -0.9879006, z: 0, w: 0.15508859}
+  m_LocalRotation: {x: 0, y: 0.87626463, z: 0, w: 0.48183027}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1

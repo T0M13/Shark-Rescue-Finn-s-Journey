@@ -143,8 +143,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4771a369db193324f86386cde073c809, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  meshTransform: {fileID: 3949901496178902393, guid: 54ef914aa18eb6e4e93231e7cc6e84f5,
-    type: 3}
+  meshTransform: {fileID: 4330600122997589418}
   moveSpeed: 0
   rotationSpeedMin: 20
   rotationSpeedMax: 60

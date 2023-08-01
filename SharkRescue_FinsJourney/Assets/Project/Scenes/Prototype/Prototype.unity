@@ -1051,78 +1051,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ObstacleList:
-  - environmentType: 2
-    obstacleConfigurations:
-    - obstacleType: 1
-      obstaclePrefabs:
-      - {fileID: 3643289242992397168, guid: 54ef914aa18eb6e4e93231e7cc6e84f5, type: 3}
-      - {fileID: 3643289242992397168, guid: 54ef914aa18eb6e4e93231e7cc6e84f5, type: 3}
-      - {fileID: 6944444999079064903, guid: 0ba52d3d548fc5046824ac0bf729631a, type: 3}
-      - {fileID: 6944444999079064903, guid: 90954ea650420e54ebae730bfd1c3d84, type: 3}
-      disabledObstacleList: []
-      activeObstacleList: []
-      spawnRate: 25
-      obstacleQuantity: 25
-      additionalObstacleProbability: {fileID: 11400000, guid: 7685981f59505fe46b630db511050c11,
-        type: 2}
-      obstacleSpawnPositions: {fileID: 11400000, guid: ae596dde41d578648a1a8f31f70c6939,
-        type: 2}
-    - obstacleType: 2
-      obstaclePrefabs:
-      - {fileID: 8683965855826147816, guid: 66ad9e95460fe774f9cfb927daae01bf, type: 3}
-      - {fileID: 4817452408131953429, guid: 320b2998328dd7144b970358bb5004f6, type: 3}
-      - {fileID: 873682508058528038, guid: 39bd99010db0f344baba99ebd0cc0e5c, type: 3}
-      disabledObstacleList: []
-      activeObstacleList: []
-      spawnRate: 25
-      obstacleQuantity: 15
-      additionalObstacleProbability: {fileID: 11400000, guid: be57a044af28c4840a1d9bb54cb1bfc9,
-        type: 2}
-      obstacleSpawnPositions: {fileID: 11400000, guid: b3373cfb8ae217141bfc16936c49356a,
-        type: 2}
-    - obstacleType: 3
-      obstaclePrefabs:
-      - {fileID: 1642668588538000059, guid: 969c4d7577b840c4bb1200073b742a51, type: 3}
-      - {fileID: 8509167365768827539, guid: 75c039de67ffc5f4bb6dd248008f71e3, type: 3}
-      disabledObstacleList: []
-      activeObstacleList: []
-      spawnRate: 25
-      obstacleQuantity: 10
-      additionalObstacleProbability: {fileID: 11400000, guid: 5233a67bcaec72f4ca2e73402c6a4fc0,
-        type: 2}
-      obstacleSpawnPositions: {fileID: 11400000, guid: a84f3fc02fc1b294f8304bd91e2d91b7,
-        type: 2}
-    - obstacleType: 4
-      obstaclePrefabs:
-      - {fileID: 1499747622211405067, guid: 443abce1ddbdfe54b83cd692a140a832, type: 3}
-      - {fileID: 5554653630235779479, guid: cf97632bc553622449b946a09988af55, type: 3}
-      - {fileID: 4040695619608224068, guid: 7ca1b61a1c6172f429b0eb6bfa603554, type: 3}
-      - {fileID: 1758505003498673850, guid: b8c1a18b619ffd544b9cae2ce65896f8, type: 3}
-      - {fileID: 6894320280537561671, guid: 8eec11a578ed9c1438b9b96248bc3458, type: 3}
-      - {fileID: 1913956949178904466, guid: ca494a54bdde42d4d9950f71b7ad7993, type: 3}
-      - {fileID: 5119632643663648162, guid: d5806e19bdbc25947a764e5021b87538, type: 3}
-      - {fileID: 5015377212630257308, guid: f7e876b286797584e93d5ddb9f17fc80, type: 3}
-      - {fileID: 6635210774288767565, guid: 746f1492b77bbdb4fb0a9b9446f652b7, type: 3}
-      - {fileID: 3921537232096872364, guid: e3eedfaa9577d734da826a02df8a2fa7, type: 3}
-      - {fileID: 8053697320732331142, guid: 8cd3bb1dd75b008418c0151e677c40d4, type: 3}
-      - {fileID: 1688429662918881257, guid: aa321acfe6404c74daef4afbcb17277b, type: 3}
-      disabledObstacleList: []
-      activeObstacleList: []
-      spawnRate: 25
-      obstacleQuantity: 4
-      additionalObstacleProbability: {fileID: 11400000, guid: 40c39f49e1c2a8840b318009365ead43,
-        type: 2}
-      obstacleSpawnPositions: {fileID: 11400000, guid: a6356843f98f1574f9f79da9b046ef35,
-        type: 2}
-    spawnRate: 
   - environmentType: 1
     obstacleConfigurations:
     - obstacleType: 1
       obstaclePrefabs:
-      - {fileID: 3643289242992397168, guid: 54ef914aa18eb6e4e93231e7cc6e84f5, type: 3}
-      - {fileID: 3643289242992397168, guid: 54ef914aa18eb6e4e93231e7cc6e84f5, type: 3}
+      - {fileID: 7276484091886533344, guid: 3cb393156d1bcd949b463ace074ff4a5, type: 3}
+      - {fileID: 2817203728240494532, guid: 848eb375c0a5dd24bb7896486987fc8d, type: 3}
+      - {fileID: 203940325872140739, guid: a6229826cec37a740a7746d4cc47e918, type: 3}
+      - {fileID: 5428157433279862545, guid: 52db6d24e147a5449a7d633d783a536c, type: 3}
+      - {fileID: 2863962462279937558, guid: 2c6656e7d0b96c64995528e9dcd2be53, type: 3}
+      - {fileID: 8702600483617506927, guid: b4a872484bf83854695b862de3b788a5, type: 3}
+      - {fileID: 3668979353721005282, guid: 7b446defd1d58c6468dc23ecbb4438ae, type: 3}
+      - {fileID: 4771981376025474284, guid: 77cc6550da58fb44e9f4744769499cdb, type: 3}
+      - {fileID: 1281404006646977697, guid: a0642c0d347ecf84e94d3057472baa46, type: 3}
+      - {fileID: 713248471941893752, guid: 40b0177ba730ef644be5712d3e020af8, type: 3}
+      - {fileID: 2156597031675022020, guid: 60197191b93d36944ac196de023fde1a, type: 3}
+      - {fileID: 3013959352308709913, guid: 441f926fd74680c43848b1e51c17ae80, type: 3}
       - {fileID: 6944444999079064903, guid: 0ba52d3d548fc5046824ac0bf729631a, type: 3}
+      - {fileID: 2136264518442350177, guid: b03ff3e6e78799749ab140ef7110fc00, type: 3}
+      - {fileID: 9116217996902028700, guid: 52a10242367ec834b87f3f104a01981b, type: 3}
       - {fileID: 6944444999079064903, guid: 90954ea650420e54ebae730bfd1c3d84, type: 3}
+      - {fileID: 3643289242992397168, guid: 54ef914aa18eb6e4e93231e7cc6e84f5, type: 3}
       disabledObstacleList: []
       activeObstacleList: []
       spawnRate: 25
@@ -1179,13 +1128,90 @@ MonoBehaviour:
       obstacleSpawnPositions: {fileID: 11400000, guid: a6356843f98f1574f9f79da9b046ef35,
         type: 2}
     spawnRate: 
+  - environmentType: 2
+    obstacleConfigurations:
+    - obstacleType: 1
+      obstaclePrefabs:
+      - {fileID: 7276484091886533344, guid: 3cb393156d1bcd949b463ace074ff4a5, type: 3}
+      - {fileID: 2817203728240494532, guid: 848eb375c0a5dd24bb7896486987fc8d, type: 3}
+      - {fileID: 203940325872140739, guid: a6229826cec37a740a7746d4cc47e918, type: 3}
+      - {fileID: 5428157433279862545, guid: 52db6d24e147a5449a7d633d783a536c, type: 3}
+      - {fileID: 2863962462279937558, guid: 2c6656e7d0b96c64995528e9dcd2be53, type: 3}
+      - {fileID: 8702600483617506927, guid: b4a872484bf83854695b862de3b788a5, type: 3}
+      - {fileID: 3668979353721005282, guid: 7b446defd1d58c6468dc23ecbb4438ae, type: 3}
+      - {fileID: 4771981376025474284, guid: 77cc6550da58fb44e9f4744769499cdb, type: 3}
+      - {fileID: 1281404006646977697, guid: a0642c0d347ecf84e94d3057472baa46, type: 3}
+      - {fileID: 713248471941893752, guid: 40b0177ba730ef644be5712d3e020af8, type: 3}
+      - {fileID: 2156597031675022020, guid: 60197191b93d36944ac196de023fde1a, type: 3}
+      - {fileID: 3013959352308709913, guid: 441f926fd74680c43848b1e51c17ae80, type: 3}
+      - {fileID: 6944444999079064903, guid: 0ba52d3d548fc5046824ac0bf729631a, type: 3}
+      - {fileID: 2136264518442350177, guid: b03ff3e6e78799749ab140ef7110fc00, type: 3}
+      - {fileID: 9116217996902028700, guid: 52a10242367ec834b87f3f104a01981b, type: 3}
+      - {fileID: 6944444999079064903, guid: 90954ea650420e54ebae730bfd1c3d84, type: 3}
+      - {fileID: 3643289242992397168, guid: 54ef914aa18eb6e4e93231e7cc6e84f5, type: 3}
+      disabledObstacleList: []
+      activeObstacleList: []
+      spawnRate: 100
+      obstacleQuantity: 25
+      additionalObstacleProbability: {fileID: 11400000, guid: 7685981f59505fe46b630db511050c11,
+        type: 2}
+      obstacleSpawnPositions: {fileID: 11400000, guid: ae596dde41d578648a1a8f31f70c6939,
+        type: 2}
+    - obstacleType: 2
+      obstaclePrefabs:
+      - {fileID: 8683965855826147816, guid: 66ad9e95460fe774f9cfb927daae01bf, type: 3}
+      - {fileID: 4817452408131953429, guid: 320b2998328dd7144b970358bb5004f6, type: 3}
+      - {fileID: 873682508058528038, guid: 39bd99010db0f344baba99ebd0cc0e5c, type: 3}
+      disabledObstacleList: []
+      activeObstacleList: []
+      spawnRate: 25
+      obstacleQuantity: 15
+      additionalObstacleProbability: {fileID: 11400000, guid: be57a044af28c4840a1d9bb54cb1bfc9,
+        type: 2}
+      obstacleSpawnPositions: {fileID: 11400000, guid: b3373cfb8ae217141bfc16936c49356a,
+        type: 2}
+    - obstacleType: 3
+      obstaclePrefabs:
+      - {fileID: 1642668588538000059, guid: 969c4d7577b840c4bb1200073b742a51, type: 3}
+      - {fileID: 8509167365768827539, guid: 75c039de67ffc5f4bb6dd248008f71e3, type: 3}
+      disabledObstacleList: []
+      activeObstacleList: []
+      spawnRate: 25
+      obstacleQuantity: 10
+      additionalObstacleProbability: {fileID: 11400000, guid: 5233a67bcaec72f4ca2e73402c6a4fc0,
+        type: 2}
+      obstacleSpawnPositions: {fileID: 11400000, guid: a84f3fc02fc1b294f8304bd91e2d91b7,
+        type: 2}
+    - obstacleType: 4
+      obstaclePrefabs:
+      - {fileID: 1499747622211405067, guid: 443abce1ddbdfe54b83cd692a140a832, type: 3}
+      - {fileID: 5554653630235779479, guid: cf97632bc553622449b946a09988af55, type: 3}
+      - {fileID: 4040695619608224068, guid: 7ca1b61a1c6172f429b0eb6bfa603554, type: 3}
+      - {fileID: 1758505003498673850, guid: b8c1a18b619ffd544b9cae2ce65896f8, type: 3}
+      - {fileID: 6894320280537561671, guid: 8eec11a578ed9c1438b9b96248bc3458, type: 3}
+      - {fileID: 1913956949178904466, guid: ca494a54bdde42d4d9950f71b7ad7993, type: 3}
+      - {fileID: 5119632643663648162, guid: d5806e19bdbc25947a764e5021b87538, type: 3}
+      - {fileID: 5015377212630257308, guid: f7e876b286797584e93d5ddb9f17fc80, type: 3}
+      - {fileID: 6635210774288767565, guid: 746f1492b77bbdb4fb0a9b9446f652b7, type: 3}
+      - {fileID: 3921537232096872364, guid: e3eedfaa9577d734da826a02df8a2fa7, type: 3}
+      - {fileID: 8053697320732331142, guid: 8cd3bb1dd75b008418c0151e677c40d4, type: 3}
+      - {fileID: 1688429662918881257, guid: aa321acfe6404c74daef4afbcb17277b, type: 3}
+      disabledObstacleList: []
+      activeObstacleList: []
+      spawnRate: 25
+      obstacleQuantity: 4
+      additionalObstacleProbability: {fileID: 11400000, guid: 40c39f49e1c2a8840b318009365ead43,
+        type: 2}
+      obstacleSpawnPositions: {fileID: 11400000, guid: a6356843f98f1574f9f79da9b046ef35,
+        type: 2}
+    spawnRate: 
   obstacleLanePrefab: {fileID: 4260135871485390643, guid: 822d5c78ca5aad54bbf7942b5ddc7e74,
     type: 3}
   obstacleContainer: {fileID: 0}
   disabledObstacleLanes: []
   allObstacleLanes: []
   allActiveObstaclesCounter: 0
-  eEnvironmentType: 0
+  eCurrentEnvironmentType: 0
   obstacleMovementSpeed: 0
   maxObstacleLanesShownAtTime: 5
   obstacleRespawnDistance: 5
@@ -18569,6 +18595,18 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 709631277}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &713852500 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5607157440213826443, guid: 707e6ab3f6d25d447b9861be50356c4d,
+    type: 3}
+  m_PrefabInstance: {fileID: 1576934951}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6130f2f51568c4149aad36f54bc021fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &715539331
 GameObject:
   m_ObjectHideFlags: 0
@@ -28880,10 +28918,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   chunklength: 5
   chunkwidth: 5
-  chunkQuantity: 8
-  environmentChunkQuantity: 8
+  chunkQuantity: 10
+  environmentChunkQuantity: 10
   tileWidthLength: 13
-  eCurrentEnvironmentType: 0
+  eCurrentEnvironmentType: 1
   chunkColliderCatcherSize: {x: 13, y: 15, z: 13}
   maxChunksShownAtTime: 5
   chunksMovingSpeed: 0
@@ -28900,6 +28938,33 @@ MonoBehaviour:
     - {fileID: 6812926653815410231, guid: c99c7945675f348428b392ea89ef1d0c, type: 3}
     - {fileID: 1879179258873878074, guid: 4392487f930f0894891e5ae70765e7cb, type: 3}
     - {fileID: 3024226807172674610, guid: fbc2bf6c3372aeb4681611fb1e42109e, type: 3}
+    - {fileID: 5157561890094783115, guid: 018b1a4f10e5a0e48b7344a621c9d12d, type: 3}
+    - {fileID: 5330115395612513139, guid: bae9759ad485b174facdeb537b4d7151, type: 3}
+    - {fileID: 8586770372814024120, guid: c9e9904032b6fdb4e9e8bcd20195efc8, type: 3}
+    - {fileID: 3600801417857203612, guid: b86eb0d152b5e4648ba88cdba5de33b9, type: 3}
+    - {fileID: 73902098614863047, guid: 724da5438ac7e5c4ab11148ef3893502, type: 3}
+    - {fileID: 5773857935687359588, guid: e21b3445b30ca4d4cbe47a601c7ccc86, type: 3}
+    - {fileID: 6812926653815410231, guid: c99c7945675f348428b392ea89ef1d0c, type: 3}
+    - {fileID: 1879179258873878074, guid: 4392487f930f0894891e5ae70765e7cb, type: 3}
+    - {fileID: 3024226807172674610, guid: fbc2bf6c3372aeb4681611fb1e42109e, type: 3}
+    - {fileID: 5157561890094783115, guid: 018b1a4f10e5a0e48b7344a621c9d12d, type: 3}
+    - {fileID: 5330115395612513139, guid: bae9759ad485b174facdeb537b4d7151, type: 3}
+    - {fileID: 8586770372814024120, guid: c9e9904032b6fdb4e9e8bcd20195efc8, type: 3}
+    - {fileID: 3600801417857203612, guid: b86eb0d152b5e4648ba88cdba5de33b9, type: 3}
+    - {fileID: 73902098614863047, guid: 724da5438ac7e5c4ab11148ef3893502, type: 3}
+    - {fileID: 5773857935687359588, guid: e21b3445b30ca4d4cbe47a601c7ccc86, type: 3}
+    - {fileID: 6812926653815410231, guid: c99c7945675f348428b392ea89ef1d0c, type: 3}
+    - {fileID: 1879179258873878074, guid: 4392487f930f0894891e5ae70765e7cb, type: 3}
+    - {fileID: 3024226807172674610, guid: fbc2bf6c3372aeb4681611fb1e42109e, type: 3}
+    - {fileID: 6443420831070730626, guid: bf280eaeb656038448b332db7af02ff8, type: 3}
+    - {fileID: 2068451380195929120, guid: cbe772d4d0cc805459522e5369eae79f, type: 3}
+    - {fileID: 5562292548333484909, guid: f9979c30f3a27c348ac08f159698b53e, type: 3}
+    - {fileID: 7869648241165016608, guid: f0a8e184d19d727499b9430677f447ff, type: 3}
+    - {fileID: 2560141011878056839, guid: a09cd36f9eed77649b1d3ea5601a9c99, type: 3}
+    - {fileID: 8275107004480057696, guid: 78c63a2d413f2624482c8a82864fbc15, type: 3}
+    - {fileID: 6532355580793186509, guid: 8c01e3a380e1add438a85bbb678a571d, type: 3}
+    - {fileID: 6011921912822586581, guid: c154db4d894305b4fadef414c751238a, type: 3}
+    - {fileID: 8239906045787463352, guid: 7965e075528295c41a904016e288a4a4, type: 3}
     EnvFloorTilePrefabs:
     - {fileID: 5157561890094783115, guid: 018b1a4f10e5a0e48b7344a621c9d12d, type: 3}
     - {fileID: 5330115395612513139, guid: bae9759ad485b174facdeb537b4d7151, type: 3}
@@ -28910,10 +28975,37 @@ MonoBehaviour:
     - {fileID: 6812926653815410231, guid: c99c7945675f348428b392ea89ef1d0c, type: 3}
     - {fileID: 1879179258873878074, guid: 4392487f930f0894891e5ae70765e7cb, type: 3}
     - {fileID: 3024226807172674610, guid: fbc2bf6c3372aeb4681611fb1e42109e, type: 3}
+    - {fileID: 5157561890094783115, guid: 018b1a4f10e5a0e48b7344a621c9d12d, type: 3}
+    - {fileID: 5330115395612513139, guid: bae9759ad485b174facdeb537b4d7151, type: 3}
+    - {fileID: 8586770372814024120, guid: c9e9904032b6fdb4e9e8bcd20195efc8, type: 3}
+    - {fileID: 3600801417857203612, guid: b86eb0d152b5e4648ba88cdba5de33b9, type: 3}
+    - {fileID: 73902098614863047, guid: 724da5438ac7e5c4ab11148ef3893502, type: 3}
+    - {fileID: 5773857935687359588, guid: e21b3445b30ca4d4cbe47a601c7ccc86, type: 3}
+    - {fileID: 6812926653815410231, guid: c99c7945675f348428b392ea89ef1d0c, type: 3}
+    - {fileID: 1879179258873878074, guid: 4392487f930f0894891e5ae70765e7cb, type: 3}
+    - {fileID: 3024226807172674610, guid: fbc2bf6c3372aeb4681611fb1e42109e, type: 3}
+    - {fileID: 5157561890094783115, guid: 018b1a4f10e5a0e48b7344a621c9d12d, type: 3}
+    - {fileID: 5330115395612513139, guid: bae9759ad485b174facdeb537b4d7151, type: 3}
+    - {fileID: 8586770372814024120, guid: c9e9904032b6fdb4e9e8bcd20195efc8, type: 3}
+    - {fileID: 3600801417857203612, guid: b86eb0d152b5e4648ba88cdba5de33b9, type: 3}
+    - {fileID: 73902098614863047, guid: 724da5438ac7e5c4ab11148ef3893502, type: 3}
+    - {fileID: 5773857935687359588, guid: e21b3445b30ca4d4cbe47a601c7ccc86, type: 3}
+    - {fileID: 6812926653815410231, guid: c99c7945675f348428b392ea89ef1d0c, type: 3}
+    - {fileID: 1879179258873878074, guid: 4392487f930f0894891e5ae70765e7cb, type: 3}
+    - {fileID: 3024226807172674610, guid: fbc2bf6c3372aeb4681611fb1e42109e, type: 3}
+    - {fileID: 7961462147135786716, guid: e6c397f96a10a984bb870e9209934a8c, type: 3}
+    - {fileID: 6228909473394578051, guid: 69a506cd56849bc4686e66db86b11973, type: 3}
+    - {fileID: 5952387448899804182, guid: 3e44ea40c47b31f4299a8b0d376b41eb, type: 3}
+    - {fileID: 2730652917278647252, guid: fd5fd0b60430f1c458f277dffd0a3c23, type: 3}
+    - {fileID: 6660907910355232868, guid: 57746df274c56dd42b62960f0f02f821, type: 3}
+    - {fileID: 453354223827393698, guid: c3dedc72bd4bcae49baef88a57bd083b, type: 3}
+    - {fileID: 1901901572683882395, guid: 9874bd0a9dba33847a7fdbd33f11c086, type: 3}
+    - {fileID: 7811361889918891290, guid: 2972d21d72bbbc642b19bf3d7fd21e72, type: 3}
+    - {fileID: 6228480785573703449, guid: 70957cbf07a99f2408c6441b230eed20, type: 3}
     DisabledChunkList: []
     ActiveChunkList: []
     EnvChunkPrefabs:
-    - {fileID: 8625296291214481592, guid: 3ec78e79b29532d4a889d0c49b34d5e0, type: 3}
+    - {fileID: 7123227437398613485, guid: dd892fc73f45c8e439050ca34d4351e7, type: 3}
     DisabledEnvChunkList: []
     ActiveEnvChunkList: []
   - EEnvironmentType: 2
@@ -28927,6 +29019,33 @@ MonoBehaviour:
     - {fileID: 6812926653815410231, guid: b0f4598431b852a4cb1fcbbfb4391531, type: 3}
     - {fileID: 1879179258873878074, guid: 9ab124b32a204d64e87e25e84010a11d, type: 3}
     - {fileID: 3024226807172674610, guid: eab244b6459b60e498bf6b8064181481, type: 3}
+    - {fileID: 5157561890094783115, guid: 105935ce002df294e9722211e774f583, type: 3}
+    - {fileID: 5330115395612513139, guid: 77fd66984923a4d4eadeda4c464d6374, type: 3}
+    - {fileID: 8586770372814024120, guid: 914bbf0eb19045649952fcd39cbe9f69, type: 3}
+    - {fileID: 3600801417857203612, guid: 1d0dbbe5d3840a14ab45384f9b0a72ac, type: 3}
+    - {fileID: 73902098614863047, guid: 346f8d16f9b9b5d4aa06c307a8d8a0fc, type: 3}
+    - {fileID: 5773857935687359588, guid: 2e93b6731024f944197417693a899ae8, type: 3}
+    - {fileID: 6812926653815410231, guid: b0f4598431b852a4cb1fcbbfb4391531, type: 3}
+    - {fileID: 1879179258873878074, guid: 9ab124b32a204d64e87e25e84010a11d, type: 3}
+    - {fileID: 3024226807172674610, guid: eab244b6459b60e498bf6b8064181481, type: 3}
+    - {fileID: 5157561890094783115, guid: 105935ce002df294e9722211e774f583, type: 3}
+    - {fileID: 5330115395612513139, guid: 77fd66984923a4d4eadeda4c464d6374, type: 3}
+    - {fileID: 8586770372814024120, guid: 914bbf0eb19045649952fcd39cbe9f69, type: 3}
+    - {fileID: 3600801417857203612, guid: 1d0dbbe5d3840a14ab45384f9b0a72ac, type: 3}
+    - {fileID: 73902098614863047, guid: 346f8d16f9b9b5d4aa06c307a8d8a0fc, type: 3}
+    - {fileID: 5773857935687359588, guid: 2e93b6731024f944197417693a899ae8, type: 3}
+    - {fileID: 6812926653815410231, guid: b0f4598431b852a4cb1fcbbfb4391531, type: 3}
+    - {fileID: 1879179258873878074, guid: 9ab124b32a204d64e87e25e84010a11d, type: 3}
+    - {fileID: 3024226807172674610, guid: eab244b6459b60e498bf6b8064181481, type: 3}
+    - {fileID: 2956476111323805469, guid: 74baa23d46c097a4d807ac5100db6d6a, type: 3}
+    - {fileID: 7983093634410475594, guid: 4ab6c65845ef9dc4aad3a35ff8dcd984, type: 3}
+    - {fileID: 4296447756924620044, guid: f505e1f6287376b4e8f429c937da05ab, type: 3}
+    - {fileID: 5242122590290769834, guid: b202f5ece8a95814380ca14d7f02b0d3, type: 3}
+    - {fileID: 7950962825387930803, guid: 1106219461141a5449122a7ea676cd80, type: 3}
+    - {fileID: 8720817399100308588, guid: 30d0d842a219e1a49a60c7f64fa83fc8, type: 3}
+    - {fileID: 943358945969517617, guid: 981c7c6292ef7044288143d5062f08fe, type: 3}
+    - {fileID: 6350715299966056474, guid: da99050e3eb2d4d44aa97cf89de7e25b, type: 3}
+    - {fileID: 8390017087133120720, guid: 3adf1a7c5fbe3c2458620aa88ca3935c, type: 3}
     EnvFloorTilePrefabs:
     - {fileID: 5157561890094783115, guid: 105935ce002df294e9722211e774f583, type: 3}
     - {fileID: 5330115395612513139, guid: 77fd66984923a4d4eadeda4c464d6374, type: 3}
@@ -28937,10 +29056,37 @@ MonoBehaviour:
     - {fileID: 6812926653815410231, guid: b0f4598431b852a4cb1fcbbfb4391531, type: 3}
     - {fileID: 1879179258873878074, guid: 9ab124b32a204d64e87e25e84010a11d, type: 3}
     - {fileID: 3024226807172674610, guid: eab244b6459b60e498bf6b8064181481, type: 3}
+    - {fileID: 5157561890094783115, guid: 105935ce002df294e9722211e774f583, type: 3}
+    - {fileID: 5330115395612513139, guid: 77fd66984923a4d4eadeda4c464d6374, type: 3}
+    - {fileID: 8586770372814024120, guid: 914bbf0eb19045649952fcd39cbe9f69, type: 3}
+    - {fileID: 3600801417857203612, guid: 1d0dbbe5d3840a14ab45384f9b0a72ac, type: 3}
+    - {fileID: 73902098614863047, guid: 346f8d16f9b9b5d4aa06c307a8d8a0fc, type: 3}
+    - {fileID: 5773857935687359588, guid: 2e93b6731024f944197417693a899ae8, type: 3}
+    - {fileID: 6812926653815410231, guid: b0f4598431b852a4cb1fcbbfb4391531, type: 3}
+    - {fileID: 1879179258873878074, guid: 9ab124b32a204d64e87e25e84010a11d, type: 3}
+    - {fileID: 3024226807172674610, guid: eab244b6459b60e498bf6b8064181481, type: 3}
+    - {fileID: 5157561890094783115, guid: 105935ce002df294e9722211e774f583, type: 3}
+    - {fileID: 5330115395612513139, guid: 77fd66984923a4d4eadeda4c464d6374, type: 3}
+    - {fileID: 8586770372814024120, guid: 914bbf0eb19045649952fcd39cbe9f69, type: 3}
+    - {fileID: 3600801417857203612, guid: 1d0dbbe5d3840a14ab45384f9b0a72ac, type: 3}
+    - {fileID: 73902098614863047, guid: 346f8d16f9b9b5d4aa06c307a8d8a0fc, type: 3}
+    - {fileID: 5773857935687359588, guid: 2e93b6731024f944197417693a899ae8, type: 3}
+    - {fileID: 6812926653815410231, guid: b0f4598431b852a4cb1fcbbfb4391531, type: 3}
+    - {fileID: 1879179258873878074, guid: 9ab124b32a204d64e87e25e84010a11d, type: 3}
+    - {fileID: 3024226807172674610, guid: eab244b6459b60e498bf6b8064181481, type: 3}
+    - {fileID: 1341250371355552731, guid: a8a5063b0aa69664688b43f14d12de1b, type: 3}
+    - {fileID: 3453250039743287933, guid: 4381e9cf26e8d2a449637bd4738173cd, type: 3}
+    - {fileID: 7962564430506328061, guid: 6a90a1e3654027d49926031d00279d82, type: 3}
+    - {fileID: 4999572158604777234, guid: 4a72c07455eaf7d4199325b94d035410, type: 3}
+    - {fileID: 8821633452884062224, guid: 3bef891e1656fa7489c2a875f140b59d, type: 3}
+    - {fileID: 5860448733576971200, guid: c685a0f00e007234289f59c1efa7bc9b, type: 3}
+    - {fileID: 8017635504447119862, guid: 187a22afdb1c55d4da5233693619342d, type: 3}
+    - {fileID: 2519589423389934921, guid: ee92ccf320b1a504599d3ac1661d953e, type: 3}
+    - {fileID: 5776688624357154796, guid: dec3a7889363e3e4eb51cf6e7cecc2f6, type: 3}
     DisabledChunkList: []
     ActiveChunkList: []
     EnvChunkPrefabs:
-    - {fileID: 8625296291214481592, guid: 6fe6664b46ba4064094aa1a14b47580e, type: 3}
+    - {fileID: 8614122282548640082, guid: f9f5a2263ce277542aff6f4f08524ded, type: 3}
     DisabledEnvChunkList: []
     ActiveEnvChunkList: []
   chunkColliderCatcher: {fileID: 2132426213}
@@ -42653,14 +42799,29 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6497248131108235341, guid: 966a056f7856b214596c9a38d1ef2163,
         type: 3}
+      propertyPath: invincible
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6497248131108235341, guid: 966a056f7856b214596c9a38d1ef2163,
+        type: 3}
       propertyPath: itemSpawner
       value: 
       objectReference: {fileID: 1366139060}
     - target: {fileID: 6497248131108235341, guid: 966a056f7856b214596c9a38d1ef2163,
         type: 3}
+      propertyPath: audioManager
+      value: 
+      objectReference: {fileID: 713852500}
+    - target: {fileID: 6497248131108235341, guid: 966a056f7856b214596c9a38d1ef2163,
+        type: 3}
       propertyPath: chunkManager
       value: 
       objectReference: {fileID: 1253199304}
+    - target: {fileID: 6497248131108235341, guid: 966a056f7856b214596c9a38d1ef2163,
+        type: 3}
+      propertyPath: gameDifficulty
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 6497248131108235341, guid: 966a056f7856b214596c9a38d1ef2163,
         type: 3}
       propertyPath: eEnvironmentTyp

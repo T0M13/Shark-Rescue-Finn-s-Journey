@@ -20,21 +20,22 @@ public class BaseItem : MonoBehaviour
 
     protected void Start()
     {
-        if (meshTransform == null)
+        if (meshTransform == null && transform.childCount != 0)
             meshTransform = transform.GetChild(0);
         rotationSpeed = Random.Range(rotationSpeedMin, rotationSpeedMax);
     }
 
     protected void OnValidate()
     {
-        if (meshTransform == null)
+        if (meshTransform == null && transform.childCount != 0)
             meshTransform = transform.GetChild(0);
     }
 
     protected virtual void Update()
     {
         //transform.Translate(Vector3.back * MoveSpeed * Time.deltaTime);
-        meshTransform.Rotate(Vector3.up * RotationSpeed * Time.deltaTime);
+        if (meshTransform != null)
+            meshTransform.Rotate(Vector3.up * RotationSpeed * Time.deltaTime);
     }
 
     protected virtual void OnTriggerEnter(Collider other)

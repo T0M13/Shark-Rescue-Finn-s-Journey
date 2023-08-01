@@ -88,7 +88,7 @@ public class ChunkManager : MonoBehaviour
                     //Mid (inclusive) to Left
                     for (int j = 0; j < firstchunkwidth; j++)
                     {
-                        if (i == 0)
+                        if (j == 0)
                         {
                             int temp = Random.Range(0, chunkListEnvironment[h].MainFloorTilePrefabs.Count);
                             GameObject go = Instantiate(chunkListEnvironment[h].MainFloorTilePrefabs[temp], transform.position, transform.rotation);
@@ -212,8 +212,11 @@ public class ChunkManager : MonoBehaviour
         chunksMovingSpeed = GameManager.instance.GameSpeed;
         eCurrentEnvironmentType = GameManager.instance.EEnvironmentTyp;
 
+        //Debug.Log("eCurrentEnvironmentType " + eCurrentEnvironmentType);
+
         for (int i = 0; i < chunkListEnvironment.Count; i++)
         {
+
             for (int j = chunkListEnvironment[i].DisabledChunkList.Count - 1; j >= 0; j--)
             {
                 chunkListEnvironment[i].DisabledChunkList[j].GetComponent<Chunk>().movingSpeed = chunksMovingSpeed;
@@ -253,6 +256,7 @@ public class ChunkManager : MonoBehaviour
     {
         int randomTemp;
 
+        eCurrentEnvironmentType = GameManager.instance.EEnvironmentTyp;
 
         for (int i = 0; i < chunkListEnvironment.Count; i++)
         {

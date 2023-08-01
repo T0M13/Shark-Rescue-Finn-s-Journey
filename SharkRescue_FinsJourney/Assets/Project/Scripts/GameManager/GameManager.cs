@@ -18,7 +18,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private ObstacleManager obstacleManager;
     [SerializeField] private AudioManager audioManager;
     [Header("Game Environment")]
-    [SerializeField] private EEnvironmentType eEnvironmentTyp = new();
+    [SerializeField] private EEnvironmentType eEnvironmentTyp;
     [Header("Game Positions")]
     [SerializeField] private Vector3 startPosition;
     [Header("Game Speed")]
@@ -327,6 +327,7 @@ public class GameManager : MonoBehaviour
         {
             yield return new WaitForSeconds(timerChangeGameDifficutly);
             gameDifficulty++;
+            ParticleManager.Instance.AdjustParticleSpeed(gameDifficulty);
 
             if (gameDifficulty == 10)
             {

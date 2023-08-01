@@ -22,7 +22,7 @@ public class ObstacleManager : MonoBehaviour
     //[SerializeField] private List<Vector3> remainingSpawnSpots = new();
 
     [Header("Obstacles Settings")]
-    [SerializeField] private EEnvironmentType eEnvironmentType = new();
+    [SerializeField] private EEnvironmentType eCurrentEnvironmentType;
     [SerializeField] private float obstacleMovementSpeed = 0f;
     [SerializeField] private int maxObstacleLanesShownAtTime = 5;
     [SerializeField] private int obstacleRespawnDistance = 5; //Obstacle Respawn Distance Multiplicator 13 * 5 -> 65 Distance between Obstacles
@@ -125,11 +125,11 @@ public class ObstacleManager : MonoBehaviour
     {
         int maxRange = 0;
         int currentSpawnRate = 0; //What is currently the value
-        eEnvironmentType = GameManager.instance.EEnvironmentTyp;
+        eCurrentEnvironmentType = GameManager.instance.EEnvironmentTyp;
 
         for (int g = 0; g < ObstacleList.Count; g++)
         {
-            if (ObstacleList[g].environmentType == eEnvironmentType)
+            if (ObstacleList[g].environmentType == eCurrentEnvironmentType)
             {
 
                 for (int i = 0; i < ObstacleList[g].spawnRate.Count; i++) //MaxRange for Random, gets from List "ObstaclePrefabs" -> SpawnRate
