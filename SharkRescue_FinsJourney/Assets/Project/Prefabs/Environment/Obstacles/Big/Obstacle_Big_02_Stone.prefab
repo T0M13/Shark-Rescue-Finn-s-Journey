@@ -298,7 +298,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5554653630235779478}
   - component: {fileID: 5554653630235779477}
-  - component: {fileID: 6077071289479795919}
   m_Layer: 0
   m_Name: Obstacle_Big_02_Stone
   m_TagString: HardObstacle
@@ -335,19 +334,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   obstacleSizeType: 4
---- !u!65 &6077071289479795919
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5554653630235779479}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Size: {x: 10, y: 1, z: 10}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &5554653630616837692
 GameObject:
   m_ObjectHideFlags: 0
@@ -389,7 +375,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5554653630616837692}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 6.5255113, y: 6.5500007, z: 3.7400002}
@@ -402,7 +388,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5554653630616837692}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 6.509635, y: 6.5500007, z: 3.4975562}
@@ -448,7 +434,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5554653630929413577}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1.9235871, y: 6.5500007, z: 16.440742}
@@ -461,7 +447,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5554653630929413577}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1.9235871, y: 6.5500007, z: 13.918032}

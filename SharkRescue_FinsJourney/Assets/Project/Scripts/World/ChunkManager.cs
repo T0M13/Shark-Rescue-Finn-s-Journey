@@ -163,10 +163,10 @@ public class ChunkManager : MonoBehaviour
 
     public void AdjustMovementSpeed()
     {
-        if (GameManager.instance == null)
+        if (GameManager.Instance == null)
             return;
 
-        chunksMovingSpeed = GameManager.instance.GameSpeed;
+        chunksMovingSpeed = GameManager.Instance.GameSpeed;
 
         for (int i = 0; i < chunkListEnvironment.Count; i++)
         {
@@ -198,7 +198,7 @@ public class ChunkManager : MonoBehaviour
 
     public void ChangeEnvironment(EEnvironmentType eChunkType)
     {
-        if (GameManager.instance == null)
+        if (GameManager.Instance == null)
             return;
 
         this.eCurrentEnvironmentType = eChunkType;
@@ -206,11 +206,11 @@ public class ChunkManager : MonoBehaviour
 
     private void SpawnFirstChunks()
     {
-        if (GameManager.instance == null)
+        if (GameManager.Instance == null)
             return;
 
-        chunksMovingSpeed = GameManager.instance.GameSpeed;
-        eCurrentEnvironmentType = GameManager.instance.EEnvironmentTyp;
+        chunksMovingSpeed = GameManager.Instance.GameSpeed;
+        eCurrentEnvironmentType = GameManager.Instance.EEnvironmentTyp;
 
         //Debug.Log("eCurrentEnvironmentType " + eCurrentEnvironmentType);
 
@@ -256,7 +256,7 @@ public class ChunkManager : MonoBehaviour
     {
         int randomTemp;
 
-        eCurrentEnvironmentType = GameManager.instance.EEnvironmentTyp;
+        eCurrentEnvironmentType = GameManager.Instance.EEnvironmentTyp;
 
         for (int i = 0; i < chunkListEnvironment.Count; i++)
         {
@@ -264,6 +264,7 @@ public class ChunkManager : MonoBehaviour
             {
                 //Spawning floor chunk
                 randomTemp = Random.Range(0, chunkListEnvironment[i].DisabledChunkList.Count);
+                //Debug.Log("randomTemp " + randomTemp);
 
                 chunkListEnvironment[i].ActiveChunkList.Add(chunkListEnvironment[i].DisabledChunkList[randomTemp]);
 

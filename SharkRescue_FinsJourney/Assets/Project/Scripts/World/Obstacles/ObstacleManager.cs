@@ -108,11 +108,11 @@ public class ObstacleManager : MonoBehaviour
 
     public void AdjustMovementSpeed()
     {
-        if (GameManager.instance == null)
+        if (GameManager.Instance == null)
             return;
 
 
-        obstacleMovementSpeed = GameManager.instance.GameSpeed;
+        obstacleMovementSpeed = GameManager.Instance.GameSpeed;
         //Debug.Log("obstacleMovementSpeed " + obstacleMovementSpeed);
 
         for (int i = 0; i < allObstacleLanes.Count; i++) //How many prefabs lists exist
@@ -125,7 +125,7 @@ public class ObstacleManager : MonoBehaviour
     {
         int maxRange = 0;
         int currentSpawnRate = 0; //What is currently the value
-        eCurrentEnvironmentType = GameManager.instance.EEnvironmentTyp;
+        eCurrentEnvironmentType = GameManager.Instance.EEnvironmentTyp;
 
         for (int g = 0; g < ObstacleList.Count; g++)
         {
@@ -155,7 +155,7 @@ public class ObstacleManager : MonoBehaviour
                             ObstacleTypes.ObstacleSizeType tempObstacleType = ObstacleList[g].obstacleConfigurations[i].obstacleType; //Which random obstacle type has been chosen
                             List<Vector3> tempObstacleSpawnPositions = new(ObstacleList[g].obstacleConfigurations[i].obstacleSpawnPositions.SpawnPositions); //Temo list of possible spawn locations
                             
-                            gameDifficulty = GameManager.instance.GameDifficutly;                                                  //List<Vector3> remainingSpawnSpots = new();
+                            gameDifficulty = GameManager.Instance.GameDifficutly;                                                  //List<Vector3> remainingSpawnSpots = new();
                                                                                                                                    //List<Vector3> convertingRemainingSpawnSpots = new();
                             int randMinValue = (int)ObstacleList[g].obstacleConfigurations[i].additionalObstacleProbability.SpawnQuantityRange[gameDifficulty - 1].x; //Random min value
                             int randMaxValue = (int)ObstacleList[g].obstacleConfigurations[i].additionalObstacleProbability.SpawnQuantityRange[gameDifficulty - 1].y; //Random max value
@@ -188,7 +188,8 @@ public class ObstacleManager : MonoBehaviour
 
                                         disabledObstacleLanes[0].GetComponent<ObstacleLane>().obstacles.Add(ObstacleList[g].obstacleConfigurations[i].disabledObstacleList[randGo].GetComponent<Obstacle>());
                                         disabledObstacleLanes[0].GetComponent<ObstacleLane>().movementSpeed = obstacleMovementSpeed;
-                                        ;
+                                        disabledObstacleLanes[0].GetComponent<ObstacleLane>().eCurrentEnvironmentType = eCurrentEnvironmentType;
+                                        //;
                                         disabledObstacleLanes[0].SetActive(true);
 
                                         ObstacleList[g].obstacleConfigurations[i].activeObstacleList.Add(ObstacleList[g].obstacleConfigurations[i].disabledObstacleList[randGo]);
@@ -220,6 +221,7 @@ public class ObstacleManager : MonoBehaviour
 
                                         disabledObstacleLanes[0].GetComponent<ObstacleLane>().obstacles.Add(ObstacleList[g].obstacleConfigurations[i].disabledObstacleList[randGo].GetComponent<Obstacle>());
                                         disabledObstacleLanes[0].GetComponent<ObstacleLane>().movementSpeed = obstacleMovementSpeed;
+                                        disabledObstacleLanes[0].GetComponent<ObstacleLane>().eCurrentEnvironmentType = eCurrentEnvironmentType;
                                         disabledObstacleLanes[0].SetActive(true);
 
                                         ObstacleList[g].obstacleConfigurations[i].activeObstacleList.Add(ObstacleList[g].obstacleConfigurations[i].disabledObstacleList[randGo]);
@@ -265,6 +267,7 @@ public class ObstacleManager : MonoBehaviour
 
                                         disabledObstacleLanes[0].GetComponent<ObstacleLane>().obstacles.Add(ObstacleList[g].obstacleConfigurations[i].disabledObstacleList[randGo].GetComponent<Obstacle>());
                                         disabledObstacleLanes[0].GetComponent<ObstacleLane>().movementSpeed = obstacleMovementSpeed;
+                                        disabledObstacleLanes[0].GetComponent<ObstacleLane>().eCurrentEnvironmentType = eCurrentEnvironmentType;
                                         disabledObstacleLanes[0].SetActive(true);
 
                                         ObstacleList[g].obstacleConfigurations[i].activeObstacleList.Add(ObstacleList[g].obstacleConfigurations[i].disabledObstacleList[randGo]);
@@ -301,6 +304,7 @@ public class ObstacleManager : MonoBehaviour
 
                                     disabledObstacleLanes[0].GetComponent<ObstacleLane>().obstacles.Add(ObstacleList[g].obstacleConfigurations[i].disabledObstacleList[randGo].GetComponent<Obstacle>());
                                     disabledObstacleLanes[0].GetComponent<ObstacleLane>().movementSpeed = obstacleMovementSpeed;
+                                    disabledObstacleLanes[0].GetComponent<ObstacleLane>().eCurrentEnvironmentType = eCurrentEnvironmentType;
                                     disabledObstacleLanes[0].SetActive(true);
                                     disabledObstacleLanes.RemoveAt(0);
 
@@ -322,11 +326,6 @@ public class ObstacleManager : MonoBehaviour
                 }
             }
         }
-
-    }
-
-    private void SpawnObstacleConfig()
-    {
 
     }
 }

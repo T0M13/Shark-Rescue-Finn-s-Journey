@@ -50,7 +50,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7577041363070149870}
   - component: {fileID: 7577041363070149864}
-  - component: {fileID: 7577041363070149871}
   m_Layer: 0
   m_Name: Obstacle_Big_01_Sand
   m_TagString: HardObstacle
@@ -87,19 +86,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   obstacleSizeType: 4
---- !u!65 &7577041363070149871
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7577041363070149869}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Size: {x: 10, y: 1, z: 10}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7577041363111596668
 GameObject:
   m_ObjectHideFlags: 0
@@ -224,7 +210,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7577041363182920335}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 6.5255113, y: 6.5500007, z: 3.7400002}
@@ -237,7 +223,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7577041363182920335}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 6.509635, y: 6.5500007, z: 3.4975562}
@@ -698,7 +684,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7577041364850656071}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1.9235871, y: 6.5500007, z: 12.386509}
@@ -711,7 +697,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7577041364850656071}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1.9235871, y: 6.5500007, z: 18.064459}

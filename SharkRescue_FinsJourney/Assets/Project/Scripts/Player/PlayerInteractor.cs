@@ -40,6 +40,19 @@ public class PlayerInteractor : MonoBehaviour
             interactable.PlaySFX();
         }
 
+        if (other.gameObject.CompareTag("HardObstacle"))
+        {
+            //if (GameManager.Instance.Invincible) return;
+            GameManager.Instance.OnGameOver?.Invoke();
+
+            collisionEffect.SetActive(true);
+            collisionEffect.transform.SetParent(null);
+
+            //playerReferences.PlayerAnimator.SetBool("isGameOver", true);
+
+            gameObject.SetActive(false);
+        }
+
     }
 
     private void Awake()
@@ -95,7 +108,7 @@ public class PlayerInteractor : MonoBehaviour
             foreach (GameObject item in pulledObjects)
             {
                 if (!item.activeInHierarchy) { pulledObjects.Remove(item); return; }
-                item.transform.position = Vector3.Lerp(item.transform.position, transform.position, GameManager.instance.GameSpeed * Time.deltaTime);
+                item.transform.position = Vector3.Lerp(item.transform.position, transform.position, GameManager.Instance.GameSpeed * Time.deltaTime);
             }
         }
 
@@ -113,20 +126,19 @@ public class PlayerInteractor : MonoBehaviour
     }
     #endregion
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (GameManager.instance && collision.gameObject.CompareTag("HardObstacle"))
-        {
-            if (GameManager.instance.Invincible) return;
-            GameManager.instance.OnGameOver?.Invoke();
+    //private void OnCollisionEnter(Collision collision)
+    //{
+    //    if (collision.gameObject.CompareTag("HardObstacle"))
+    //    {
+    //        if (GameManager.instance.Invincible) return;
+    //        GameManager.instance.OnGameOver?.Invoke();
 
-            collisionEffect.SetActive(true);
-            collisionEffect.transform.SetParent(null);
+    //        collisionEffect.SetActive(true);
+    //        collisionEffect.transform.SetParent(null);
 
-            //playerReferences.PlayerAnimator.SetBool("isGameOver", true);
+    //        //playerReferences.PlayerAnimator.SetBool("isGameOver", true);
 
-            gameObject.SetActive(false);
-        }
-    }
-
+    //        gameObject.SetActive(false);
+    //    }
+    //}
 }

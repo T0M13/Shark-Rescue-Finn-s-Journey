@@ -257,10 +257,10 @@ public class ItemSpawnerNew : MonoBehaviour
 
     public void AdjustAllActiveItems()
     {
-        if (GameManager.instance == null)
+        if (GameManager.Instance == null)
             return;
 
-        itemMovementSpeed = GameManager.instance.GameSpeed;
+        itemMovementSpeed = GameManager.Instance.GameSpeed;
 
         for (int i = 0; i < ItemPrefabs.Count; i++)
         {

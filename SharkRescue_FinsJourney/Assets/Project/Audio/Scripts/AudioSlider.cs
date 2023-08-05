@@ -32,8 +32,8 @@ public class AudioSlider : MonoBehaviour
 
     private void Start()
     {
-        if (GameManager.instance != null)
-            GameManager.instance.OnLoad?.Invoke();
+        if (GameManager.Instance != null)
+            GameManager.Instance.OnLoad?.Invoke();
         else Debug.Log("Game Manager Missing!");
 
         switch (audioType)
@@ -97,8 +97,8 @@ public class AudioSlider : MonoBehaviour
                 break;
         }
 
-        if (GameManager.instance != null)
-            GameManager.instance.OnSave?.Invoke();
+        if (GameManager.Instance != null)
+            GameManager.Instance.OnSave?.Invoke();
         else Debug.Log("Game Manager Missing!");
     }
 

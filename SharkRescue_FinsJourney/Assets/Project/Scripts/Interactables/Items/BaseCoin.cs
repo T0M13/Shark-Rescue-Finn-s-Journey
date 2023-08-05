@@ -29,8 +29,8 @@ public class BaseCoin : BaseItem, IInteractable
             effect.gameObject.GetComponent<VFXHelper>().ActivateVFX();
         }
 
-        if (GameManager.instance != null)
-            GameManager.instance.OnAddCoin?.Invoke();
+        if (GameManager.Instance != null)
+            GameManager.Instance.OnAddCoin?.Invoke();
     }
 
     public void PlaySFX()

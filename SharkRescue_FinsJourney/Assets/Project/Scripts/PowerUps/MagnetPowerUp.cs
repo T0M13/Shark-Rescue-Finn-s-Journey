@@ -8,8 +8,8 @@ public class MagnetPowerUp : BaseItem, IInteractable
     {
         //Debug.Log("Magnet Power Up Activated");
 
-        if (GameManager.instance != null)
-            GameManager.instance.OnMagnetPowerUp?.Invoke();
+        if (GameManager.Instance != null)
+            GameManager.Instance.OnMagnetPowerUp?.Invoke();
     }
 
     public void PlaySFX()

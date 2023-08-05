@@ -1151,7 +1151,7 @@ MonoBehaviour:
       - {fileID: 3643289242992397168, guid: 54ef914aa18eb6e4e93231e7cc6e84f5, type: 3}
       disabledObstacleList: []
       activeObstacleList: []
-      spawnRate: 100
+      spawnRate: 25
       obstacleQuantity: 25
       additionalObstacleProbability: {fileID: 11400000, guid: 7685981f59505fe46b630db511050c11,
         type: 2}
@@ -28918,7 +28918,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   chunklength: 5
   chunkwidth: 5
-  chunkQuantity: 10
+  chunkQuantity: 13
   environmentChunkQuantity: 10
   tileWidthLength: 13
   eCurrentEnvironmentType: 1
@@ -40647,6 +40647,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2428571700924738154, guid: 5488fbf317bffca4ebeac09e3454ed73,
+        type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2428571700924738157, guid: 5488fbf317bffca4ebeac09e3454ed73,
         type: 3}
       propertyPath: m_Name
@@ -42800,7 +42805,7 @@ PrefabInstance:
     - target: {fileID: 6497248131108235341, guid: 966a056f7856b214596c9a38d1ef2163,
         type: 3}
       propertyPath: invincible
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6497248131108235341, guid: 966a056f7856b214596c9a38d1ef2163,
         type: 3}
@@ -42820,12 +42825,12 @@ PrefabInstance:
     - target: {fileID: 6497248131108235341, guid: 966a056f7856b214596c9a38d1ef2163,
         type: 3}
       propertyPath: gameDifficulty
-      value: 6
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6497248131108235341, guid: 966a056f7856b214596c9a38d1ef2163,
         type: 3}
       propertyPath: eEnvironmentTyp
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6497248131108235341, guid: 966a056f7856b214596c9a38d1ef2163,
         type: 3}
@@ -42851,6 +42856,21 @@ PrefabInstance:
         type: 3}
       propertyPath: gameSpeedMultiplier
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6497248131108235341, guid: 966a056f7856b214596c9a38d1ef2163,
+        type: 3}
+      propertyPath: changeEnvironmentChance
+      value: 80
+      objectReference: {fileID: 0}
+    - target: {fileID: 6497248131108235341, guid: 966a056f7856b214596c9a38d1ef2163,
+        type: 3}
+      propertyPath: maxChangeEnvironmentTime
+      value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 6497248131108235341, guid: 966a056f7856b214596c9a38d1ef2163,
+        type: 3}
+      propertyPath: minChangeEnvironmentTime
+      value: 90
       objectReference: {fileID: 0}
     - target: {fileID: 6497248131108235378, guid: 966a056f7856b214596c9a38d1ef2163,
         type: 3}

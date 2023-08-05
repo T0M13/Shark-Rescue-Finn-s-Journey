@@ -22,7 +22,6 @@ public class Chunk : MonoBehaviour
         {
             //Debug.Log(gameObject.name + ": " + gameObject.transform.position);
             ChunkManager.Instance.spawnAdjustment = gameObject.transform.position.z + 65;
-            gameObject.SetActive(false);
             ChunkManager.Instance.SpawnNewChunk();
 
             for (int i = 0; i < ChunkManager.Instance.chunkListEnvironment.Count; i++)
@@ -33,6 +32,8 @@ public class Chunk : MonoBehaviour
                     ChunkManager.Instance.chunkListEnvironment[i].ActiveChunkList.Remove(gameObject);
                 }
             }
+
+            gameObject.SetActive(false);
         }
     }
 }

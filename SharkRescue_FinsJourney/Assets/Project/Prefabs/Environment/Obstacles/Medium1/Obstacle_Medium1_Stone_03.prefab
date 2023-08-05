@@ -57,8 +57,8 @@ GameObject:
   - component: {fileID: 3503858167865798410}
   - component: {fileID: 3503858167862276868}
   - component: {fileID: 3503858167863401206}
-  - component: {fileID: 3503858167862276871}
   - component: {fileID: 2877166348235369233}
+  - component: {fileID: 5031595293913236737}
   m_Layer: 0
   m_Name: Obstacle_Medium1_03
   m_TagString: HardObstacle
@@ -131,20 +131,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &3503858167862276871
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3503858167865631990}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  m_Radius: 3.0293038
-  m_Height: 4.5
-  m_Direction: 1
-  m_Center: {x: -0.0000023841858, y: 2.0028892, z: -0.00000071525574}
 --- !u!114 &2877166348235369233
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -158,3 +144,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   obstacleSizeType: 2
+--- !u!65 &5031595293913236737
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3503858167865631990}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 5.9314423, y: 4.0057783, z: 6.0586085}
+  m_Center: {x: -0.000002384186, y: 2.0028892, z: -0.00000071525585}

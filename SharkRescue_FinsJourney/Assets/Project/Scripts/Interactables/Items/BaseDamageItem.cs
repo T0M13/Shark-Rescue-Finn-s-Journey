@@ -10,11 +10,11 @@ public class BaseDamageItem : BaseItem, IInteractable
 
     public void Interact()
     {
-        Debug.Log("Damaging Player: " + Value);
+        //Debug.Log("Damaging Player: " + Value);
 
-        if (GameManager.instance != null)
+        if (GameManager.Instance != null)
         {
-            GameManager.instance.OnGetDamage?.Invoke(damageValue);
+            GameManager.Instance.OnGetDamage?.Invoke(damageValue);
         }
         //GameManager.instance.OnDeactivateGObject?.Invoke(gameObject);
     }

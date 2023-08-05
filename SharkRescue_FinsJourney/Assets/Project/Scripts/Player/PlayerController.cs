@@ -188,8 +188,8 @@ public class PlayerController : MonoBehaviour
 
     private void GetStartPosition()
     {
-        if (GameManager.instance != null)
-            startPosition = GameManager.instance.StartPosition;
+        if (GameManager.Instance != null)
+            startPosition = GameManager.Instance.StartPosition;
         else
             startPosition = transform.position;
     }
@@ -278,7 +278,7 @@ public class PlayerController : MonoBehaviour
             speedPowerUpEffect.SetActive(true);
         yield return new WaitForSeconds(speedPowerUpTime);
         laneSwitchForce = defaultLaneSwitchForce;
-        GameManager.instance.ResetStar();
+        GameManager.Instance.ResetStar();
         if (speedPowerUpEffect != null)
             speedPowerUpEffect.SetActive(false);
     }

@@ -2,13 +2,14 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using tomi.SaveSystem;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using static EnvironmentType;
 
 public class GameManager : MonoBehaviour
 {
-    public static GameManager instance { get; private set; }
+    public static GameManager Instance { get; private set; }
 
     [Header("References")]
     [SerializeField] private PlayerReferences playerReferences;
@@ -38,6 +39,11 @@ public class GameManager : MonoBehaviour
     [SerializeField] private int gameDifficulty = 1;
     [SerializeField] private int timerChangeGameDifficutly = 30;
     [SerializeField] private bool changeGameDifficutly = true;
+    [SerializeField] private bool changeEnvironment = true;
+    [SerializeField] private int minChangeEnvironmentTime = 60;
+    [SerializeField] private int maxChangeEnvironmentTime = 120;
+    [SerializeField, Range(0,100)] private int changeEnvironmentChance = 60;
+    [SerializeField] private List<EEnvironmentType> environmentTypeList = new List<EEnvironmentType>();
     [Header("Player Stats")]
     [SerializeField] private int health = 1;
     [SerializeField] private int coins;
@@ -104,13 +110,13 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        if (instance != null && instance != this)
+        if (Instance != null && Instance != this)
         {
             Destroy(this.gameObject);
         }
         else
         {
-            instance = this;
+            Instance = this;
         }
 
         Load();
@@ -140,7 +146,10 @@ public class GameManager : MonoBehaviour
         paused = false;
 
 
-        Application.targetFrameRate = 144;
+        //Application.targetFrameRate = 144;
+
+        ChangeEnvironmentSetUp();
+        StartCoroutine(ChangeEnvironment());
     }
 
     private void Start()
@@ -152,6 +161,7 @@ public class GameManager : MonoBehaviour
         }
 
         StartCoroutine(ChangeGameDifficutly(timerChangeGameDifficutly));
+
     }
 
     private void Update()
@@ -326,6 +336,7 @@ public class GameManager : MonoBehaviour
         while (changeGameDifficutly)
         {
             yield return new WaitForSeconds(timerChangeGameDifficutly);
+            
             gameDifficulty++;
             ParticleManager.Instance.AdjustParticleSpeed(gameDifficulty);
 
@@ -333,6 +344,58 @@ public class GameManager : MonoBehaviour
             {
                 changeGameDifficutly = false;
             }
+        }
+    }
+
+    private void ChangeEnvironmentSetUp()
+    {
+        environmentTypeList.Clear();
+
+        for (int i = 1; i < Enum.GetNames(typeof(EEnvironmentType)).Length; i++)
+        {
+            environmentTypeList.Add((EEnvironmentType)i);
+        }
+    }
+
+    private IEnumerator ChangeEnvironment()
+    {
+        int randomChance;
+        int randomTime;
+        int randomBiom;
+
+        while (!gameOver && changeEnvironment)
+        {
+            //Debug.Log("ChangeEnvironment       while");
+            randomChance = UnityEngine.Random.Range(0, 100);
+            randomTime = UnityEngine.Random.Range(minChangeEnvironmentTime, maxChangeEnvironmentTime);
+            //Debug.Log("randomChance " + randomChance);
+
+            if (randomChance > changeEnvironmentChance && eEnvironmentTyp != EEnvironmentType.NONE && true) //Probability of changing the biome
+            {
+                //Debug.Log("NoBiomChange");
+                yield return new WaitForSeconds(randomTime);
+            }
+
+            List<EEnvironmentType> environmentTypeListtemp = new(environmentTypeList);
+            randomBiom = UnityEngine.Random.Range(0, environmentTypeListtemp.Count);
+
+            for (int i = 0; i < 2; i++)
+            {
+                //Debug.Log("randomBiom " + randomBiom);
+                if (environmentTypeListtemp[randomBiom] != eEnvironmentTyp)
+                {
+                    eEnvironmentTyp = environmentTypeListtemp[randomBiom];
+                    //Debug.Log("eEnvironmentTyp " + eEnvironmentTyp);
+                    break;
+                }
+                else
+                {
+                    environmentTypeListtemp.RemoveAt(randomBiom);
+                    randomBiom = UnityEngine.Random.Range(0, environmentTypeListtemp.Count);
+                }
+            }
+
+            yield return new WaitForSeconds(randomTime);
         }
     }
 }

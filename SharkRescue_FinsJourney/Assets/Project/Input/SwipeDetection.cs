@@ -47,9 +47,9 @@ public class SwipeDetection : MonoBehaviour
 
     private void SwipeStart(Vector2 position, float time)
     {
-        if (GameManager.instance)
+        if (GameManager.Instance)
         {
-            if (GameManager.instance.Paused || GameManager.instance.GameOverEG) return;
+            if (GameManager.Instance.Paused || GameManager.Instance.GameOverEG) return;
         }
 
         startPosition = position;
@@ -72,9 +72,9 @@ public class SwipeDetection : MonoBehaviour
 
     private void SwipeEnd(Vector2 position, float time)
     {
-        if (GameManager.instance)
+        if (GameManager.Instance)
         {
-            if (GameManager.instance.Paused || GameManager.instance.GameOverEG) return;
+            if (GameManager.Instance.Paused || GameManager.Instance.GameOverEG) return;
         }
 
         if (trail != null)

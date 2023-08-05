@@ -8,8 +8,8 @@ public class StarPowerUp : BaseItem, IInteractable
     {
         //Debug.Log("Speed Power Up Activated");
 
-        if (GameManager.instance != null)
-            GameManager.instance.OnStarPowerUp?.Invoke();
+        if (GameManager.Instance != null)
+            GameManager.Instance.OnStarPowerUp?.Invoke();
     }
 
     public void PlaySFX()

@@ -559,7 +559,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movingSpeed: 0
-  eEnvironmentType: 2
+  eEnvironmentType: 1
 --- !u!1 &7123227437417491915
 GameObject:
   m_ObjectHideFlags: 0
