@@ -340,10 +340,12 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
     }
 
+
     private void Save()
     {
         saveBehaviour.Save();
     }
+
 
     private void Load()
     {

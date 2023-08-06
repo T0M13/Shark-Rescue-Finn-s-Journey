@@ -10,6 +10,8 @@ namespace tomi.SaveSystem
         public int coins;
         public int highscore;
 
+        public bool nonFirstTime;
+
         public int masterVolume;
         public int musicVolume;
         public int effectsVolume;

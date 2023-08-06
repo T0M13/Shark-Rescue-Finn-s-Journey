@@ -14,6 +14,8 @@ public class LoadComponent : ScriptableObject, LoadBehaviour
         {
             SetAudio();
             SetStats();
+
+            SaveData.PlayerProfile.nonFirstTime = false;
         }
     }
 
