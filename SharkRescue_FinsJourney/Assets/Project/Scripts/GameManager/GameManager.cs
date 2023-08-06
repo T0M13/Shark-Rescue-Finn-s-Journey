@@ -42,10 +42,11 @@ public class GameManager : MonoBehaviour
     [SerializeField] private bool changeEnvironment = true;
     [SerializeField] private int minChangeEnvironmentTime = 60;
     [SerializeField] private int maxChangeEnvironmentTime = 120;
-    [SerializeField, Range(0,100)] private int changeEnvironmentChance = 60;
+    [SerializeField, Range(0, 100)] private int changeEnvironmentChance = 60;
     [SerializeField] private List<EEnvironmentType> environmentTypeList = new List<EEnvironmentType>();
     [Header("Player Stats")]
-    [SerializeField] private int health = 1;
+    [SerializeField] private int health = 2;
+    [SerializeField] private int healthMax = 2;
     [SerializeField] private int coins;
     [SerializeField] private int score;
     [SerializeField] private float scoreTemp;
@@ -68,6 +69,7 @@ public class GameManager : MonoBehaviour
     public bool GameOverEG { get => gameOver; set => gameOver = value; }
     public int GameDifficutly { get => gameDifficulty; }
     public bool Invincible { get => invincible; set => invincible = value; }
+    public int Health { get => health; set => health = value; }
 
     public Action OnAddCoin;
     public Action<BaseItem> OnSpawnObject;
@@ -212,7 +214,11 @@ public class GameManager : MonoBehaviour
         gameSpeed = 0;
         AdjustGameSpeed();
 
-        if (inGameUIManager) { inGameUIManager.GameOverPanel.gameObject.SetActive(true); }
+        if (inGameUIManager)
+        {
+            inGameUIManager.GameOverPanel.gameObject.SetActive(true);
+            inGameUIManager.HudPanel.gameObject.SetActive(false);
+        }
 
         SaveData.PlayerProfile.coins += coins;
         if (SaveData.PlayerProfile.highscore < score)
@@ -224,9 +230,9 @@ public class GameManager : MonoBehaviour
     {
         if (invincible) return;
 
-        health -= damageValue;
+        Health -= damageValue;
         ReAddHealth();
-        if (health <= 0)
+        if (Health <= 0)
         {
             GameOver();
         }
@@ -270,15 +276,17 @@ public class GameManager : MonoBehaviour
 
     public void ReAddHealth()
     {
-        StartCoroutine(IReAddHealth());
+        if (Health < healthMax)
+            StartCoroutine(IReAddHealth());
     }
 
     private IEnumerator IReAddHealth()
     {
         yield return new WaitForSeconds(reAddHealthTime);
-        if (health > 0)
+        if (Health > 0 && Health < healthMax)
         {
-            health++;
+            Health++;
+            OnReAddHealth?.Invoke();
         }
     }
 
@@ -314,6 +322,24 @@ public class GameManager : MonoBehaviour
 
     }
 
+    public void StartGame()
+    {
+        runTimer = true;
+        gameOver = false;
+        paused = false;
+        Time.timeScale = 1;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    }
+
+    public void BackToMainMenu()
+    {
+        runTimer = false;
+        gameOver = true;
+        paused = true;
+        Time.timeScale = 1;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+    }
+
     private void Save()
     {
         saveBehaviour.Save();
@@ -336,7 +362,7 @@ public class GameManager : MonoBehaviour
         while (changeGameDifficutly)
         {
             yield return new WaitForSeconds(timerChangeGameDifficutly);
-            
+
             gameDifficulty++;
             ParticleManager.Instance.AdjustParticleSpeed(gameDifficulty);
 
