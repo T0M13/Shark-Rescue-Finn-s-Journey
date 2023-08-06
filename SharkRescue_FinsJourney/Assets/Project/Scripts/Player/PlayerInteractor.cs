@@ -48,7 +48,7 @@ public class PlayerInteractor : MonoBehaviour
             interactable.PlaySFX();
         }
 
-        if (other.gameObject.CompareTag("HardObstacle"))
+        if (other.gameObject.CompareTag("HardObstacle") && !GameManager.Instance.Invincible)
         {
             //if (GameManager.Instance.Invincible) return;
             GameManager.Instance.OnGameOver?.Invoke();

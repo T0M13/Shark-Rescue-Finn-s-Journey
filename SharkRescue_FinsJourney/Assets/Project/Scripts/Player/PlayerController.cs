@@ -30,11 +30,12 @@ public class PlayerController : MonoBehaviour
 
     private Coroutine coroutine;
 
-    [Header("Speed Power Up")]
-    [SerializeField] private float speedMultiplier = 1.5f;
-    [SerializeField] private float speedPowerUpTime = 10f;
-    [SerializeField] private GameObject speedPowerUpEffect;
+    [Header("Star Power Up")]
+    [SerializeField] private float starSpeedMultiplier = 1.5f;
+    [SerializeField] private float starPowerUpTime = 10f;
+    [SerializeField] private GameObject starPowerUpEffect;
     public Action OnStarPowerUp;
+    private Coroutine starPowerUp;
 
 
     private void Awake()
@@ -264,7 +265,7 @@ public class PlayerController : MonoBehaviour
     /// </summary>
     private void StarPowerUp()
     {
-        StartCoroutine(StarPowerUpIE());
+        starPowerUp = StartCoroutine(StarPowerUpIE());
     }
 
     /// <summary>
@@ -273,14 +274,14 @@ public class PlayerController : MonoBehaviour
     /// <returns></returns>
     private IEnumerator StarPowerUpIE()
     {
-        laneSwitchForce = laneSwitchForce * speedMultiplier;
-        if (speedPowerUpEffect != null)
-            speedPowerUpEffect.SetActive(true);
-        yield return new WaitForSeconds(speedPowerUpTime);
+        laneSwitchForce = laneSwitchForce * starSpeedMultiplier;
+        if (starPowerUpEffect != null)
+            starPowerUpEffect.SetActive(true);
+        yield return new WaitForSeconds(starPowerUpTime);
         laneSwitchForce = defaultLaneSwitchForce;
         GameManager.Instance.ResetStar();
-        if (speedPowerUpEffect != null)
-            speedPowerUpEffect.SetActive(false);
+        if (starPowerUpEffect != null)
+            starPowerUpEffect.SetActive(false);
     }
 
 

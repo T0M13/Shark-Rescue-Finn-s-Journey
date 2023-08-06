@@ -12,7 +12,7 @@ public class BaseDamageItem : BaseItem, IInteractable
     {
         //Debug.Log("Damaging Player: " + Value);
 
-        if (GameManager.Instance != null)
+        if (GameManager.Instance != null && !GameManager.Instance.Invincible)
         {
             GameManager.Instance.OnGetDamage?.Invoke(damageValue);
         }
@@ -22,14 +22,14 @@ public class BaseDamageItem : BaseItem, IInteractable
     public void PlaySFX()
     {
         //if (AudioManager.instance)
-            //AudioManager.instance.Play("damage");
+        //AudioManager.instance.Play("damage");
     }
 
     protected override void OnTriggerEnter(Collider other)
     {
         if ((other != null && other.gameObject.CompareTag("ChunkCatcher")) || (other != null && other.gameObject.CompareTag("Player")))
         {
-            if((other != null && other.gameObject.CompareTag("Player")))
+            if ((other != null && other.gameObject.CompareTag("Player")) && !GameManager.Instance.Invincible)
             {
                 other.gameObject.GetComponent<PlayerReferences>().PlayerAnimator.SetTrigger("DamageTrigger");
             }
