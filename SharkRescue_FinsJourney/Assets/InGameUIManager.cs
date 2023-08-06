@@ -14,6 +14,8 @@ public class InGameUIManager : MonoBehaviour
     [SerializeField] private Transform healthPlaceholder;
     [SerializeField] private Sprite healthImagePrefab;
     [SerializeField] private List<Image> healthPoints;
+    [SerializeField] private TextMeshProUGUI gameOverScore;
+    [SerializeField] private TextMeshProUGUI gameOverCoins;
 
     public TextMeshProUGUI CurrentScore { get => currentScore; set => currentScore = value; }
     public TextMeshProUGUI CurrentCoins { get => currentCoins; set => currentCoins = value; }
@@ -25,17 +27,26 @@ public class InGameUIManager : MonoBehaviour
     {
         GameManager.Instance.OnGetDamage += UpdateHealthP;
         GameManager.Instance.OnReAddHealth += UpdateHealthP;
+
     }
 
     private void OnDisable()
     {
         GameManager.Instance.OnGetDamage -= UpdateHealthP;
         GameManager.Instance.OnReAddHealth -= UpdateHealthP;
+
+
     }
 
     private void Start()
     {
         SetUpHealthPoints();
+    }
+
+    public void UpdateGameOverStats(int score, int coins)
+    {
+        gameOverScore.text = score.ToString();
+        gameOverCoins.text = coins.ToString();
     }
 
     private void SetUpHealthPoints()

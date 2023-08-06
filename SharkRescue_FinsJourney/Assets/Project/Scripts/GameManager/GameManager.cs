@@ -70,6 +70,8 @@ public class GameManager : MonoBehaviour
     public int GameDifficutly { get => gameDifficulty; }
     public bool Invincible { get => invincible; set => invincible = value; }
     public int Health { get => health; set => health = value; }
+    public int Score { get => score; set => score = value; }
+    public int Coins { get => coins; set => coins = value; }
 
     public Action OnAddCoin;
     public Action<BaseItem> OnSpawnObject;
@@ -171,10 +173,10 @@ public class GameManager : MonoBehaviour
         if (gameOver) return;
 
         scoreTemp += Time.deltaTime;
-        score = Mathf.RoundToInt(scoreTemp);
+        Score = Mathf.RoundToInt(scoreTemp);
 
         if (inGameUIManager != null)
-            inGameUIManager.CurrentScore.text = score.ToString();
+            inGameUIManager.CurrentScore.text = Score.ToString();
 
         if (starPowerUp) return;
 
@@ -199,11 +201,11 @@ public class GameManager : MonoBehaviour
 
     private void AddCoin()
     {
-        coins++;
+        Coins++;
 
         if (inGameUIManager)
         {
-            inGameUIManager.CurrentCoins.text = coins.ToString();
+            inGameUIManager.CurrentCoins.text = Coins.ToString();
         }
     }
 
@@ -216,13 +218,14 @@ public class GameManager : MonoBehaviour
 
         if (inGameUIManager)
         {
+            inGameUIManager.UpdateGameOverStats(Score, Coins);
             inGameUIManager.GameOverPanel.gameObject.SetActive(true);
             inGameUIManager.HudPanel.gameObject.SetActive(false);
         }
 
-        SaveData.PlayerProfile.coins += coins;
-        if (SaveData.PlayerProfile.highscore < score)
-            SaveData.PlayerProfile.highscore = score;
+        SaveData.PlayerProfile.coins += Coins;
+        if (SaveData.PlayerProfile.highscore < Score)
+            SaveData.PlayerProfile.highscore = Score;
         Save();
     }
 
@@ -231,10 +234,14 @@ public class GameManager : MonoBehaviour
         if (invincible) return;
 
         Health -= damageValue;
+
         ReAddHealth();
+
+
         if (Health <= 0)
         {
             GameOver();
+            playerReferences.PlayerInteractor.PlayerGameOver();
         }
     }
 

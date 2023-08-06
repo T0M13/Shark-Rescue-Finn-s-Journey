@@ -30,6 +30,14 @@ public class PlayerInteractor : MonoBehaviour
         OnMagnetPowerUp -= MagnetPowerUp;
     }
 
+    public void PlayerGameOver()
+    {
+        collisionEffect.SetActive(true);
+        collisionEffect.transform.SetParent(null);
+        gameObject.SetActive(false);
+
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         IInteractable interactable = other.GetComponent<IInteractable>();
