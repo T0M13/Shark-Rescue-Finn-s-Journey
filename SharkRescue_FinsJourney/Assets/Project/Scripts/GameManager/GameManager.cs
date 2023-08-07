@@ -150,7 +150,7 @@ public class GameManager : MonoBehaviour
         paused = false;
 
 
-        //Application.targetFrameRate = 144;
+        Application.targetFrameRate = 60;
 
         ChangeEnvironmentSetUp();
         StartCoroutine(ChangeEnvironment());
