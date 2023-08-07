@@ -393,7 +393,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 6.509635, y: 6.5500007, z: 3.4975562}
+  m_Size: {x: 6.509635, y: 6.5500007, z: 2.1}
   m_Center: {x: -0.7351797, y: 2.77, z: 3}
 --- !u!1 &8949649807702169085
 GameObject:
@@ -523,7 +523,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.9235871, y: 6.5500007, z: 12.386509}
+  m_Size: {x: 1.9235871, y: 6.5500007, z: 12}
   m_Center: {x: 3.7427893, y: 2.77, z: 7.7753468}
 --- !u!65 &8949649808383214784
 BoxCollider:
