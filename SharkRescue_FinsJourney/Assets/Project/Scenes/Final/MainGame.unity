@@ -43711,8 +43711,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2428571700924738155, guid: 5488fbf317bffca4ebeac09e3454ed73,
         type: 3}
+      propertyPath: magnetRadius
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2428571700924738155, guid: 5488fbf317bffca4ebeac09e3454ed73,
+        type: 3}
       propertyPath: magnetPowerUpTime
-      value: 12
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2428571700924738156, guid: 5488fbf317bffca4ebeac09e3454ed73,
+        type: 3}
+      propertyPath: starPowerUpTime
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 2428571700924738156, guid: 5488fbf317bffca4ebeac09e3454ed73,
         type: 3}
