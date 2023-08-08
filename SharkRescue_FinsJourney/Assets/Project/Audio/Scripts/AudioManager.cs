@@ -104,7 +104,17 @@ public class AudioManager : MonoBehaviour
         StartCoroutine(RemoveAfterPlayed(s.clip.length, s.source));
     }
 
-    IEnumerator RemoveAfterPlayed(float length, AudioSource audioSource)
+    public void Stop(string sound)
+    {
+        Sound s = Array.Find(sounds, item => item.name == sound);
+        if (s == null)
+        {
+            Debug.Log("Can't find Sound");
+        }
+        s.source.Stop();
+    }
+
+        IEnumerator RemoveAfterPlayed(float length, AudioSource audioSource)
     {
         yield return new WaitForSeconds(length);
         Destroy(audioSource);

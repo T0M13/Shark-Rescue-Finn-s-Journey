@@ -10,6 +10,8 @@ public class IntroHandler : MonoBehaviour
 {
     [Header("Video Clip")]
     [SerializeField] private VideoPlayer player;
+    [SerializeField] private VideoClip cinematic;
+    [SerializeField] private VideoClip intro;
     [SerializeField] private Transform clipOutput;
     [Header("UI Main Menu")]
     [SerializeField] private TextMeshProUGUI coins;
@@ -35,11 +37,12 @@ public class IntroHandler : MonoBehaviour
     {
         if (!SaveData.PlayerProfile.nonFirstTime)
         {
-            PlayVideoClip();
+
+            PlayVideoClip(cinematic);
         }
         else
         {
-            clipOutput.gameObject.SetActive(false);
+            PlayVideoClip(intro);
         }
 
         coins.text = SaveData.PlayerProfile.coins.ToString();
@@ -61,11 +64,14 @@ public class IntroHandler : MonoBehaviour
         Application.OpenURL("https://deepbluestudio.at");
     }
 
-    public void PlayVideoClip()
+    public void PlayVideoClip(VideoClip clip)
     {
         AudioManager.instance.GetComponent<AudioSource>().volume = 0;
+
+        player.clip = clip;
 
         clipOutput.gameObject.SetActive(true);
         player.Play();
     }
+
 }

@@ -22,8 +22,8 @@ public class LoadComponent : ScriptableObject, LoadBehaviour
     private void SetAudio()
     {
         SaveData.PlayerProfile.masterVolume = 0;
-        SaveData.PlayerProfile.musicVolume = -40;
-        SaveData.PlayerProfile.effectsVolume = -40;
+        SaveData.PlayerProfile.musicVolume = -20;
+        SaveData.PlayerProfile.effectsVolume = -20;
     }
 
     private void SetStats()
