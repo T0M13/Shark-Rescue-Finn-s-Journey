@@ -11432,7 +11432,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bubbleParticleSystem: {fileID: 127380439}
-  particleSpeed: 50
+  particleSpeed: 40
 --- !u!4 &518094696
 Transform:
   m_ObjectHideFlags: 0
@@ -19811,7 +19811,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.01
-  far clip plane: 200
+  far clip plane: 300
   field of view: 60.000004
   orthographic: 0
   orthographic size: 5
@@ -32340,9 +32340,9 @@ MonoBehaviour:
   - {x: 4, y: 8, z: 0}
   spawnPositionBuffer: {x: 6, y: 15}
   spawnDistance: 5
-  noItemSpawnChance: 100
-  powerUpCooldownTimer: 10
-  powerUpOtherCooldownTimer: 4
+  noItemSpawnChance: 140
+  powerUpCooldownTimer: 25
+  powerUpOtherCooldownTimer: 10
   canSpawnAtStart: 0
   powerUpCooldownTimerAtStart: 3
   itemMinQuantity: 5
@@ -32358,7 +32358,7 @@ MonoBehaviour:
     activeItemList: []
     itemQuantity: 300
     canSpawn: 1
-    spawnRate: 50
+    spawnRate: 90
     addSpawnChance: 0
   - itemTypes: 2
     powerUpType: 1
@@ -45991,12 +45991,12 @@ PrefabInstance:
     - target: {fileID: 6497248131108235341, guid: 966a056f7856b214596c9a38d1ef2163,
         type: 3}
       propertyPath: maxChangeEnvironmentTime
-      value: 150
+      value: 120
       objectReference: {fileID: 0}
     - target: {fileID: 6497248131108235341, guid: 966a056f7856b214596c9a38d1ef2163,
         type: 3}
       propertyPath: minChangeEnvironmentTime
-      value: 90
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 6497248131108235378, guid: 966a056f7856b214596c9a38d1ef2163,
         type: 3}

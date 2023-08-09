@@ -149,8 +149,12 @@ public class GameManager : MonoBehaviour
         gameOver = false;
         paused = false;
 
-
+#if UNITY_ANDROID || UNITY_IOS
         Application.targetFrameRate = 60;
+#else
+        Application.targetFrameRate = 144;
+#endif
+
 
         ChangeEnvironmentSetUp();
         StartCoroutine(ChangeEnvironment());
