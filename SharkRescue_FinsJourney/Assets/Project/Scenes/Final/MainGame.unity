@@ -25250,7 +25250,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Highscore:'
+  m_text: 'Score:'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 55fcc22141dd2224187945df4f0c7aac, type: 2}
   m_sharedMaterial: {fileID: 9190249496395991113, guid: 55fcc22141dd2224187945df4f0c7aac,
@@ -42950,7 +42950,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2109235646
 RectTransform:
   m_ObjectHideFlags: 0
