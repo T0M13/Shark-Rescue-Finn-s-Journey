@@ -10,6 +10,8 @@ public class PlayerInteractor : MonoBehaviour
 
     [Header("Collision")]
     [SerializeField] private GameObject collisionEffect;
+    [SerializeField] private GameObject collisionEffectLight;
+    [SerializeField] private Coroutine collisionLight;
 
 
     [Header("Magnet")]
@@ -38,6 +40,18 @@ public class PlayerInteractor : MonoBehaviour
 
     }
 
+    public void PlayerLightCollisionEffect()
+    {
+        collisionLight = StartCoroutine(ResetCollisionEffect());
+    }
+
+    private IEnumerator ResetCollisionEffect()
+    {
+        collisionEffectLight.SetActive(true);
+        yield return new WaitForSeconds(2f);
+        collisionEffectLight.SetActive(false);
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         IInteractable interactable = other.GetComponent<IInteractable>();
@@ -50,6 +64,8 @@ public class PlayerInteractor : MonoBehaviour
 
         if (other.gameObject.CompareTag("HardObstacle") && !GameManager.Instance.Invincible)
         {
+            AudioManager.instance.Play("collision");
+
             //if (GameManager.Instance.Invincible) return;
             GameManager.Instance.OnGameOver?.Invoke();
 

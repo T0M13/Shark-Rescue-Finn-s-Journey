@@ -40,10 +40,10 @@ public class IntroHandler : MonoBehaviour
 
             PlayVideoClip(cinematic);
         }
-        else
-        {
-            PlayVideoClip(intro);
-        }
+        //else
+        //{
+        //    PlayVideoClip(intro);
+        //}
 
         coins.text = SaveData.PlayerProfile.coins.ToString();
         score.text = SaveData.PlayerProfile.highscore.ToString();

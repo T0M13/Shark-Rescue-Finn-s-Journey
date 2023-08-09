@@ -80,7 +80,7 @@ public class InGameUIManager : MonoBehaviour
             item.gameObject.SetActive(false);
         }
 
-        for (int i = 0; i < h; i++)
+        for (int i = 0; i < GameManager.Instance.Health; i++)
         {
             healthPoints[i].gameObject.SetActive(true);
         }

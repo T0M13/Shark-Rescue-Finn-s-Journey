@@ -29,9 +29,13 @@ public class BaseDamageItem : BaseItem, IInteractable
     {
         if ((other != null && other.gameObject.CompareTag("ChunkCatcher")) || (other != null && other.gameObject.CompareTag("Player")))
         {
-            if ((other != null && other.gameObject.CompareTag("Player")) && !GameManager.Instance.Invincible)
+            if ((other != null && other.gameObject.CompareTag("Player")))
             {
-                other.gameObject.GetComponent<PlayerReferences>().PlayerAnimator.SetTrigger("DamageTrigger");
+                if (!GameManager.Instance.Invincible)
+                    other.gameObject.GetComponent<PlayerReferences>().PlayerAnimator.SetTrigger("DamageTrigger");
+
+                other.gameObject.GetComponent<PlayerReferences>().PlayerInteractor.PlayerLightCollisionEffect();
+                AudioManager.instance.Play("collision");
             }
 
             for (int i = 0; i < ItemSpawnerNew.Instance.ItemPrefabs.Count; i++)
