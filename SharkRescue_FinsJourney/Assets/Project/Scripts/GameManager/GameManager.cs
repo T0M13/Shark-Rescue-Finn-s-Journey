@@ -276,6 +276,10 @@ public class GameManager : MonoBehaviour
         if (playerReferences == null) return;
 
         playerReferences.PlayerController.OnStarPowerUp?.Invoke();
+
+        AudioManager.instance.Play("star");
+        AudioManager.instance.audioSource.volume = 0;
+
         starPowerUp = true;
         Invincible = true;
         gameSpeed = gameSpeed * 1.3f;
@@ -315,6 +319,9 @@ public class GameManager : MonoBehaviour
         starPowerUp = false;
         Invincible = false;
         gameSpeed = gameSpeed / 1.3f;
+        AudioManager.instance.Stop("star");
+        AudioManager.instance.audioSource.volume = 1;
+
     }
 
     public void RestartGame()
