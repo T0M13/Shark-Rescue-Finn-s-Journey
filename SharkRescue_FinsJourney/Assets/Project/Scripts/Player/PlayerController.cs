@@ -27,8 +27,11 @@ public class PlayerController : MonoBehaviour
     private Quaternion rotation;
     private Vector3 right;
     private Vector3 up;
+    [SerializeField] private PlayerReferences playerRef;
+    private bool vibrated;
 
     private Coroutine coroutine;
+    private Coroutine vibrate;
 
     [Header("Star Power Up")]
     [SerializeField] private float starSpeedMultiplier = 1.5f;
@@ -40,6 +43,7 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
+        playerRef = GetComponent<PlayerReferences>();
         GetStartPosition();
         currentLane = Lane.Middle;
         currentUndulate = Undulate.Center;
@@ -68,6 +72,12 @@ public class PlayerController : MonoBehaviour
 
     private void SwipeUp()
     {
+        if (currentUndulate == Undulate.Up)
+        {
+            if (!vibrated)
+                vibrate = StartCoroutine(VibrateOnNotAllowed());
+        }
+
         if (currentUndulate == Undulate.Center)
         {
             currentUndulate = Undulate.Up;
@@ -94,10 +104,18 @@ public class PlayerController : MonoBehaviour
             }
             coroutine = StartCoroutine(RotatePlayer(-laneSwitchRotation, false));
         }
+
+
     }
 
     private void SwipeDown()
     {
+        if (currentUndulate == Undulate.Down)
+        {
+            if (!vibrated)
+                vibrate = StartCoroutine(VibrateOnNotAllowed());
+        }
+
         if (currentUndulate == Undulate.Center)
         {
             currentUndulate = Undulate.Down;
@@ -129,6 +147,12 @@ public class PlayerController : MonoBehaviour
 
     private void SwipeLeft()
     {
+        if (currentLane == Lane.Left)
+        {
+            if (!vibrated)
+                vibrate = StartCoroutine(VibrateOnNotAllowed());
+        }
+
         if (currentLane == Lane.Middle)
         {
             currentLane = Lane.Left;
@@ -159,6 +183,12 @@ public class PlayerController : MonoBehaviour
 
     private void SwipeRight()
     {
+        if (currentLane == Lane.Right)
+        {
+            if (!vibrated)
+                vibrate = StartCoroutine(VibrateOnNotAllowed());
+        }
+
         if (currentLane == Lane.Middle)
         {
             currentLane = Lane.Right;
@@ -185,6 +215,16 @@ public class PlayerController : MonoBehaviour
             }
             coroutine = StartCoroutine(RotatePlayer(laneSwitchRotation, true));
         }
+    }
+
+
+    private IEnumerator VibrateOnNotAllowed()
+    {
+        vibrated = true;
+        yield return new WaitForSeconds(.4f);
+        //playerRef.PlayerAnimator.SetTrigger("DamageTrigger");
+        Handheld.Vibrate();
+        vibrated = false;
     }
 
     private void GetStartPosition()

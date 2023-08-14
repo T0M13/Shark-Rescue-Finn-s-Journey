@@ -35,7 +35,7 @@ public class BaseDamageItem : BaseItem, IInteractable
                 {
                     other.gameObject.GetComponent<PlayerReferences>().PlayerAnimator.SetTrigger("DamageTrigger");
                     other.gameObject.GetComponent<PlayerReferences>().PlayerInteractor.PlayerLightHitEffect();
-
+                    Handheld.Vibrate();
                 }
 
                 other.gameObject.GetComponent<PlayerReferences>().PlayerInteractor.PlayerLightCollisionEffect();

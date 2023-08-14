@@ -83,13 +83,12 @@ public class PlayerInteractor : MonoBehaviour
         {
             AudioManager.instance.Play("collision");
 
-            //if (GameManager.Instance.Invincible) return;
+            Handheld.Vibrate();
+
             GameManager.Instance.OnGameOver?.Invoke();
 
             collisionEffect.SetActive(true);
             collisionEffect.transform.SetParent(null);
-
-            //playerReferences.PlayerAnimator.SetBool("isGameOver", true);
 
             gameObject.SetActive(false);
         }

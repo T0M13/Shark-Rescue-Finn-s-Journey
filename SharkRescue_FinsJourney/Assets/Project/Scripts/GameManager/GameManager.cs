@@ -155,7 +155,8 @@ public class GameManager : MonoBehaviour
 #else
         Application.targetFrameRate = 144;
 #endif
-
+        // Disable screen dimming
+        Screen.sleepTimeout = SleepTimeout.NeverSleep;
 
         ChangeEnvironmentSetUp();
         StartCoroutine(ChangeEnvironment());
