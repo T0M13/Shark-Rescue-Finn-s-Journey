@@ -83,7 +83,9 @@ public class PlayerInteractor : MonoBehaviour
         {
             AudioManager.instance.Play("collision");
 
-            Handheld.Vibrate();
+#if UNITY_ANDROID || UNITY_IOS
+        Handheld.Vibrate();
+#endif
 
             GameManager.Instance.OnGameOver?.Invoke();
 

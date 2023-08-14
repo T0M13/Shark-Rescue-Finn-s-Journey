@@ -399,6 +399,11 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void AppQuit()
+    {
+        Application.Quit();
+    }
+
     private void ChangeEnvironmentSetUp()
     {
         environmentTypeList.Clear();

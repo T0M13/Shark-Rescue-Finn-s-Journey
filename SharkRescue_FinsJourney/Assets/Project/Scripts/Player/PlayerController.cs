@@ -221,9 +221,11 @@ public class PlayerController : MonoBehaviour
     private IEnumerator VibrateOnNotAllowed()
     {
         vibrated = true;
-        yield return new WaitForSeconds(.4f);
         //playerRef.PlayerAnimator.SetTrigger("DamageTrigger");
+#if UNITY_ANDROID || UNITY_IOS
         Handheld.Vibrate();
+#endif
+        yield return new WaitForSeconds(.4f);
         vibrated = false;
     }
 
@@ -298,7 +300,7 @@ public class PlayerController : MonoBehaviour
     }
 
 
-    #region Speed Power Up
+#region Speed Power Up
 
     /// <summary>
     /// Starts the Coroutine Speed Power Up
@@ -325,7 +327,7 @@ public class PlayerController : MonoBehaviour
     }
 
 
-    #endregion
+#endregion
 
 }
 
