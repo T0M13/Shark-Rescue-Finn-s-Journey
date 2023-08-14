@@ -12,6 +12,9 @@ public class PlayerInteractor : MonoBehaviour
     [SerializeField] private GameObject collisionEffect;
     [SerializeField] private GameObject collisionEffectLight;
     [SerializeField] private Coroutine collisionLight;
+    [SerializeField] private Coroutine hitLight;
+    [SerializeField] private Material normalBody;
+    [SerializeField] private Material hitBody;
 
 
     [Header("Magnet")]
@@ -43,6 +46,7 @@ public class PlayerInteractor : MonoBehaviour
     public void PlayerLightCollisionEffect()
     {
         collisionLight = StartCoroutine(ResetCollisionEffect());
+        hitLight = StartCoroutine(ResetHitEffect());
     }
 
     private IEnumerator ResetCollisionEffect()
@@ -50,6 +54,14 @@ public class PlayerInteractor : MonoBehaviour
         collisionEffectLight.SetActive(true);
         yield return new WaitForSeconds(2f);
         collisionEffectLight.SetActive(false);
+    }
+
+    private IEnumerator ResetHitEffect()
+    {
+        playerReferences.PlayerMesh.material = hitBody;
+        yield return new WaitForSeconds(.5f);
+        playerReferences.PlayerMesh.material = normalBody;
+
     }
 
     private void OnTriggerEnter(Collider other)
