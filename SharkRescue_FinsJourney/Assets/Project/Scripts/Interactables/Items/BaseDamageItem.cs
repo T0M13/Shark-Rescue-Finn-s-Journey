@@ -32,7 +32,11 @@ public class BaseDamageItem : BaseItem, IInteractable
             if ((other != null && other.gameObject.CompareTag("Player")))
             {
                 if (!GameManager.Instance.Invincible)
+                {
                     other.gameObject.GetComponent<PlayerReferences>().PlayerAnimator.SetTrigger("DamageTrigger");
+                    other.gameObject.GetComponent<PlayerReferences>().PlayerInteractor.PlayerLightHitEffect();
+
+                }
 
                 other.gameObject.GetComponent<PlayerReferences>().PlayerInteractor.PlayerLightCollisionEffect();
                 AudioManager.instance.Play("collision");

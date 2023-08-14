@@ -46,8 +46,13 @@ public class PlayerInteractor : MonoBehaviour
     public void PlayerLightCollisionEffect()
     {
         collisionLight = StartCoroutine(ResetCollisionEffect());
+    }
+
+    public void PlayerLightHitEffect()
+    {
         hitLight = StartCoroutine(ResetHitEffect());
     }
+
 
     private IEnumerator ResetCollisionEffect()
     {
