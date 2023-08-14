@@ -16,6 +16,14 @@ public class InGameUIManager : MonoBehaviour
     [SerializeField] private List<Image> healthPoints;
     [SerializeField] private TextMeshProUGUI gameOverScore;
     [SerializeField] private TextMeshProUGUI gameOverCoins;
+    [SerializeField] private TextMeshProUGUI gameOverAllCoins;
+    [SerializeField] private TextMeshProUGUI gameOverHighscore;
+
+
+    private int score;
+    private int highscore;
+    private int coins;
+    private int allcoins;
 
     public TextMeshProUGUI CurrentScore { get => currentScore; set => currentScore = value; }
     public TextMeshProUGUI CurrentCoins { get => currentCoins; set => currentCoins = value; }
@@ -35,7 +43,6 @@ public class InGameUIManager : MonoBehaviour
         GameManager.Instance.OnGetDamage -= UpdateHealthP;
         GameManager.Instance.OnReAddHealth -= UpdateHealthP;
 
-
     }
 
     private void Start()
@@ -43,10 +50,20 @@ public class InGameUIManager : MonoBehaviour
         SetUpHealthPoints();
     }
 
-    public void UpdateGameOverStats(int score, int coins)
+    public void UpdateGameOverStats()
     {
-        gameOverScore.text = score.ToString();
-        gameOverCoins.text = coins.ToString();
+        gameOverScore.text = this.score.ToString();
+        gameOverCoins.text = "+" + this.coins.ToString();
+        gameOverAllCoins.text = this.allcoins.ToString();
+        gameOverHighscore.text = this.highscore.ToString();
+    }
+
+    public void GetStats(int score, int highscore, int coins, int allcoins)
+    {
+        this.score = score;
+        this.highscore = highscore;
+        this.coins = coins;
+        this.allcoins = allcoins;
     }
 
     private void SetUpHealthPoints()
@@ -60,7 +77,7 @@ public class InGameUIManager : MonoBehaviour
                 GameObject cloneObject = new GameObject("HealthImage" + i);
                 RectTransform clone = cloneObject.AddComponent<RectTransform>();
 
-                clone.SetParent(healthPlaceholder, false); 
+                clone.SetParent(healthPlaceholder, false);
 
                 Image imageComponent = cloneObject.AddComponent<Image>();
 

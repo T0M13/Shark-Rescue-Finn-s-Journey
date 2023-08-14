@@ -107,6 +107,7 @@ public class GameManager : MonoBehaviour
         OnReAddHealth -= ReAddHealth;
         OnGetDamage -= GetDamage;
 
+
         OnMagnetPowerUp -= MagnetPowerUp;
         OnStarPowerUp -= StarPowerUp;
 
@@ -215,6 +216,7 @@ public class GameManager : MonoBehaviour
 
     private void GameOver()
     {
+
         gameOver = true;
         runTimer = false;
         gameSpeed = 0;
@@ -222,7 +224,9 @@ public class GameManager : MonoBehaviour
 
         if (inGameUIManager)
         {
-            inGameUIManager.UpdateGameOverStats(Score, Coins);
+            inGameUIManager.GetStats(score, playerProfileHighscore, Coins, playerProfileCoins);
+
+            inGameUIManager.UpdateGameOverStats();
             inGameUIManager.GameOverPanel.gameObject.SetActive(true);
             inGameUIManager.HudPanel.gameObject.SetActive(false);
         }
@@ -248,6 +252,7 @@ public class GameManager : MonoBehaviour
             playerReferences.PlayerInteractor.PlayerGameOver();
         }
     }
+
 
     private void OnValidate()
     {
